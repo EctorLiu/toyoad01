@@ -200,8 +200,7 @@ def handle_message(event):
         get_TYPE_message = 'New_Activity'
         get_message = strNewestActivity
 
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('面試報到' in temp_message.upper()):
+    elif ('面試報到' in temp_message.upper()):
         strTitle = 'TOYO面試報到'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -222,8 +221,7 @@ def handle_message(event):
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('業務電話' in temp_message.upper()):
+    elif ('業務電話' in temp_message.upper()):
         strTitle = 'TOYO業務電話'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -244,8 +242,7 @@ def handle_message(event):
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('夜點晚餐' in temp_message.upper()):
+    elif ('夜點晚餐' in temp_message.upper()):
         strTitle = 'TOYO夜點晚餐'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -266,8 +263,7 @@ def handle_message(event):
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('防疫群組' in temp_message.upper()):
+    elif ('防疫群組' in temp_message.upper()):
         strTitle = 'TOYO防疫群組'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -288,8 +284,7 @@ def handle_message(event):
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('體溫回報' in temp_message.upper()):
+    elif ('體溫回報' in temp_message.upper()):
         strTitle = 'TOYO體溫回報'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
