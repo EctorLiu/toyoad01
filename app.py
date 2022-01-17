@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M117)1650'
+strVer = '(M117)1720'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -10,47 +10,19 @@ strPush_NotKeyWord2All_Switch = 'ON'
     # ***** ***** ***** ***** *****
 
     ##### 預設留言 ######
-strNewestActivity = '『臺南市新吉工業區廠協會』：最近活動\n' + \
-                '更新：2022/01/13(四) 09:50 ...\n\n' + \
-                '(F) 廠協會統一編號：89038129 (1/12) \n' + \
-                '(B) 廠協會LOGO：已選出「齒輪工業風」(1/10) \n' + \
-                'bit.ly/3HQOobY\n' + \
-                '\n' + \
-                '(A) 廠協會年初全體會員活動：概念階段 \n' + \
-                '(C) 廠協會背心：設計階段 \n' + \
-                '(D) 廠協會會址：待管理中心確認租借辦法階段 \n' + \
-                '(E) 廠協會理監事會議：待管理中心確認租借辦法後擇期召開 \n' + \
-                '(G) 廠協會開戶&正式收據提供：等(F)廠協會統編取得後進行開戶 \n' + \
+strNewestActivity = '『TOYO行政管理部』：最近活動\n' + \
+                '更新：2022/01/17 17:20 ...\n\n' + \
                 '..'
 
-strMoneyText = '廠協會資金（零用金）使用狀況：\n' + \
-                '目前剩餘：26350 NTD\n' + \
-                '\n' + \
-                '明細說明：\n' + \
-                ' (01/11) 餘額 29350 NTD：\n  > 因買：銀行大章、印泥=650\n' + \
-                ' (01/12) 餘額 26350 NTD：\n  > 因買：花柱=3000\n' + \
-                '\n' + \
-                '最近預定花費：春酒、背心'
+strMoneyText = '公費使用狀況'
 
-strMemo = '『臺南市新吉工業區廠協會』：\n' + \
-            '2021/11/18(四)：第一屆第一次\n' + \
-            '會員成立大會暨理監事聯席會議\n' + \
-            '立案(M103)：南市社團字第1101543033號\n' + \
-            '統編(M112)：89038129\n' + \
-            '『稅籍編號(M112)：710620649』'
+strMemo = 'MEMO'
 
-strHowToUse = '『臺南市新吉工業區廠協會』：\n' + \
-                '您好！這是廠協會之官方帳號！\n謝謝您的訊息！\n我們會儘速以Line與您聯絡！\n\n' + \
+strHowToUse = '『TOYO行政管理部』：\n' + \
+                'Hi！這是行政管理部之官方帳號！\n謝謝你的訊息！\n\n' + \
                 '也許您可用下述常用關鍵字查詢：\n' + \
                 '「如何使用」\n' + \
-                '「最新訊息」\n' + \
-                '「成立資訊」\n' + \
-                '「如何加入會員」\n' + \
-                '「會址」\n' + \
-                '「會員名單」\n' + \
-                '「理監事名單」\n' + \
-                '「理事長由誰擔任」\n' + \
-                '「LOGO」等..'
+                '「最新訊息」等..'
 
 strLessonLearning = 'A1. 申請官方帳號：\n' + \
                     'https://manager.line.biz/\n' + \
@@ -160,7 +132,7 @@ def handle_message(event):
 
     if temp_message == '您好':
         # (A)禮貌回覆
-        get_message = '『臺南市新吉工業區廠協會』：您好' + event.message.text
+        get_message = '『TOYO行政管理部』：您好' + event.message.text
 
     ##### (TSVI)推播 #####
     elif (temp_message[0:4].upper() == 'TSVI') and \
@@ -223,84 +195,15 @@ def handle_message(event):
         get_TYPE_message = 'New_Activity'
         get_message = strNewestActivity
 
-    elif ('LOGO' in temp_message.upper()):
-        get_TYPE_message = 'SJ_LOGO'
-
-    elif ('進度' in temp_message or '狀態' in temp_message or '成立' in temp_message):
-        get_message = '『臺南市新吉工業區廠協會』成立：\n' + \
-            '臺南市政府社會局2022/01/03(一)上午\n' + \
-            '通知協會立案通過！\n\n' + \
-            '成立歷程...\n' + \
-            '第一屆第一次會員成立大會\n' + \
-            '暨理監事聯席會議\n' + \
-            '於2021/11/18(四)14:00舉行\n' + \
-            '>同年 11/26(五)提出相關文件申請\n' + \
-            '>同年 12/10(五)社會局1st通知修改內容\n' + \
-            '>同年 12/24(一)社會局2nd通知修改內容\n' + \
-            '立案：南市社團字第1101543033號'
-    elif ('如何加入' in temp_message or '加入會員' in temp_message):
-        get_message = '『臺南市新吉工業區廠協會』加入：\n\n' + \
-            '(Step01)請下載並填寫『會員入會申請書』紙本\n' + \
-            'https://www.sendspace.com/file/8jkwqm\n' + \
-            '請填寫內容並用印(大小章)\n\n' + \
-            '(Step02)請用超連結：\n' + \
-            'https://forms.gle/bxDLMLgA2fSLCDia9\n' + \
-            '最上方處有廠協會帳戶資訊\n' + \
-            '匯款後請以手機或掃描方式留存匯款資料\n\n' + \
-            '(Step03)請用同超連結：\n' + \
-            'https://forms.gle/bxDLMLgA2fSLCDia9\n' + \
-            '上傳『會員入會申請書(用印)』之掃描檔\n' + \
-            '以及『匯款單』之照片或掃描檔\n\n' + \
-            '我們會盡快通知理事會並回覆！\n' + \
-            '感謝您的支持！'
-    elif ('會址' in temp_message or '地址' in temp_message or '位置' in temp_message or '住址' in temp_message or '在哪' in temp_message or '在那' in temp_message):
-        get_message = '『臺南市新吉工業區廠協會』地址：\n' + \
-            '臺南市新吉工業區新吉三路55號\n' + \
-            '(預定遷至：臺南市新吉工業區安新二路99號)\n' + \
-            '(申請中..新吉工業區服務中心..未來會址)\n' + \
-            '歡迎您的蒞臨指教！'
-    elif ('工業區' in temp_message or '會員' in temp_message) and \
-            ('誰' in temp_message or '名單' in temp_message or '清單' in temp_message or '列表' in temp_message):
-        get_message = '『臺南市新吉工業區廠協會』會員：\n' + \
-            '(12/10資訊)\n' + \
-            '(TS001)東佑達自動化科技股份有限公司\n(TS002)久揚模具有限公司\n(TS003)伍智金屬企業股份有限公司\n(TS004)亞勝塑膠實業有限公司\n(TS005)冠岱科技有限公司\n' + \
-            '(TS006)勤敏模具雕刻股份有限公司\n(TS007)精奕興業股份有限公司\n(TS008)興晟發有限公司\n(TS009)聯晨國際股份有限公司\n(TS010)華電能源股份有限公司\n' + \
-            '(TS011)全祥譽彈簧企業社\n(TS012)鴻仲生物科技有限公司\n(TS013)永宏精密有限公司\n(TS014)得森科技有限公司\n(TS015)祈典企業股份有限公司\n' + \
-            '(TS016)凱薩克科技股份有限公司\n(TS017)聯府塑膠股份有限公司\n(TS018)金上吉塑膠股份有限公司\n(TS019)宗葆工業\n(TS020)永宏泰有限公司\n' + \
-            '(TS021)證大企業社\n(TS022)佳陽機械股份有限公司\n(TS023)友鋮股份有限公司\n(TS024)頂韻實業股份有限公司\n(TS025)旭福股份有限公司\n' + \
-            '(TS026)金煜材料科技股份有限公司\n(TS027)尚億企業有限公司\n(TS028)隆穎國際有限公司\n(TS029)騜瀧有限公司\n(TS030)金儷實業股份有限公司\n' + \
-            '(TS031)祥祿工業有限公司\n(TS032)梧濟工業股份有限公司\n(TS033)優護國際企業股份有限公司\n(TS034)沅皜光電科技股份有限公司\n(TS035)陽屹科技股份有限公司\n' + \
-            '(TS036)模懋實業股份有限公司\n(TS037)盛美股份有限公司\n(TS039)台安特殊鋼鐵股份有限公司\n(TS040)大澤科技有限公司\n' + \
-            '(TS041)利煒企業股份有限公司\n(TS042)日鋒有限公司\n(TS043)傑崧機械股份有限公司\n(TS044)崇渼精密有限公司\n(TS045)泳常股份有限公司\n' + \
-            '(TS046)鴻大開發事業股份有限公司\n(TS047)興華電創新有限公司\n(TS048)縱貫企業有限公司\n(TS049)翔豐模具企業社\n(TS050)東昇實業股份有限公司'
-    elif ('理事' in temp_message or '監事' in temp_message or '理監事' in temp_message) and \
-            ('誰' in temp_message or '名單' in temp_message or '清單' in temp_message or '列表' in temp_message):
-        get_message = '『臺南市新吉工業區廠協會』理監事名單：\n' + \
-            '第一屆第一次會員成立大會\n暨理監事聯席會議於2021/11/18(四)14:00舉行\n選舉結果：\n' + \
-            '理事長 林宗德\n' + \
-            '常務理事 洪靖惠\n常務理事 吳依龍\n理事 張崑裕\n理事 陳結和\n理事 吳冠霖\n理事 薛智煜\n理事 郭志霄\n理事 李漢章\n' + \
-            '常務監事 黃信夫\n監事 洪愛雅\n監事 洪志豪'
-    elif ('總幹事' in temp_message) and \
-            ('誰' in temp_message or '名單' in temp_message or '清單' in temp_message or '列表' in temp_message):
-        get_message = '『臺南市新吉工業區廠協會』總幹事：\n' + \
-            '第一屆第一次會員成立大會\n暨理監事聯席會議於2021/11/18(四)14:00舉行\n選舉理事長為：\n東佑達自動化科技股份有限公司\n林宗德董事長擔任！\n指派劉讃芳經理為總幹事！'
-    elif (temp_message.count('理事長') > 0) and \
-            ('誰' in temp_message or '名單' in temp_message or '清單' in temp_message or '列表' in temp_message):
-        get_message = '『臺南市新吉工業區廠協會』理事長：\n' + \
-            '第一屆第一次會員成立大會\n暨理監事聯席會議於2021/11/18(四)14:00舉行\n' + \
-            '選舉理事長為：\n東佑達自動化科技股份有限公司\n林宗德董事長擔任！'
-
-    elif (temp_message[0:2].upper() == 'SJ') and \
-            (temp_message[-3:] == '!55') and \
+    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('120' in temp_message.upper() or \
             '$' in temp_message.upper() or \
             'MONEY' in temp_message.upper() or \
             '零用金' in temp_message.upper()):
-        get_TYPE_message = 'SJ_MONEY'
+        get_TYPE_message = 'TY_MONEY'
         get_message = strMoneyText
 
-    elif (temp_message[0:2].upper() == 'SJ') and \
-            (temp_message[-3:] == '!55') and \
+    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('DOOR' in temp_message.upper() or \
             '門禁' in temp_message.upper()):
         strTitle = 'TOYO門禁清單'
@@ -324,8 +227,7 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
-    elif (temp_message[0:2].upper() == 'SJ') and \
-            (temp_message[-3:] == '!55') and \
+    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('BT' in temp_message.upper() or \
             '體溫' in temp_message.upper()):
         get_TYPE_message = 'RS_BODY_TEMPERATURE'
@@ -345,10 +247,9 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
-    elif (temp_message[0:2].upper() == 'SJ') and \
-            (temp_message[-3:] == '!55') and \
+    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('MEMO' in temp_message.upper()):
-        get_TYPE_message = 'SJ_MEMO'
+        get_TYPE_message = 'TY_MEMO'
         get_message = strMemo
 
     elif (temp_message[0:5].upper() == 'ECTOR') and ('官方帳號教學' in temp_message):
@@ -357,8 +258,7 @@ def handle_message(event):
 
     ##### (Ver)版本 #####
     elif temp_message.upper().count('VER') > 0:
-        # (Z)Ver
-        get_message = '『臺南市新吉工業區廠協會』版本：\n' + strVer
+        get_message = '『TOYO行政管理部』版本：\n' + strVer
     # ***** ***** ***** ***** *****
 
     else:
@@ -503,12 +403,12 @@ def handle_message(event):
         reply = TextSendMessage(text=f"{get_message}")
         line_bot_api.reply_message(event.reply_token,  reply)
 
-    elif get_TYPE_message == 'SJ_LOGO':
+    elif get_TYPE_message == 'TY_LOGO':
         reply = ImageSendMessage(original_content_url = 'https://github.com/EctorLiu/Ector01/raw/main/img/A.jpg', \
                                  preview_image_url = 'https://raw.githubusercontent.com/EctorLiu/Ector01/main/img/A.jpg')
         line_bot_api.reply_message(event.reply_token,  reply)
 
-    elif get_TYPE_message == 'SJ_MONEY':
+    elif get_TYPE_message == 'TY_MONEY':
         reply = TextSendMessage(text=f"{get_message}")
         line_bot_api.reply_message(event.reply_token,  reply)
 
@@ -516,7 +416,7 @@ def handle_message(event):
         reply = TextSendMessage(text=f"{get_message}")
         line_bot_api.reply_message(event.reply_token, reply)
 
-    elif get_TYPE_message == 'SJ_MEMO':
+    elif get_TYPE_message == 'TY_MEMO':
         reply = TextSendMessage(text=f"{get_message}")
         line_bot_api.reply_message(event.reply_token,  reply)
 
