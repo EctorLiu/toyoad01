@@ -6,7 +6,7 @@ strVer = '(M117)1720'
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
     # 切換同仁推播功能選擇：ON/OFF
-strPush_NotKeyWord2All_Switch = 'OFF'
+strPush_NotKeyWord2All_Switch = 'ON'
     # ***** ***** ***** ***** *****
 
     ##### 預設留言 ######
@@ -365,7 +365,7 @@ def handle_message(event):
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
         # message = get_message
-        message = '廠協會有留言如下：\n' + temp_message
+        message = 'TOYO行政管理部有留言如下：\n' + temp_message
 
         if strPush_NotKeyWord2All_Switch == 'ON': 
             # EctorLiu權杖：
