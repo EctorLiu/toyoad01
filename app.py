@@ -21,6 +21,11 @@ strMemo = 'MEMO'
 strHowToUse = '『TOYO行政管理部』：\n' + \
                 'Hi！這是行政管理部之官方帳號！\n謝謝你的訊息！\n\n' + \
                 '也許您可用下述常用關鍵字查詢：\n' + \
+                '「面試報到」\n' + \
+                '「業務電話」\n' + \
+                '「夜點晚餐」\n' + \
+                '「防疫群組」\n' + \
+                '「體溫回報」\n' + \
                 '「如何使用」\n' + \
                 '「最新訊息」等..'
 
@@ -196,18 +201,126 @@ def handle_message(event):
         get_message = strNewestActivity
 
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
+            ('面試報到' in temp_message.upper()):
+        strTitle = 'TOYO面試報到'
+        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        if strSQL_FW_Switch == 'ON':
+            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
+            strSQL = 'SELECT TOP(50) HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime ' + \
+                        ' FROM TIM_DB.dbo.VIEW_DOOR_INFO_INSIDE_List ' + \
+                        ' ORDER BY DrDateTime DESC'
+            resList = ms.RS_SQL_ExecQuery(strSQL)
+            intCount=0
+            strTemp=''
+            for (HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime) in resList:
+                intCount += 1
+                strTemp += '(' + str(intCount) + ')' + str(DrDateTime) + '\n..' + str(HRM_Dept_Name) + ', ' + str(HRM_USER_NAME) + ', ' + str(DoorText) + '\n'
+            get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
+                            datNow  + '\n\n' + \
+                            strTemp
+        else:
+            get_message = strTitle + '：\n' + \
+                            '目前ECTOR關閉防火牆\n' + \
+                            '暫停使用..有急用可找ECTOR'
+    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
+            ('業務電話' in temp_message.upper()):
+        strTitle = 'TOYO業務電話'
+        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        if strSQL_FW_Switch == 'ON':
+            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
+            strSQL = 'SELECT TOP(50) HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime ' + \
+                        ' FROM TIM_DB.dbo.VIEW_DOOR_INFO_INSIDE_List ' + \
+                        ' ORDER BY DrDateTime DESC'
+            resList = ms.RS_SQL_ExecQuery(strSQL)
+            intCount=0
+            strTemp=''
+            for (HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime) in resList:
+                intCount += 1
+                strTemp += '(' + str(intCount) + ')' + str(DrDateTime) + '\n..' + str(HRM_Dept_Name) + ', ' + str(HRM_USER_NAME) + ', ' + str(DoorText) + '\n'
+            get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
+                            datNow  + '\n\n' + \
+                            strTemp
+        else:
+            get_message = strTitle + '：\n' + \
+                            '目前ECTOR關閉防火牆\n' + \
+                            '暫停使用..有急用可找ECTOR'
+    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
+            ('夜點晚餐' in temp_message.upper()):
+        strTitle = 'TOYO夜點晚餐'
+        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        if strSQL_FW_Switch == 'ON':
+            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
+            strSQL = 'SELECT TOP(50) HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime ' + \
+                        ' FROM TIM_DB.dbo.VIEW_DOOR_INFO_INSIDE_List ' + \
+                        ' ORDER BY DrDateTime DESC'
+            resList = ms.RS_SQL_ExecQuery(strSQL)
+            intCount=0
+            strTemp=''
+            for (HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime) in resList:
+                intCount += 1
+                strTemp += '(' + str(intCount) + ')' + str(DrDateTime) + '\n..' + str(HRM_Dept_Name) + ', ' + str(HRM_USER_NAME) + ', ' + str(DoorText) + '\n'
+            get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
+                            datNow  + '\n\n' + \
+                            strTemp
+        else:
+            get_message = strTitle + '：\n' + \
+                            '目前ECTOR關閉防火牆\n' + \
+                            '暫停使用..有急用可找ECTOR'
+    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
+            ('防疫群組' in temp_message.upper()):
+        strTitle = 'TOYO防疫群組'
+        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        if strSQL_FW_Switch == 'ON':
+            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
+            strSQL = 'SELECT TOP(50) HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime ' + \
+                        ' FROM TIM_DB.dbo.VIEW_DOOR_INFO_INSIDE_List ' + \
+                        ' ORDER BY DrDateTime DESC'
+            resList = ms.RS_SQL_ExecQuery(strSQL)
+            intCount=0
+            strTemp=''
+            for (HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime) in resList:
+                intCount += 1
+                strTemp += '(' + str(intCount) + ')' + str(DrDateTime) + '\n..' + str(HRM_Dept_Name) + ', ' + str(HRM_USER_NAME) + ', ' + str(DoorText) + '\n'
+            get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
+                            datNow  + '\n\n' + \
+                            strTemp
+        else:
+            get_message = strTitle + '：\n' + \
+                            '目前ECTOR關閉防火牆\n' + \
+                            '暫停使用..有急用可找ECTOR'
+    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
+            ('體溫回報' in temp_message.upper()):
+        strTitle = 'TOYO體溫回報'
+        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        if strSQL_FW_Switch == 'ON':
+            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
+            resList = ms.RS_SQL_ExecQuery('SELECT ID, NAME, BT, CHK FROM TIM_DB.dbo.VIEW_APP_MEM_BODYTEMP ORDER BY BT DESC, ID')
+            intCount=0
+            strTemp=''
+            for (ID, NAME, BT, CHK) in resList:
+                strTemp = strTemp + str(ID) + ',' + str(NAME) + ',' + str(BT) + ',' + str(CHK) + '\n'
+                intCount += 1
+            get_message = 'TOYO體溫回報清單：資料筆數[ ' + str(intCount) + ' ]\n' + \
+                            datNow  + '\n\n' + \
+                            strTemp
+        else:
+            get_message = 'TOYO體溫回報清單：\n' + \
+                            '目前ECTOR關閉防火牆\n' + \
+                            '暫停使用..有急用可找ECTOR'
+
+    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('120' in temp_message.upper() or \
             '$' in temp_message.upper() or \
             'MONEY' in temp_message.upper() or \
             '零用金' in temp_message.upper()):
-        get_TYPE_message = 'TY_MONEY'
+        get_TYPE_message = 'TY_TEXT_Send_MSG'
         get_message = strMoneyText
 
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('DOOR' in temp_message.upper() or \
             '門禁' in temp_message.upper()):
         strTitle = 'TOYO門禁清單'
-        get_TYPE_message = 'RS_SQL_DOOR_INFO'
+        get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
             strSQL = 'SELECT TOP(50) HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime ' + \
@@ -228,28 +341,8 @@ def handle_message(event):
                             '暫停使用..有急用可找ECTOR'
 
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('BT' in temp_message.upper() or \
-            '體溫' in temp_message.upper()):
-        get_TYPE_message = 'RS_BODY_TEMPERATURE'
-        if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
-            resList = ms.RS_SQL_ExecQuery('SELECT ID, NAME, BT, CHK FROM TIM_DB.dbo.VIEW_APP_MEM_BODYTEMP ORDER BY BT DESC, ID')
-            intCount=0
-            strTemp=''
-            for (ID, NAME, BT, CHK) in resList:
-                strTemp = strTemp + str(ID) + ',' + str(NAME) + ',' + str(BT) + ',' + str(CHK) + '\n'
-                intCount += 1
-            get_message = 'TOYO體溫回報清單：資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            datNow  + '\n\n' + \
-                            strTemp
-        else:
-            get_message = 'TOYO體溫回報清單：\n' + \
-                            '目前ECTOR關閉防火牆\n' + \
-                            '暫停使用..有急用可找ECTOR'
-
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('MEMO' in temp_message.upper()):
-        get_TYPE_message = 'TY_MEMO'
+        get_TYPE_message = 'TY_TEXT_Send_MSG'
         get_message = strMemo
 
     elif (temp_message[0:5].upper() == 'ECTOR') and ('官方帳號教學' in temp_message):
@@ -408,15 +501,7 @@ def handle_message(event):
                                  preview_image_url = 'https://raw.githubusercontent.com/EctorLiu/Ector01/main/img/A.jpg')
         line_bot_api.reply_message(event.reply_token,  reply)
 
-    elif get_TYPE_message == 'TY_MONEY':
-        reply = TextSendMessage(text=f"{get_message}")
-        line_bot_api.reply_message(event.reply_token,  reply)
-
-    elif get_TYPE_message == 'RS_BODY_TEMPERATURE':
-        reply = TextSendMessage(text=f"{get_message}")
-        line_bot_api.reply_message(event.reply_token, reply)
-
-    elif get_TYPE_message == 'TY_MEMO':
+    elif get_TYPE_message == 'TY_TEXT_Send_MSG':
         reply = TextSendMessage(text=f"{get_message}")
         line_bot_api.reply_message(event.reply_token,  reply)
 
