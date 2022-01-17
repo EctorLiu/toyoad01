@@ -6,7 +6,7 @@ strVer = '(M117)1720'
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
     # 切換同仁推播功能選擇：ON/OFF
-strPush_NotKeyWord2All_Switch = 'ON'
+strPush_NotKeyWord2All_Switch = 'OFF'
     # ***** ***** ***** ***** *****
 
     ##### 預設留言 ######
