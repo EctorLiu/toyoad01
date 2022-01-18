@@ -201,7 +201,7 @@ def handle_message(event):
         get_message = strNewestActivity
 
     elif ('面試報到' in temp_message.upper()):
-        strTitle = 'TOYO面試報到'
+        strTitle = 'TOYO面試報到10天內'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
@@ -271,7 +271,7 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
     elif ('防疫群組' in temp_message.upper()):
-        strTitle = 'TOYO防疫群組'
+        strTitle = 'TOYO防疫群組7天內'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
@@ -297,7 +297,7 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
     elif ('體溫回報' in temp_message.upper()):
-        strTitle = 'TOYO體溫回報'
+        strTitle = 'TOYO體溫回報(當天)'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
@@ -326,7 +326,7 @@ def handle_message(event):
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('DOOR' in temp_message.upper() or \
             '門禁' in temp_message.upper()):
-        strTitle = 'TOYO門禁清單'
+        strTitle = 'TOYO門禁清單(最新)'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
