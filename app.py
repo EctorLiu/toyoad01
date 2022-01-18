@@ -214,10 +214,10 @@ def handle_message(event):
             for (AF_DAY, IN_TYPE, IN_DAY, IN_TIME, DEPT_CODE, IN_NAME) in resList:
                 intCount += 1
                 if AF_DAY == '當天':
-                    strTemp += '(' + str(intCount) + ')' + str(AF_DAY) + '..' + str(IN_TYPE) + ', ' + str(IN_DAY) + ', ' + \
+                    strTemp += '[' + str(intCount) + ']' + str(AF_DAY) + '..' + str(IN_TYPE) + ', ' + str(IN_DAY) + ', ' + \
                                 str(IN_TIME) + ', ' + str(DEPT_CODE) + ', ' + str(IN_NAME) + '\n'
                 else:
-                    strTemp += '(' + str(intCount) + ')還有' + str(AF_DAY) + '天..' + str(IN_TYPE) + ', ' + str(IN_DAY) + ', ' + \
+                    strTemp += '[' + str(intCount) + ']還有' + str(AF_DAY) + '天..' + str(IN_TYPE) + ', ' + str(IN_DAY) + ', ' + \
                                 str(IN_TIME) + ', ' + str(DEPT_CODE) + ', ' + str(IN_NAME) + '\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
@@ -239,7 +239,7 @@ def handle_message(event):
             strTemp=''
             for (HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime) in resList:
                 intCount += 1
-                strTemp += '(' + str(intCount) + ')' + str(DrDateTime) + '\n..' + str(HRM_Dept_Name) + ', ' + str(HRM_USER_NAME) + ', ' + str(DoorText) + '\n'
+                strTemp += '[' + str(intCount) + ']' + str(DrDateTime) + '\n..' + str(HRM_Dept_Name) + ', ' + str(HRM_USER_NAME) + ', ' + str(DoorText) + '\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
@@ -260,7 +260,7 @@ def handle_message(event):
             strTemp=''
             for (ED_DATE, ED_NUM, ED_DIFF, MEM_NUM, OD_T1, OD_T2, OD_T3) in resList:
                 intCount += 1
-                strTemp += '(' + str(intCount) + ') ' + str(ED_DATE) + '\n..' + \
+                strTemp += '[' + str(intCount) + '] ' + str(ED_DATE) + '\n..' + \
                                 '訂購: ' + str(ED_NUM) + ',數差 ' + str(ED_DIFF) + '\n' + \
                                 ',員工訂 ' + str(MEM_NUM) + ',葷 ' + str(OD_T1) + ',素 ' + str(OD_T2) + ',非豬 ' + str(OD_T3) + '\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
@@ -284,10 +284,10 @@ def handle_message(event):
             for (AF_DAY, PV_DATE, PV_TIME, PV_NAME, PV_NUM, TY_MEM, PV_ISEAT) in resList:
                 intCount += 1
                 if str(AF_DAY) == '當天':
-                    strTemp += '(' + str(intCount) + ')' + '當天' + ', ' + str(PV_DATE) + '\n' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
+                    strTemp += '[' + str(intCount) + ']' + '當天' + ', ' + str(PV_DATE) + '\n' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
                                     str(PV_NUM) + '人, 陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n'
                 else:
-                    strTemp += '(' + str(intCount) + ')還有' + str(AF_DAY) + '天, ' + str(PV_DATE) + '\n' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
+                    strTemp += '[' + str(intCount) + ']還有' + str(AF_DAY) + '天, ' + str(PV_DATE) + '\n' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
                                     str(PV_NUM) + '人, 陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
@@ -338,7 +338,7 @@ def handle_message(event):
             strTemp=''
             for (HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime) in resList:
                 intCount += 1
-                strTemp += '(' + str(intCount) + ')' + str(DrDateTime) + '\n..' + str(HRM_Dept_Name) + ', ' + str(HRM_USER_NAME) + ', ' + str(DoorText) + '\n'
+                strTemp += '[' + str(intCount) + ']' + str(DrDateTime) + '\n..' + str(HRM_Dept_Name) + ', ' + str(HRM_USER_NAME) + ', ' + str(DoorText) + '\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
