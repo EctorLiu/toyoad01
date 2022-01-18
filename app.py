@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M118)1119'
+strVer = '(M118)1154'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -252,17 +252,17 @@ def handle_message(event):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
-            strSQL = 'SELECT TOP(20) [ED_DATE] ,[ED_T1] ,[ED_T2] ,[ED_T3] ,[ED_NUM] ,[ED_DIFF] ,[MEM_NUM] ,[OD_T1] ,[OD_T2] ,[OD_T3] ' + \
+            strSQL = 'SELECT TOP(20) [ED_DATE] ,[ED_NUM] ,[ED_DIFF] ,[MEM_NUM] ,[OD_T1] ,[OD_T2] ,[OD_T3] ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_GA_DINNER_LIST] ' + \
                         ' ORDER BY ED_DATE DESC '
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
-            for (ED_DATE, ED_T1, ED_T2, ED_T3, ED_NUM, ED_DIFF, MEM_NUM, OD_T1, OD_T2, OD_T3) in resList:
+            for (ED_DATE, ED_NUM, ED_DIFF, MEM_NUM, OD_T1, OD_T2, OD_T3) in resList:
                 intCount += 1
-                strTemp += '(' + str(intCount) + ')' + str(ED_DATE) + '\n..' + str(ED_T1) + ', ' + str(ED_T2) + ', ' + \
-                                str(ED_T3) + ', ' + str(ED_NUM) + ', ' + str(ED_DIFF) + ', ' + str(MEM_NUM) + ', ' + \
-                                str(OD_T1) + ', ' + str(OD_T2) + ', ' + str(OD_T3) + '\n'
+                strTemp += '(' + str(intCount) + ') ' + str(ED_DATE) + '\n..' + \
+                                '訂購: ' + str(ED_NUM) + ',數差 ' + str(ED_DIFF) + ',員工訂 ' + str(MEM_NUM) + ',葷 ' + \
+                                str(OD_T1) + ',素 ' + str(OD_T2) + ',非豬 ' + str(OD_T3) + '\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
