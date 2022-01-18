@@ -214,10 +214,10 @@ def handle_message(event):
             for (AF_DAY, IN_TYPE, IN_DAY, IN_TIME, DEPT_CODE, IN_NAME) in resList:
                 intCount += 1
                 if AF_DAY == '當天':
-                    strTemp += '(' + str(intCount) + ')' + str(AF_DAY) + '\n..' + str(IN_TYPE) + ', ' + str(IN_DAY) + ', ' + \
+                    strTemp += '(' + str(intCount) + ')' + str(AF_DAY) + '..' + str(IN_TYPE) + ', ' + str(IN_DAY) + ', ' + \
                                 str(IN_TIME) + ', ' + str(DEPT_CODE) + ', ' + str(IN_NAME) + '\n'
                 else:
-                    strTemp += '(' + str(intCount) + ')還有' + str(AF_DAY) + '天\n..' + str(IN_TYPE) + ', ' + str(IN_DAY) + ', ' + \
+                    strTemp += '(' + str(intCount) + ')還有' + str(AF_DAY) + '天..' + str(IN_TYPE) + ', ' + str(IN_DAY) + ', ' + \
                                 str(IN_TIME) + ', ' + str(DEPT_CODE) + ', ' + str(IN_NAME) + '\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
