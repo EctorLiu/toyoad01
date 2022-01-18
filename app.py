@@ -219,7 +219,7 @@ def handle_message(event):
                 else:
                     strTemp += '[' + str(intCount) + ']還有' + str(AF_DAY) + '天..' + str(IN_TYPE) + ', ' + str(IN_DAY) + '\n' + \
                                 '  ' + str(IN_TIME) + ', ' + str(DEPT_CODE) + ', ' + str(IN_NAME) + '\n\n'
-            get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
+            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
         else:
@@ -229,24 +229,7 @@ def handle_message(event):
     elif ('業務電話' in temp_message.upper()):
         strTitle = 'TOYO業務電話'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
-        if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
-            strSQL = 'SELECT TOP(50) HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime ' + \
-                        ' FROM TIM_DB.dbo.VIEW_DOOR_INFO_INSIDE_List ' + \
-                        ' ORDER BY DrDateTime DESC'
-            resList = ms.RS_SQL_ExecQuery(strSQL)
-            intCount=0
-            strTemp=''
-            for (HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime) in resList:
-                intCount += 1
-                strTemp += '[' + str(intCount) + ']' + str(DrDateTime) + '\n..' + str(HRM_Dept_Name) + ', ' + str(HRM_USER_NAME) + ', ' + str(DoorText) + '\n'
-            get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            datNow  + '\n\n' + \
-                            strTemp
-        else:
-            get_message = strTitle + '：\n' + \
-                            '目前ECTOR關閉防火牆\n' + \
-                            '暫停使用..有急用可找ECTOR'
+        get_message = '(尚未進行)等冠伶提供資料中..'
     elif ('夜點晚餐' in temp_message.upper()):
         strTitle = 'TOYO夜點晚餐'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
@@ -263,7 +246,7 @@ def handle_message(event):
                 strTemp += '[' + str(intCount) + '] ' + str(ED_DATE) + '\n' + \
                                 '..訂購: ' + str(ED_NUM) + ',數差 ' + str(ED_DIFF) + '\n' + \
                                 '  員工訂 ' + str(MEM_NUM) + ',葷 ' + str(OD_T1) + ',素 ' + str(OD_T2) + ',非豬 ' + str(OD_T3) + '\n\n'
-            get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
+            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
         else:
@@ -289,7 +272,7 @@ def handle_message(event):
                 else:
                     strTemp += '[' + str(intCount) + ']還有' + str(AF_DAY) + '天, ' + str(PV_DATE) + '\n  ' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
                                     '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n\n'
-            get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
+            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
         else:
@@ -307,7 +290,7 @@ def handle_message(event):
             for (ID, NAME, BT, CHK) in resList:
                 strTemp = strTemp + str(ID) + ',' + str(NAME) + ',' + str(BT) + ',' + str(CHK) + '\n'
                 intCount += 1
-            get_message = 'TOYO體溫回報清單：資料筆數[ ' + str(intCount) + ' ]\n' + \
+            get_message = 'TOYO體溫回報清單：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
         else:
