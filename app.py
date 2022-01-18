@@ -215,10 +215,10 @@ def handle_message(event):
                 intCount += 1
                 if AF_DAY == '當天':
                     strTemp += '[' + str(intCount) + ']' + str(AF_DAY) + '..' + str(IN_TYPE) + ', ' + str(IN_DAY) + '\n' + \
-                                '  ' + str(IN_TIME) + ', ' + str(DEPT_CODE) + ', ' + str(IN_NAME) + '\n'
+                                '  ' + str(IN_TIME) + ', ' + str(DEPT_CODE) + ', ' + str(IN_NAME) + '\n\n'
                 else:
                     strTemp += '[' + str(intCount) + ']還有' + str(AF_DAY) + '天..' + str(IN_TYPE) + ', ' + str(IN_DAY) + '\n' + \
-                                '  ' + str(IN_TIME) + ', ' + str(DEPT_CODE) + ', ' + str(IN_NAME) + '\n'
+                                '  ' + str(IN_TIME) + ', ' + str(DEPT_CODE) + ', ' + str(IN_NAME) + '\n\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
@@ -262,7 +262,7 @@ def handle_message(event):
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] ' + str(ED_DATE) + '\n' + \
                                 '..訂購: ' + str(ED_NUM) + ',數差 ' + str(ED_DIFF) + '\n' + \
-                                '  員工訂 ' + str(MEM_NUM) + ',葷 ' + str(OD_T1) + ',素 ' + str(OD_T2) + ',非豬 ' + str(OD_T3) + '\n'
+                                '  員工訂 ' + str(MEM_NUM) + ',葷 ' + str(OD_T1) + ',素 ' + str(OD_T2) + ',非豬 ' + str(OD_T3) + '\n\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
@@ -284,11 +284,11 @@ def handle_message(event):
             for (AF_DAY, PV_DATE, PV_TIME, PV_NAME, PV_NUM, TY_MEM, PV_ISEAT) in resList:
                 intCount += 1
                 if str(AF_DAY) == '當天':
-                    strTemp += '[' + str(intCount) + ']' + '當天' + ', ' + str(PV_DATE) + '\n' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
-                                    '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n'
+                    strTemp += '[' + str(intCount) + ']' + '當天' + ', ' + str(PV_DATE) + '\n  ' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
+                                    '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n\n'
                 else:
-                    strTemp += '[' + str(intCount) + ']還有' + str(AF_DAY) + '天, ' + str(PV_DATE) + '\n' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
-                                    '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n'
+                    strTemp += '[' + str(intCount) + ']還有' + str(AF_DAY) + '天, ' + str(PV_DATE) + '\n  ' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
+                                    '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
