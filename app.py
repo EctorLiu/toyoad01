@@ -261,8 +261,8 @@ def handle_message(event):
             for (ED_DATE, ED_NUM, ED_DIFF, MEM_NUM, OD_T1, OD_T2, OD_T3) in resList:
                 intCount += 1
                 strTemp += '(' + str(intCount) + ') ' + str(ED_DATE) + '\n..' + \
-                                '訂購: ' + str(ED_NUM) + ',數差 ' + str(ED_DIFF) + ',員工訂 ' + str(MEM_NUM) + ',葷 ' + \
-                                str(OD_T1) + ',素 ' + str(OD_T2) + ',非豬 ' + str(OD_T3) + '\n'
+                                '訂購: ' + str(ED_NUM) + ',數差 ' + str(ED_DIFF) + '\n' + \
+                                ',員工訂 ' + str(MEM_NUM) + ',葷 ' + str(OD_T1) + ',素 ' + str(OD_T2) + ',非豬 ' + str(OD_T3) + '\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
