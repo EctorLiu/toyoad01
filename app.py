@@ -288,7 +288,7 @@ def handle_message(event):
                                     str(PV_NUM) + '人, 陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n'
                 else:
                     strTemp += '(' + str(intCount) + ')還有' + str(AF_DAY) + '天, ' + str(PV_DATE) + '\n' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
-                                    str(PV_NUM) + '人, 陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n''
+                                    str(PV_NUM) + '人, 陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
