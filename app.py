@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M118)1052'
+strVer = '(M118)1119'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -213,7 +213,11 @@ def handle_message(event):
             strTemp=''
             for (AF_DAY, IN_TYPE, IN_DAY, IN_TIME, DEPT_CODE, IN_NAME) in resList:
                 intCount += 1
-                strTemp += '(' + str(intCount) + ')' + str(AF_DAY) + '\n..' + str(IN_TYPE) + ', ' + str(IN_DAY) + ', ' + \
+                if AF_DAY == '當天':
+                    strTemp += '(' + str(intCount) + ')' + str(AF_DAY) + '\n..' + str(IN_TYPE) + ', ' + str(IN_DAY) + ', ' + \
+                                str(IN_TIME) + ', ' + str(DEPT_CODE) + ', ' + str(IN_NAME) + '\n'
+                else:
+                    strTemp += '(' + str(intCount) + ')還有' + str(AF_DAY) + '天\n..' + str(IN_TYPE) + ', ' + str(IN_DAY) + ', ' + \
                                 str(IN_TIME) + ', ' + str(DEPT_CODE) + ', ' + str(IN_NAME) + '\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
