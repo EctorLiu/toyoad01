@@ -283,12 +283,12 @@ def handle_message(event):
             strTemp=''
             for (AF_DAY, PV_DATE, PV_TIME, PV_NAME, PV_NUM, TY_MEM, PV_ISEAT) in resList:
                 intCount += 1
-                if str(PV_ISEAT) == 'Yes':
-                    strTemp += '(' + str(intCount) + ')' + str(AF_DAY) + '\n..' + str(PV_DATE) + ', ' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
-                                    str(PV_NUM) + ', ' + str(TY_MEM) + ', ' + '有用餐' + '\n'
+                if str(AF_DAY) == '當天':
+                    strTemp += '(' + str(intCount) + ')' + '當天' + ', ' + str(PV_DATE) + '\n' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
+                                    str(PV_NUM) + '人, 陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n'
                 else:
-                    strTemp += '(' + str(intCount) + ')' + str(AF_DAY) + '\n..' + str(PV_DATE) + ', ' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
-                                    str(PV_NUM) + ', ' + str(TY_MEM) + ', ' + '沒有用餐' + '\n'
+                    strTemp += '(' + str(intCount) + ')還有' + str(AF_DAY) + '天, ' + str(PV_DATE) + '\n' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
+                                    str(PV_NUM) + '人, 陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n''
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
