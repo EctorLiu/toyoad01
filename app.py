@@ -273,15 +273,20 @@ def handle_message(event):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
-            strSQL = 'SELECT TOP(50) HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime ' + \
-                        ' FROM TIM_DB.dbo.VIEW_DOOR_INFO_INSIDE_List ' + \
-                        ' ORDER BY DrDateTime DESC'
+            strSQL = 'SELECT [AF_DAY] ,[PV_DATE] ,[PV_TIME] ,[PV_NAME] ,[PV_NUM] ,[TY_MEM] ,[PV_ISEAT] ' + \
+                        ' FROM [TIM_DB].[dbo].[VIEW_APP_PV_IN_7_DAY] ' + \
+                        ' ORDER BY [PV_DATE], [PV_TIME], [PV_NAME], [TY_MEM]'
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
-            for (HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime) in resList:
+            for (AF_DAY, PV_DATE, PV_TIME, PV_NAME, PV_NUM, TY_MEM, PV_ISEAT) in resList:
                 intCount += 1
-                strTemp += '(' + str(intCount) + ')' + str(DrDateTime) + '\n..' + str(HRM_Dept_Name) + ', ' + str(HRM_USER_NAME) + ', ' + str(DoorText) + '\n'
+                if str(PV_ISEAT) == 'Yes':
+                    strTemp += '(' + str(intCount) + ')' + str(AF_DAY) + '\n..' + str(PV_DATE) + ', ' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
+                                    str(PV_NUM) + ', ' + str(TY_MEM) + ', ' + '有用餐' + '\n'
+                else:
+                    strTemp += '(' + str(intCount) + ')' + str(AF_DAY) + '\n..' + str(PV_DATE) + ', ' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
+                                    str(PV_NUM) + ', ' + str(TY_MEM) + ', ' + '沒有用餐' + '\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
