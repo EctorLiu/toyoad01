@@ -252,7 +252,7 @@ def handle_message(event):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
-            strSQL = 'SELECT [ED_DATE] ,[ED_T1] ,[ED_T2] ,[ED_T3] ,[ED_NUM] ,[ED_DIFF] ,[MEM_NUM] ,[OD_T1] ,[OD_T2] ,[OD_T3] ' + \
+            strSQL = 'SELECT TOP(20) [ED_DATE] ,[ED_T1] ,[ED_T2] ,[ED_T3] ,[ED_NUM] ,[ED_DIFF] ,[MEM_NUM] ,[OD_T1] ,[OD_T2] ,[OD_T3] ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_GA_DINNER_LIST] ' + \
                         ' ORDER BY ED_DATE DESC '
             resList = ms.RS_SQL_ExecQuery(strSQL)
