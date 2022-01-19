@@ -266,10 +266,9 @@ def handle_message(event):
             strTemp=''
             for (FOOD_KIND, FOOD_NAME, FOOD_STKNUM, FOOD_DAYNUM, FOOD_YN, FOOD_USEDAY, FOOD_CHGYN, FOOD_UPDATE) in resList:
                 intCount += 1
-                strTemp += '[' + str(intCount) + '] ' + str(FOOD_KIND) + '\n' + \
-                                '  品項: ' + str(FOOD_NAME) + ', 庫存: ' + str(FOOD_STKNUM) + '\n' + \
-                                '  限量: ' + str(FOOD_DAYNUM) + ', 是否足夠: ' + str(FOOD_YN) + '\n' + \
-                                '  可用: ' + str(FOOD_USEDAY) + ', 異動: ' + str(FOOD_CHGYN) + '\n' + \
+                strTemp += '[' + str(intCount) + '] (' + str(FOOD_KIND) + ' ) 品項: ' + str(FOOD_NAME) + '：' + str(FOOD_YN) + '\n' + \
+                                '  ' + str(FOOD_USEDAY) + ', ' + str(FOOD_CHGYN) + '\n' + \
+                                '  庫存:' + str(FOOD_STKNUM) + '日限量: ' + str(FOOD_DAYNUM) + '\n' + \
                                 '  更新日期: ' + str(FOOD_UPDATE) + '\n\n'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
