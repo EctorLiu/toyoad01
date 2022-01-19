@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M119)1538'
+strVer = '(M119)1556'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -258,17 +258,19 @@ def handle_message(event):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
-            strSQL = 'SELECT TOP(20) [ED_DATE] ,[ED_NUM] ,[ED_DIFF] ,[MEM_NUM] ,[OD_T1] ,[OD_T2] ,[OD_T3] ' + \
-                        ' FROM [TIM_DB].[dbo].[VIEW_APP_GA_DINNER_LIST] ' + \
-                        ' ORDER BY ED_DATE DESC '
+            strSQL = 'SELECT [FOOD_KIND] ,[FOOD_NAME] ,[FOOD_STKNUM] ,[FOOD_DAYNUM] ,[FOOD_YN] ,[FOOD_USEDAY] ,[FOOD_CHGYN] ,[FOOD_UPDATE] ' + \
+                        ' FROM [TIM_DB].[dbo].[VIEW_APP_GA_FOOD_LIST] ' + \
+                        ' ORDER BY [FOOD_YN], [FOOD_KIND], [FOOD_NAME] '
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
-            for (ED_DATE, ED_NUM, ED_DIFF, MEM_NUM, OD_T1, OD_T2, OD_T3) in resList:
+            for (FOOD_KIND, FOOD_NAME, FOOD_STKNUM, FOOD_DAYNUM, FOOD_YN, FOOD_USEDAY, FOOD_CHGYN, FOOD_UPDATE) in resList:
                 intCount += 1
-                strTemp += '[' + str(intCount) + '] ' + str(ED_DATE) + '\n' + \
-                                '..訂購: ' + str(ED_NUM) + ',數差 ' + str(ED_DIFF) + '\n' + \
-                                '  員工訂 ' + str(MEM_NUM) + ',葷 ' + str(OD_T1) + ',素 ' + str(OD_T2) + ',非豬 ' + str(OD_T3) + '\n\n'
+                strTemp += '[' + str(intCount) + '] ' + str(FOOD_KIND) + '\n' + \
+                                '  品項: ' + str(FOOD_NAME) + ', 庫存: ' + str(FOOD_STKNUM) + '\n' + \
+                                '  限量: ' + str(FOOD_DAYNUM) + ', 是否足夠: ' + str(FOOD_YN) + '\n' + \
+                                '  可用: ' + str(FOOD_USEDAY) + '天, 異動: ' + str(FOOD_CHGYN) + '\n' + \
+                                '  更新日期: ' + str(FOOD_UPDATE) + '\n\n'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
