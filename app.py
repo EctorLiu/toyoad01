@@ -260,7 +260,7 @@ def handle_message(event):
             ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
             strSQL = 'SELECT [FOOD_KIND] ,[FOOD_NAME] ,[FOOD_STKNUM] ,[FOOD_DAYNUM] ,[FOOD_YN] ,[FOOD_USEDAY] ,[FOOD_CHGYN] ,[FOOD_UPDATE] ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_GA_FOOD_LIST] ' + \
-                        ' ORDER BY [FOOD_YN], [FOOD_KIND], [FOOD_NAME] '
+                        ' ORDER BY [FOOD_YN], [FOOD_USEDAY], [FOOD_KIND], [FOOD_NAME] '
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
