@@ -229,7 +229,30 @@ def handle_message(event):
     elif ('業務電話' in temp_message.upper()):
         strTitle = 'TOYO業務電話'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
-        get_message = '(尚未進行)等冠伶提供資料中..'
+        if strSQL_FW_Switch == 'ON':
+            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
+            strSQL = 'SELECT [SA_NAME] ,[SA_DEPT] ,[SA_AREA] ,[SA_PHONE] ,[SA_EMAIL] ,[SA_DATAUP] ,[SA_FILEUP] ' + \
+                        ' FROM [TIM_DB].[dbo].[VIEW_APP_SA_CONTACT_INFO] ' + \
+                        ' ORDER BY [SA_AREA], [SA_DEPT], [SA_NAME] '
+            resList = ms.RS_SQL_ExecQuery(strSQL)
+            intCount=0
+            strTemp=''
+            # strDATAUP = ss
+            # SA_FILEUP = ss, SA_FILEUP
+            for (SA_NAME, SA_DEPT, SA_AREA, SA_PHONE, SA_EMAIL, SA_DATAUP) in resList:
+                intCount += 1
+                strTemp += '[' + str(intCount) + '] \n' + \
+                                str(SA_NAME) + ', ' + str(SA_DEPT) + ', ' + str(SA_AREA) + '\n' + \
+                                '  公務機號碼: ' + str(SA_PHONE) + '\n' + \
+                                '  E-Mail: ' + str(SA_EMAIL) + '\n' + \
+                                '  更新日期: ' + str(SA_DATAUP) + '\n\n'
+            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+                            datNow  + '\n\n' + \
+                            strTemp
+        else:
+            get_message = strTitle + '：\n' + \
+                            '目前ECTOR關閉防火牆\n' + \
+                            '暫停使用..有急用可找ECTOR'
     elif ('夜點晚餐' in temp_message.upper()):
         strTitle = 'TOYO夜點晚餐'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
