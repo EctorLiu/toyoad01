@@ -269,7 +269,7 @@ def handle_message(event):
                 strTemp += '[' + str(intCount) + '] ' + str(FOOD_KIND) + '\n' + \
                                 '  品項: ' + str(FOOD_NAME) + ', 庫存: ' + str(FOOD_STKNUM) + '\n' + \
                                 '  限量: ' + str(FOOD_DAYNUM) + ', 是否足夠: ' + str(FOOD_YN) + '\n' + \
-                                '  可用: ' + str(FOOD_USEDAY) + '天, 異動: ' + str(FOOD_CHGYN) + '\n' + \
+                                '  可用: ' + str(FOOD_USEDAY) + ', 異動: ' + str(FOOD_CHGYN) + '\n' + \
                                 '  更新日期: ' + str(FOOD_UPDATE) + '\n\n'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
