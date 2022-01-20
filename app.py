@@ -16,7 +16,8 @@ strNewestActivity = '『TOYO行政管理部』：最近活動\n' + \
 
 strMoneyText = '公費使用狀況'
 
-strMemo = 'MEMO'
+strMemo = '公司住址：70947台南市安南區新吉三路55號\n' + \
+            '導航：https://g.page/TOYOROBOT?share'
 
 strHowToUse = '『TOYO行政管理部』：\n' + \
                 'Hi！這是行政管理部之官方帳號！\n謝謝你的訊息！\n\n' + \
