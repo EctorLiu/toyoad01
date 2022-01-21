@@ -376,15 +376,15 @@ def handle_message(event):
                             datNow  + '\n\n' + \
                             strTemp + '\n\n' +\
                             '以上為有（不合格）品項滅火器\n\n'
-            strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CL-A01] ,[FE_NAME] ' \
+            strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CL-A01] AS CLA01 ,[FE_NAME] ' \
                         ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_OK_List01] ' + \
                         ' ORDER BY FE_TIME DESC'
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
-            for (FE_TIME, FE_EQNAME, [CL-A01], FE_NAME) in resList:
+            for (FE_TIME, FE_EQNAME, CLA01, FE_NAME) in resList:
                 intCount += 1
-                strTemp += '[' + str(intCount) + ']' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str([CL-A01]) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
+                strTemp += '[' + str(intCount) + ']' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CLA01) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp + '\n\n' +\
