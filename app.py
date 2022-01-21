@@ -357,7 +357,7 @@ def handle_message(event):
 
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('NEWFE' in temp_message.upper() or \
-            '最新滅火' in temp_message.upper()):
+            '新滅火' in temp_message.upper()):
         strTitle = 'TOYO 廠區滅火器最近1次清點情況'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
