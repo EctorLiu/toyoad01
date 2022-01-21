@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M121)1336'
+strVer = '(M121)1612'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -205,7 +205,7 @@ def handle_message(event):
         strTitle = 'TOYO面試報到10天內'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
+            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT AF_DAY, IN_TYPE, IN_DAY,IN_TIME,DEPT_CODE, IN_NAME ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_MEM_IN_10_DAY] ' + \
                         ' ORDER BY [IN_DAY], [IN_TIME]'
@@ -231,7 +231,7 @@ def handle_message(event):
         strTitle = 'TOYO業務電話'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
+            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [SA_NAME] ,[SA_DEPT] ,[SA_AREA] ,[SA_PHONE] ,[SA_EMAIL] ,[SA_DATAUP] ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_SA_CONTACT_INFO] ' + \
                         ' ORDER BY [SA_AREA], [SA_DEPT], [SA_NAME] '
@@ -258,7 +258,7 @@ def handle_message(event):
         strTitle = 'TOYO夜點晚餐'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
+            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [FOOD_KIND] ,[FOOD_NAME] ,[FOOD_STKNUM] ,[FOOD_DAYNUM] ,[FOOD_YN] ,[FOOD_USEDAY] ,[FOOD_CHGYN] ,[FOOD_UPDATE] ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_GA_FOOD_LIST] ' + \
                         ' ORDER BY [FOOD_YN] DESC, [FOOD_USEDAY], [FOOD_KIND], [FOOD_NAME] '
@@ -282,7 +282,7 @@ def handle_message(event):
         strTitle = 'TOYO防疫群組7天內'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
+            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [AF_DAY] ,[PV_DATE] ,[PV_TIME] ,[PV_NAME] ,[PV_NUM] ,[TY_MEM] ,[PV_ISEAT] ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_PV_IN_7_DAY] ' + \
                         ' ORDER BY [PV_DATE], [PV_TIME], [PV_NAME], [TY_MEM]'
@@ -308,7 +308,7 @@ def handle_message(event):
         strTitle = 'TOYO體溫回報(當天)'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
+            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             resList = ms.RS_SQL_ExecQuery('SELECT ID, NAME, BT, CHK FROM TIM_DB.dbo.VIEW_APP_MEM_BODYTEMP ORDER BY BT DESC, ID')
             intCount=0
             strTemp=''
@@ -337,7 +337,7 @@ def handle_message(event):
         strTitle = 'TOYO門禁清單(最新)'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
+            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT TOP(50) HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime ' + \
                         ' FROM TIM_DB.dbo.VIEW_DOOR_INFO_INSIDE_List ' + \
                         ' ORDER BY DrDateTime DESC'
@@ -361,7 +361,7 @@ def handle_message(event):
         strTitle = 'TOYO 廠區滅火器最近1次清點情況'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
+            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CHK_01] ,[CHK_02] ,[CHK_03] ,[CHK_04] ,[FE_NAME] ' \
                         ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_NewestNGList01] ' + \
                         ' ORDER BY FE_TIME DESC'
@@ -404,7 +404,7 @@ def handle_message(event):
         strTitle = 'TOYO 廠區滅火器最近1個月清點情況'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
+            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CHK_01] ,[CHK_02] ,[CHK_03] ,[CHK_04] ,[FE_NAME] ' \
                         ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_NG_List01] ' + \
                         ' ORDER BY FE_EQNAME'
@@ -638,56 +638,4 @@ def lineNotifyMessage(token, msg):
     return r.status_code
 
     # ***** ***** ***** *****  *****
-
-    ##### SQL ######
-import pymssql
-
-class MSSQL:
-    def __init__(self, host, port, user, pwd, db):
-        self.host = host
-        self.port = port
-        self.user = user
-        self.pwd = pwd
-        self.db = db
-
-    def RS_SQL_GetConnect(self):
-        if not self.db:
-            raise(NameError,"沒有設定資料庫資訊")
-        self.conn = pymssql.connect(host=self.host, port=self.port, user=self.user, password=self.pwd, database=self.db, charset='utf8')
-        cur = self.conn.cursor()
-        if not cur:
-            raise(NameError,"連線資料庫失敗")
-            # strSQLCond = "Connect NG"
-            # return strSQLCond
-        else:
-            return cur
-            # strSQLCond = "Connect OK"
-            # return strSQLCond
-
-    def RS_SQL_ExecQuery(self, sql):
-        cur = self.RS_SQL_GetConnect()
-        cur.execute(sql)
-        resList = cur.fetchall()
-        self.conn.close()
-        return resList
-        # strSQLCond = "RS_SQL_ExecQuery OK"
-        # return strSQLCond
-
-    def RS_SQL_ExecNonQuery(self, sql):
-        cur = self.RS_SQL_GetConnect()
-        cur.execute(sql)
-        self.conn.commit()
-        self.conn.close()
-
-# sql語句中有中文的時候進行encode
-# insertSql = "insert into WeiBo([UserId],[WeiBoContent],[PublishDate]) values(1,'測試','2012/2/1')".encode("utf8")
-# 連線的時候加入charset設定資訊
-# pymssql.connect(host=self.host,user=self.user,password=self.pwd,database=self.db,charset='utf8')
-
-# conn = pymssql.connect(host='192.168.1.254', user='sa', password='00000')
-# conn = pymssql.connect(host='192.168.1.254', port=1433, user='sa',password='00000',database='TIM_DB',charset='utf8', as_dict=True)
-# conn = pymssql.connect('192.168.1.254','sa', '00000', 'TIM_DB')
-# conn = pymssql.connect('211.23.242.220','sa@211.23.242.220', 'Sql#dsc20170524', 'TIMHRDB')
-# cursor = conn.cursor(as_dict=True)
-    # ***** ***** ***** ***** *****
 
