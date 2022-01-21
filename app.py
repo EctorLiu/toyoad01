@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M121)1332'
+strVer = '(M121)1336'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -407,7 +407,7 @@ def handle_message(event):
             ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CHK_01] ,[CHK_02] ,[CHK_03] ,[CHK_04] ,[FE_NAME] ' \
                         ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_NG_List01] ' + \
-                        ' ORDER BY FE_TIME DESC'
+                        ' ORDER BY FE_EQNAME'
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
@@ -423,7 +423,7 @@ def handle_message(event):
 
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CL-A01] AS CLA01 ,[FE_NAME] ' \
                         ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_OK_List01] ' + \
-                        ' ORDER BY FE_TIME DESC'
+                        ' ORDER BY FE_EQNAME'
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
