@@ -358,7 +358,7 @@ def handle_message(event):
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('FE' in temp_message.upper() or \
             '滅火' in temp_message.upper()):
-        strTitle = 'TOYO 廠區滅火器最近1個月清點情況：'
+        strTitle = 'TOYO 廠區滅火器最近1個月清點情況'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             strTemp=''
@@ -371,12 +371,13 @@ def handle_message(event):
             intCount=0
             for (FE_TIME, FE_EQNAME, CHK_01, CHK_02, CHK_03, CHK_04, FE_NAME) in resList:
                 intCount += 1
-                strTemp += '[' + str(intCount) + ']' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CHK_01) + '\n  ' + str(CHK_02) + '\n' + \
+                strTemp += '[' + str(intCount) + ']' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CHK_01) + '\n  ' + str(CHK_02) + '\n  ' + \
                              str(CHK_03) + '\n  ' + str(CHK_04) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
-                            strTemp + '\n\n' +\
+                            strTemp + '\n' + \
                             '以上為有（不合格）品項滅火器\n\n'
+                            ' ============================== \n\n'
 
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CL-A01] AS CLA01 ,[FE_NAME] ' \
                         ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_OK_List01] ' + \
@@ -388,7 +389,7 @@ def handle_message(event):
                 strTemp += '[' + str(intCount) + ']' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CLA01) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
-                            strTemp + '\n\n' +\
+                            strTemp + '\n' + \
                             '以上為（全合格）品項滅火器'
         else:
             get_message = strTitle + '：\n' + \
