@@ -373,10 +373,10 @@ def handle_message(event):
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] ' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CHK_01) + '\n  ' + str(CHK_02) + '\n  ' + \
                              str(CHK_03) + '\n  ' + str(CHK_04) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
-            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp + '\n' + \
-                            '以上為有（不合格）品項滅火器\n\n' + \
+                            '  以上為有（不合格）品項滅火器\n\n' + \
                             ' ==================================== \n\n'
 
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CL-A01] AS CLA01 ,[FE_NAME] ' \
@@ -387,10 +387,11 @@ def handle_message(event):
             for (FE_TIME, FE_EQNAME, CLA01, FE_NAME) in resList:
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] ' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CLA01) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
-            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strContent = strContent + strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp + '\n' + \
                             '以上為（全合格）品項滅火器'
+            get_message = strContent
         else:
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
