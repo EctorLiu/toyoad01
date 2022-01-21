@@ -382,9 +382,9 @@ def handle_message(event):
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
-            for (FE_TIME, FE_EQNAME, CL-A01, FE_NAME) in resList:
+            for (FE_TIME, FE_EQNAME, [CL-A01], FE_NAME) in resList:
                 intCount += 1
-                strTemp += '[' + str(intCount) + ']' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CL-A01) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
+                strTemp += '[' + str(intCount) + ']' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str([CL-A01]) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp + '\n\n' +\
