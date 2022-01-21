@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M121)0804'
+strVer = '(M121)1216'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -350,6 +350,46 @@ def handle_message(event):
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
+        else:
+            get_message = strTitle + '：\n' + \
+                            '目前ECTOR關閉防火牆\n' + \
+                            '暫停使用..有急用可找ECTOR'
+
+    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
+            ('FE' in temp_message.upper() or \
+            '滅火' in temp_message.upper()):
+        strTitle = 'TOYO 廠區滅火器最近1個月清點情況：'
+        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        if strSQL_FW_Switch == 'ON':
+            ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
+            strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CHK_01] ,[CHK_02] ,[CHK_03] ,[CHK_04] ,[FE_NAME] ' \
+                        ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_NG_List01] ' + \
+                        ' ORDER BY FE_TIME DESC'
+            resList = ms.RS_SQL_ExecQuery(strSQL)
+            intCount=0
+            strTemp=''
+            for (FE_TIME, FE_EQNAME, CHK_01, CHK_02, CHK_03, CHK_04, FE_NAME) in resList:
+                intCount += 1
+                strTemp += '[' + str(intCount) + ']' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CHK_01) + '\n  ' + str(CHK_02) + '\n' + \
+                             str(CHK_03) + '\n  ' + str(CHK_04) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
+            get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
+                            datNow  + '\n\n' + \
+                            strTemp + '\n\n' +\
+                            '以上為有（不合格）品項滅火器\n' +
+                            '--------------------------'
+            strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CL-A01] ,[FE_NAME] ' \
+                        ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_OK_List01] ' + \
+                        ' ORDER BY FE_TIME DESC'
+            resList = ms.RS_SQL_ExecQuery(strSQL)
+            intCount=0
+            strTemp=''
+            for (FE_TIME, FE_EQNAME, CL-A01, FE_NAME) in resList:
+                intCount += 1
+                strTemp += '[' + str(intCount) + ']' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CL-A01) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
+            get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
+                            datNow  + '\n\n' + \
+                            strTemp + '\n\n' +\
+                            '以上為（全合格）品項滅火器'
         else:
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
