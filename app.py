@@ -371,9 +371,9 @@ def handle_message(event):
             intCount=0
             for (FE_TIME, FE_EQNAME, CHK_01, CHK_02, CHK_03, CHK_04, FE_NAME) in resList:
                 intCount += 1
-                strTemp += '[' + str(intCount) + ']' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CHK_01) + '\n  ' + str(CHK_02) + '\n  ' + \
+                strTemp += '[' + str(intCount) + '] ' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CHK_01) + '\n  ' + str(CHK_02) + '\n  ' + \
                              str(CHK_03) + '\n  ' + str(CHK_04) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
-            get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
+            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp + '\n' + \
                             '以上為有（不合格）品項滅火器\n\n'
@@ -386,8 +386,8 @@ def handle_message(event):
             intCount=0
             for (FE_TIME, FE_EQNAME, CLA01, FE_NAME) in resList:
                 intCount += 1
-                strTemp += '[' + str(intCount) + ']' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CLA01) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
-            get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
+                strTemp += '[' + str(intCount) + '] ' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CLA01) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
+            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp + '\n' + \
                             '以上為（全合格）品項滅火器'
