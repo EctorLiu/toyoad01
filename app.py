@@ -361,13 +361,14 @@ def handle_message(event):
         strTitle = 'TOYO 廠區滅火器最近1個月清點情況：'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
+            strTemp=''
+
             ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CHK_01] ,[CHK_02] ,[CHK_03] ,[CHK_04] ,[FE_NAME] ' \
                         ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_NG_List01] ' + \
                         ' ORDER BY FE_TIME DESC'
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
-            strTemp=''
             for (FE_TIME, FE_EQNAME, CHK_01, CHK_02, CHK_03, CHK_04, FE_NAME) in resList:
                 intCount += 1
                 strTemp += '[' + str(intCount) + ']' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CHK_01) + '\n  ' + str(CHK_02) + '\n' + \
@@ -376,12 +377,12 @@ def handle_message(event):
                             datNow  + '\n\n' + \
                             strTemp + '\n\n' +\
                             '以上為有（不合格）品項滅火器\n\n'
+
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CL-A01] AS CLA01 ,[FE_NAME] ' \
                         ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_OK_List01] ' + \
                         ' ORDER BY FE_TIME DESC'
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
-            strTemp=''
             for (FE_TIME, FE_EQNAME, CLA01, FE_NAME) in resList:
                 intCount += 1
                 strTemp += '[' + str(intCount) + ']' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CLA01) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
