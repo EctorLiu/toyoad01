@@ -363,7 +363,7 @@ def handle_message(event):
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host='211.23.242.222', port='2255', user='sa', pwd='00000', db='TIM_DB')
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CHK_01] ,[CHK_02] ,[CHK_03] ,[CHK_04] ,[FE_NAME] ' \
-                        ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_NG_List01] ' + \
+                        ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_NewestNGList01] ' + \
                         ' ORDER BY FE_TIME DESC'
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
@@ -379,7 +379,7 @@ def handle_message(event):
                             ' ============================== \n\n'
 
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CHK_00] ,[FE_NAME] ' \
-                        ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_OK_List01] ' + \
+                        ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_NewestOKList01] ' + \
                         ' ORDER BY FE_TIME DESC'
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
