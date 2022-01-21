@@ -375,8 +375,7 @@ def handle_message(event):
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp + '\n\n' +\
-                            '以上為有（不合格）品項滅火器\n' +
-                            ' -------------------------- '
+                            '以上為有（不合格）品項滅火器\n\n'
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CL-A01] ,[FE_NAME] ' \
                         ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_OK_List01] ' + \
                         ' ORDER BY FE_TIME DESC'
