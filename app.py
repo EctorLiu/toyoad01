@@ -218,7 +218,16 @@ def handle_message(event):
                         ' WHERE [MemDate] >= Convert(nvarchar, GETDATE()-5, 111) ' + \
                             ' AND ([MemName] LIKE %s OR [EX04] LIKE %s) '  % (strCond, strCond) + \
                         ' ORDER BY EX05, MemDate '
-            get_message=strSQL
+            resList = ms.RS_SQL_ExecQuery(strSQL)
+            intCount=0
+            strTemp=''
+            for (DeptCode, DeptName, MemCode, MemName, MemDate, Shift, EX01, EX02, EX03, EX04) in resList:
+                intCount += 1
+                strTemp += str(DeptCode) + ',' + str(DeptName) + ',' + str(MemCode) + ',' + str(MemName) + ',' + str(MemDate) + ',' + \
+                            str(Shift) + ',' + str(EX01) + ',' + str(EX02) + ',' + str(EX03) + ',' + str(EX04) + '\n\n'
+            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+                            datNow  + '\n\n' + \
+                            strTemp
         else:
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
