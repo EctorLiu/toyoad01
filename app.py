@@ -131,6 +131,7 @@ def handle_message(event):
     temp_message = temp_message.replace('，',',')
     temp_message = temp_message.replace('＄','$')
     temp_message = temp_message.replace('？','?')
+    temp_message = temp_message.strip()
     # ***** ***** ***** ***** *****
 
     # 確認資料類別
@@ -202,14 +203,20 @@ def handle_message(event):
         get_message = strNewestActivity
 
     elif ('宿舍防疫' in temp_message.upper()):
-        strTitle = 'TOYO移工宿舍輪班查詢(前7天到今天)'
+        if len(temp_message) == 4:
+            strCond = '%'
+        else:
+            strCond = temp_message.replace('宿舍防疫', '')
+            strCond = strCond.strip()
+        strTitle = 'TOYO移工宿舍輪班查詢(前5天到今天)'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [DeptCode], [DeptName] ,[MemCode] ,[MemName] ,[MemDate], ' + \
                         ' [Shift] ,[EX01] ,[EX02] ,[EX03] ,[EX04] ' + \
                         ' FROM [APP_HRM_Member_Shift_Query_List01]' + \
-                        ' WHERE [MemDate] >= Convert(nvarchar, GETDATE()-7, 111)' + \
+                        ' WHERE [MemDate] >= Convert(nvarchar, GETDATE()-5, 111) ' + \
+                            ' AND ([MemName] LIKE %' + strCond + '% OR EX04 LIKE %' + strCond + '%) ' + \
                         ' ORDER BY EX05, MemDate '
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
@@ -217,7 +224,7 @@ def handle_message(event):
             for (DeptCode, DeptName, MemCode, MemName, MemDate, Shift, EX01, EX02, EX03, EX04) in resList:
                 intCount += 1
                 strTemp += str(DeptCode) + ',' + str(DeptName) + ',' + str(MemCode) + ',' + str(MemName) + ',' + str(MemDate) + ',' + \
-                            str(Shift) + ',' + str(EX01) + ',' + str(EX02) + ',' + str(EX03) + ',' + str(EX04) + '\n'
+                            str(Shift) + ',' + str(EX01) + ',' + str(EX02) + ',' + str(EX03) + ',' + str(EX04) + '\n\n'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
