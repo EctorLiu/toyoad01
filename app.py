@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M214)1515'
+strVer = '(M214)1522'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -131,6 +131,10 @@ def handle_message(event):
     temp_message = temp_message.replace('，',',')
     temp_message = temp_message.replace('＄','$')
     temp_message = temp_message.replace('？','?')
+    # ***** ***** ***** ***** *****
+
+    ##### 關鍵字處理消空白 #####
+    temp_message = temp_message.upper()
     temp_message = temp_message.strip()
     # ***** ***** ***** ***** *****
 
