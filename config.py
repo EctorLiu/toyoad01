@@ -89,53 +89,39 @@ class MSSQL:
 
     ##### 關鍵字清單 ######
 GVstrKeyWord = 'KW：\n' + \
-                '    if temp_message == 您好:\n' + \
+                '[推播功能]\n' + \
+                'TSVI +\n' + \
+                '(1)推播PROG\n' + \
+                '(2)推播ECTOR\n' + \
+                '(3)推播智弘\n' + \
+                '(4)推播冠伶\n' + \
+                '(5)推播昆霖\n' + \
+                '(6)推播宜庭\n' + \
+                '(7)推播全部\n' + \
                 '\n' + \
-                '    # ***** ***** ***** ***** *****\n' + \
-                '    elif (temp_message[0:4].upper() == TSVI) and \n' + \
-                '            (推播PROG in temp_message.upper()):\n' + \
-                '            (推播ECTOR in temp_message.upper()):\n' + \
-                '            (推播智弘 in temp_message.upper()):\n' + \
-                '            (推播冠伶 in temp_message.upper()):\n' + \
-                '            (推播昆霖 in temp_message.upper()):\n' + \
-                '            (推播宜庭 in temp_message.upper()):\n' + \
-                '            (推播全部 in temp_message.upper()):\n' + \
-                '    \n' + \
-                '    elif (temp_message[0:4].upper() == TSVI) and \n' + \
-                '            (樣版 in temp_message.upper()):\n' + \
-                '    # ***** ***** ***** ***** *****\n' + \
+                '[測試中]\n' + \
+                'TSVI +\n' + \
+                '(1)樣版\n' + \
                 '\n' + \
-                '    elif (如何使用 in temp_message or HELP in temp_message.upper() or ? in temp_message.strip() or ？ in temp_message.strip()):\n' + \
-                '    elif (最近 in temp_message or 最新 in temp_message) and (訊息 in temp_message or 活動 in temp_message):\n' + \
-                '    elif (宿舍防疫 in temp_message.upper()):\n' + \
-                '    elif (面試報到 in temp_message.upper()):（可加參數）\n' + \
-                '    elif (業務電話 in temp_message.upper()):\n' + \
-                '    elif (夜點晚餐 in temp_message.upper()):\n' + \
-                '    elif (防疫群組 in temp_message.upper()):\n' + \
-                '    elif (體溫回報 in temp_message.upper()):\n' + \
+                '[關鍵字]\n' + \
+                '(1)如何使用/HELP/?/？\n' + \
+                '(2)(最近 or 最新) + (訊息 or 活動)\n' + \
                 '\n' + \
-                '    # ***** ***** ***** ***** *****\n' + \
-                '    elif (temp_message[0:2].upper() == TY or temp_message[0:4].upper() == TOYO) and \n' + \
-                '            (120 in temp_message.upper() or \n' + \
-                '            $ in temp_message.upper() or \n' + \
-                '            MONEY in temp_message.upper() or \n' + \
-                '            零用金 in temp_message.upper()):\n' + \
-                '    elif (temp_message[0:2].upper() == TY or temp_message[0:4].upper() == TOYO) and \n' + \
-                '            (DOOR in temp_message.upper() or \n' + \
-                '            門禁 in temp_message.upper()):\n' + \
-                '    elif (temp_message[0:2].upper() == TY or temp_message[0:4].upper() == TOYO) and \n' + \
-                '            (NEWFE in temp_message.upper() or \n' + \
-                '            新滅火 in temp_message.upper()):\n' + \
-                '    elif (temp_message[0:2].upper() == TY or temp_message[0:4].upper() == TOYO) and \n' + \
-                '            (FE in temp_message.upper() or \n' + \
-                '            滅火 in temp_message.upper()):\n' + \
-                '    elif (temp_message[0:2].upper() == TY or temp_message[0:4].upper() == TOYO) and \n' + \
-                '            (MEMO in temp_message.upper()):\n' + \
-                '    elif (temp_message[0:5].upper() == ECTOR) and (官方帳號教學 in temp_message):\n' + \
-                '    # ***** ***** ***** ***** *****\n' + \
+                '[資料庫]\n' + \
+                '(1)宿舍防疫 + (房間 or 人名)\n' + \
+                '(2)面試報到\n' + \
+                '(3)業務電話\n' + \
+                '(4)夜點晚餐\n' + \
+                '(5)防疫群組\n' + \
+                '(6)體溫回報\n' + \
                 '\n' + \
-                '    elif temp_message.upper().count(VER) > 0:\n' + \
-                '    # ***** ***** ***** ***** *****'
-
-
+                '[內部使用]\n' + \
+                '(1)(TY or TOYO) and (120 or $ or MONEY or 零用金)\n' + \
+                '(2)(TY or TOYO) and (DOOR or 門禁)\n' + \
+                '(3)(TY or TOYO) and (NEWFE or 新滅火)\n' + \
+                '(4)(TY or TOYO) and (FE or 滅火)\n' + \
+                '(5)(TY or TOYO) and (MEMO)\n' + \
+                '\n' + \
+                '[教學]\n' + \
+                '(1)ECTOR官方帳號教學'
 
