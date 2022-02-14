@@ -224,7 +224,8 @@ def handle_message(event):
             for (DeptName, MemName, MemDate, Shift, EX01, EX02, EX03, EX04) in resList:
                 intCount += 1
                 strTemp += str(DeptName) + ',' + str(MemName) + '\n' + \
-                            str(MemDate) + ',' + str(Shift) + '\n' + \
+                            str(MemDate) + '\n' + \
+                            str(Shift) + '\n' + \
                             str(EX01) + ',' + str(EX02) + ',' + str(EX03) + ',' + str(EX04) + '\n\n'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
