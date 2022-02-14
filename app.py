@@ -208,26 +208,44 @@ def handle_message(event):
         else:
             strCond = temp_message.replace('宿舍防疫', '')
             strCond = '\'%' + strCond.strip() + '%\''
-        strTitle = 'TOYO移工宿舍輪班查詢(前5天到今天)'
+        strTitle = 'TOYO移工宿舍輪班查詢(前3天到今天)'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
-            strSQL = 'SELECT [DeptCode], [DeptName] ,[MemCode] ,[MemName] ,[MemDate], ' + \
+            strSQL = 'SELECT [DeptName] ,[MemName] ,[MemDate], ' + \
                         ' [Shift] ,[EX01] ,[EX02] ,[EX03] ,[EX04] ' + \
                         ' FROM [APP_HRM_Member_Shift_Query_List01]' + \
-                        ' WHERE [MemDate] >= Convert(nvarchar, GETDATE()-5, 111) ' + \
+                        ' WHERE [MemDate] >= Convert(nvarchar, GETDATE()-3, 111) ' + \
                             ' AND ([MemName] LIKE %s OR [EX04] LIKE %s) '  % (strCond, strCond) + \
                         ' ORDER BY EX05, MemDate '
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
-            for (DeptCode, DeptName, MemCode, MemName, MemDate, Shift, EX01, EX02, EX03, EX04) in resList:
+            for (DeptName, MemName, MemDate, Shift, EX01, EX02, EX03, EX04) in resList:
                 intCount += 1
-                strTemp += str(DeptCode) + ',' + str(DeptName) + ',' + str(MemCode) + ',' + str(MemName) + ',' + str(MemDate) + ',' + \
-                            str(Shift) + ',' + str(EX01) + ',' + str(EX02) + ',' + str(EX03) + ',' + str(EX04) + '\n\n'
+                strTemp += str(DeptName) + ',' + str(MemName) + '\n' + \
+                            str(MemDate) + ',' + str(Shift) + '\n' + \
+                            str(EX01) + ',' + str(EX02) + ',' + str(EX03) + ',' + str(EX04) + '\n\n'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
+            
+#            strSQL = 'SELECT [DeptCode], [DeptName] ,[MemCode] ,[MemName] ,[MemDate], ' + \
+#                        ' [Shift] ,[EX01] ,[EX02] ,[EX03] ,[EX04] ' + \
+#                        ' FROM [APP_HRM_Member_Shift_Query_List01]' + \
+#                        ' WHERE [MemDate] >= Convert(nvarchar, GETDATE()-5, 111) ' + \
+#                            ' AND ([MemName] LIKE %s OR [EX04] LIKE %s) '  % (strCond, strCond) + \
+#                        ' ORDER BY EX05, MemDate '
+#            resList = ms.RS_SQL_ExecQuery(strSQL)
+#            intCount=0
+#            strTemp=''
+#            for (DeptCode, DeptName, MemCode, MemName, MemDate, Shift, EX01, EX02, EX03, EX04) in resList:
+#                intCount += 1
+#                strTemp += str(DeptCode) + ',' + str(DeptName) + ',' + str(MemCode) + ',' + str(MemName) + ',' + str(MemDate) + ',' + \
+#                            str(Shift) + ',' + str(EX01) + ',' + str(EX02) + ',' + str(EX03) + ',' + str(EX04) + '\n\n'
+#            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+#                            datNow  + '\n\n' + \
+#                            strTemp
         else:
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
