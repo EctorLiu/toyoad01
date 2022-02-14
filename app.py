@@ -231,6 +231,8 @@ def handle_message(event):
                             str(MemDate) + '\n' + \
                             str(Shift) + '\n' + \
                             str(EX01) + ',' + str(EX02) + ',' + str(EX03) + ',' + str(EX04) + '\n\n'
+            if len(strTemp) >= intMaxLineMSGString:
+                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
@@ -276,6 +278,8 @@ def handle_message(event):
                 else:
                     strTemp += '[' + str(intCount) + ']還有' + str(AF_DAY) + '天..' + str(IN_TYPE) + ', ' + str(IN_DAY) + '\n' + \
                                 '  ' + str(IN_TIME) + ', ' + str(DEPT_CODE) + ', ' + str(IN_NAME) + '\n\n'
+            if len(strTemp) >= intMaxLineMSGString:
+                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
@@ -303,6 +307,8 @@ def handle_message(event):
                                 '  公務機號碼: ' + str(SA_PHONE) + '\n' + \
                                 '  E-Mail: ' + str(SA_EMAIL) + '\n' + \
                                 '  更新日期: ' + str(SA_DATAUP) + '\n\n'
+            if len(strTemp) >= intMaxLineMSGString:
+                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
@@ -327,6 +333,8 @@ def handle_message(event):
                                 '  可用估：' + str(FOOD_USEDAY) + '天, ' + str(FOOD_CHGYN) + '\n' + \
                                 '  庫存:' + str(FOOD_STKNUM) + ', 限量: ' + str(FOOD_DAYNUM) + '\n' + \
                                 '  更新日期: ' + str(FOOD_UPDATE) + '\n\n'
+            if len(strTemp) >= intMaxLineMSGString:
+                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
@@ -353,6 +361,8 @@ def handle_message(event):
                 else:
                     strTemp += '[' + str(intCount) + ']還有' + str(AF_DAY) + '天, ' + str(PV_DATE) + '\n  ' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
                                     '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n\n'
+            if len(strTemp) >= intMaxLineMSGString:
+                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
@@ -371,6 +381,8 @@ def handle_message(event):
             for (ID, NAME, BT, CHK) in resList:
                 strTemp = strTemp + str(ID) + ',' + str(NAME) + ',' + str(BT) + ',' + str(CHK) + '\n'
                 intCount += 1
+            if len(strTemp) >= intMaxLineMSGString:
+                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = 'TOYO體溫回報清單：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
@@ -403,6 +415,8 @@ def handle_message(event):
             for (HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime) in resList:
                 intCount += 1
                 strTemp += '[' + str(intCount) + ']' + str(DrDateTime) + '\n..' + str(HRM_Dept_Name) + ', ' + str(HRM_USER_NAME) + ', ' + str(DoorText) + '\n'
+            if len(strTemp) >= intMaxLineMSGString:
+                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             datNow  + '\n\n' + \
                             strTemp
@@ -448,6 +462,8 @@ def handle_message(event):
                             strTemp + '\n' + \
                             '以上為（全合格）品項滅火器\n' + \
                             ' ============================== '
+            if len(strContent) >= intMaxLineMSGString:
+                strContent = strContent[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strContent
         else:
             get_message = strTitle + '：\n' + \
@@ -491,6 +507,8 @@ def handle_message(event):
                             strTemp + '\n' + \
                             '以上為（全合格）品項滅火器\n' + \
                             ' ============================== '
+            if len(strContent) >= intMaxLineMSGString:
+                strContent = strContent[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strContent
         else:
             get_message = strTitle + '：\n' + \
