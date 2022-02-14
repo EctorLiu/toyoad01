@@ -294,7 +294,7 @@ def handle_message(event):
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [SA_NAME] ,[SA_DEPT] ,[SA_AREA] ,[SA_PHONE] ,[SA_EMAIL] ,[SA_DATAUP] ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_SA_CONTACT_INFO] ' + \
-                        ' ORDER BY [SA_AREA], [SA_DEPT], [SA_NAME] '
+                        ' ORDER BY [SA_AREA] DESC, [SA_DEPT], [SA_NAME] '
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
