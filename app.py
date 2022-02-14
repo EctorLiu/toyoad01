@@ -216,8 +216,8 @@ def handle_message(event):
                         ' [Shift] ,[EX01] ,[EX02] ,[EX03] ,[EX04] ' + \
                         ' FROM [APP_HRM_Member_Shift_Query_List01]' + \
                         ' WHERE [MemDate] >= Convert(nvarchar, GETDATE()-5, 111) ' + \
-                            ' AND ([MemName] LIKE %s OR [EX04] LIKE %s) ' + \
-                        ' ORDER BY EX05, MemDate ' % (strCond, strCond)
+                            ' AND ([MemName] LIKE %s OR [EX04] LIKE %s) '  % (strCond, strCond) + \
+                        ' ORDER BY EX05, MemDate '
             get_message=strSQL
         else:
             get_message = strTitle + '：\n' + \
