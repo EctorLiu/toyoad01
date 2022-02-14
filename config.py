@@ -12,6 +12,11 @@ strchannel_secret = os.environ.get("CHANNEL_SECRET")
 # channel_secret = 'CHANNEL_SECRET'
     # ***** ***** ***** ***** *****
 
+    ##### 限制 ######
+intMaxLineMSGString = 4900
+intMaxItemString = 200
+    # ***** ***** ***** ***** *****
+
 
     ##### 權杖資料 ######
     # strEctorToken、strJohnboToken、strGwenToken、strKunToken、strMichelleToken
