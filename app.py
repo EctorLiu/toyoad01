@@ -208,7 +208,7 @@ def handle_message(event):
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [DeptCode], [DeptName] ,[MemCode] ,[MemName] ,[MemDate], ' + \
                         ' [Shift] ,[EX01] ,[EX02] ,[EX03] ,[EX04] ' + \
-                        ' FROM [TIMHRDB].[dbo].[APP_HRM_Member_Shift_Query_List01]' + \
+                        ' FROM [APP_HRM_Member_Shift_Query_List01]' + \
                         ' WHERE [MemDate] >= Convert(nvarchar, GETDATE()-7, 111)' + \
                         ' ORDER BY EX05, MemDate '
             resList = ms.RS_SQL_ExecQuery(strSQL)
