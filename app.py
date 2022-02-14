@@ -215,7 +215,7 @@ def handle_message(event):
             strSQL = 'SELECT [DeptName] ,[MemName] ,[MemDate], ' + \
                         ' [Shift] ,[EX01] ,[EX02] ,[EX03] ,[EX04] ' + \
                         ' FROM [APP_HRM_Member_Shift_Query_List01]' + \
-                        ' WHERE [MemDate] >= Convert(nvarchar, GETDATE()-3, 111) ' + \
+                        ' WHERE ([MemDate] >= Convert(nvarchar, GETDATE()-3, 111) AND [MemDate] <= Convert(nvarchar, GETDATE(), 111)) ' + \
                             ' AND ([MemName] LIKE %s OR [EX04] LIKE %s) '  % (strCond, strCond) + \
                         ' ORDER BY EX05, MemDate '
             resList = ms.RS_SQL_ExecQuery(strSQL)
@@ -234,6 +234,7 @@ def handle_message(event):
 #                        ' [Shift] ,[EX01] ,[EX02] ,[EX03] ,[EX04] ' + \
 #                        ' FROM [APP_HRM_Member_Shift_Query_List01]' + \
 #                        ' WHERE [MemDate] >= Convert(nvarchar, GETDATE()-5, 111) ' + \
+#                        ' WHERE ([MemDate] >= Convert(nvarchar, GETDATE()-3, 111) AND [MemDate] <= Convert(nvarchar, GETDATE(), 111)) ' + \
 #                            ' AND ([MemName] LIKE %s OR [EX04] LIKE %s) '  % (strCond, strCond) + \
 #                        ' ORDER BY EX05, MemDate '
 #            resList = ms.RS_SQL_ExecQuery(strSQL)
