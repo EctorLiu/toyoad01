@@ -204,10 +204,10 @@ def handle_message(event):
 
     elif ('宿舍防疫' in temp_message.upper()):
         if len(temp_message) == 4:
-            strCond = '%'
+            strCond = '\'%\''
         else:
             strCond = temp_message.replace('宿舍防疫', '')
-            strCond = '%' + strCond.strip() + '%'
+            strCond = '\'%\'' + strCond.strip() + '\'%\''
         strTitle = 'TOYO移工宿舍輪班查詢(前5天到今天)'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
