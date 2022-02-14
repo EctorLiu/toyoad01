@@ -204,10 +204,10 @@ def handle_message(event):
 
     elif ('宿舍防疫' in temp_message.upper()):
         if len(temp_message) == 4:
-            strCond = '\%'
+            strCond = '%'
         else:
             strCond = temp_message.replace('宿舍防疫', '')
-            strCond = strCond.strip()
+            strCond = '%' + strCond.strip() + '%'
         strTitle = 'TOYO移工宿舍輪班查詢(前5天到今天)'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -216,8 +216,8 @@ def handle_message(event):
                         ' [Shift] ,[EX01] ,[EX02] ,[EX03] ,[EX04] ' + \
                         ' FROM [APP_HRM_Member_Shift_Query_List01]' + \
                         ' WHERE [MemDate] >= Convert(nvarchar, GETDATE()-5, 111) ' + \
-                            ' AND ([MemName] LIKE \%' + strCond + '\% OR [EX04] LIKE \%' + strCond + '\%) ' + \
-                        ' ORDER BY EX05, MemDate '
+                            ' AND ([MemName] LIKE "%s") ' + \
+                        ' ORDER BY EX05, MemDate ' %strCond
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
