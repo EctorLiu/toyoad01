@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M124)1456'
+strVer = '(M214)1340'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -200,6 +200,30 @@ def handle_message(event):
     elif ('最近' in temp_message or '最新' in temp_message) and ('訊息' in temp_message or '活動' in temp_message):
         get_TYPE_message = 'New_Activity'
         get_message = strNewestActivity
+
+    elif ('宿舍防疫' in temp_message.upper()):
+        strTitle = 'TOYO移工宿舍輪班查詢(前7天到今天)'
+        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        if strSQL_FW_Switch == 'ON':
+            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+            resList = ms.RS_SQL_ExecQuery('SELECT [DeptCode], [DeptName] ,[MemCode] ,[MemName] ,[MemDate], ' + \
+                        ' [Shift] ,[EX01] ,[EX02] ,[EX03] ,[EX04] ' + \
+                        ' FROM [TIMHRDB].[dbo].[APP_HRM_Member_Shift_Query_List01]' + \
+                        ' WHERE [MemDate] >= Convert(nvarchar, GETDATE()-7, 111)' + \
+                        ' ORDER BY EX05, MemDate '
+            intCount=0
+            strTemp=''
+            for (DeptCode, DeptName, MemCode, MemName, MemDate, Shift, EX01, EX02, EX03, EX04) in resList:
+                strTemp = strTemp + str(DeptCode) + ',' + str(DeptName) + ',' + str(MemCode) + ',' + str(MemName) + ',' + str(MemDate) + ',' + \ 
+                            str(Shift) + ',' str(EX01) + ',' str(EX02) + ',' str(EX03) + ',' str(EX04) + '\n'
+                intCount += 1
+            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+                            datNow  + '\n\n' + \
+                            strTemp
+        else:
+            get_message = strTitle + '：\n' + \
+                            '目前ECTOR關閉防火牆\n' + \
+                            '暫停使用..有急用可找ECTOR'
 
     elif ('面試報到' in temp_message.upper()):
         strTitle = 'TOYO面試報到10天內'
