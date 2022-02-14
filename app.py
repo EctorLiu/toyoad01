@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M214)1500'
+strVer = '(M214)1515'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -506,6 +506,10 @@ def handle_message(event):
     elif temp_message.upper().count('VER') > 0:
         get_message = '『TOYO行政管理部』版本：\n' + strVer
     # ***** ***** ***** ***** *****
+
+    elif (temp_message[0:5].upper() == 'ECTOR') and ('KW' in temp_message):
+        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_message = GVstrKeyWord
 
     else:
         get_TYPE_message = 'TSVI非關鍵字的留言'
