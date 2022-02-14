@@ -88,34 +88,23 @@ class MSSQL:
 
 
     ##### 關鍵字清單 ######
-GVstrKeyWord = '參考內容：' + \
+GVstrKeyWord = 'KW：\n' + \
                 '    if temp_message == 您好:\n' + \
                 '\n' + \
                 '    # ***** ***** ***** ***** *****\n' + \
-                '    elif (temp_message[0:4].upper() == TSVI) and \\n' + \
+                '    elif (temp_message[0:4].upper() == TSVI) and \n' + \
                 '            (推播PROG in temp_message.upper()):\n' + \
-                '    elif (temp_message[0:4].upper() == TSVI) and \\n' + \
                 '            (推播ECTOR in temp_message.upper()):\n' + \
-                '    elif (temp_message[0:4].upper() == TSVI) and \\n' + \
                 '            (推播智弘 in temp_message.upper()):\n' + \
-                '    elif (temp_message[0:4].upper() == TSVI) and \\n' + \
                 '            (推播冠伶 in temp_message.upper()):\n' + \
-                '    elif (temp_message[0:4].upper() == TSVI) and \\n' + \
                 '            (推播昆霖 in temp_message.upper()):\n' + \
-                '    elif (temp_message[0:4].upper() == TSVI) and \\n' + \
                 '            (推播宜庭 in temp_message.upper()):\n' + \
-                '    elif (temp_message[0:4].upper() == TSVI) and \\n' + \
                 '            (推播全部 in temp_message.upper()):\n' + \
-                '    # ***** ***** ***** ***** *****\n' + \
                 '    \n' + \
-                '    ##### TSVI樣版 #####\n' + \
-                '    elif (temp_message[0:4].upper() == TSVI) and \\n' + \
+                '    elif (temp_message[0:4].upper() == TSVI) and \n' + \
                 '            (樣版 in temp_message.upper()):\n' + \
-                '        get_TYPE_message = TSVI樣版   \n' + \
                 '    # ***** ***** ***** ***** *****\n' + \
                 '\n' + \
-                '\n' + \
-                '    ##### 關鍵字 #####\n' + \
                 '    elif (如何使用 in temp_message or HELP in temp_message.upper() or ? in temp_message.strip() or ？ in temp_message.strip()):\n' + \
                 '    elif (最近 in temp_message or 最新 in temp_message) and (訊息 in temp_message or 活動 in temp_message):\n' + \
                 '    elif (宿舍防疫 in temp_message.upper()):\n' + \
@@ -126,26 +115,27 @@ GVstrKeyWord = '參考內容：' + \
                 '    elif (體溫回報 in temp_message.upper()):\n' + \
                 '\n' + \
                 '    # ***** ***** ***** ***** *****\n' + \
-                '    elif (temp_message[0:2].upper() == TY or temp_message[0:4].upper() == TOYO) and \\n' + \
-                '            (120 in temp_message.upper() or \\n' + \
-                '            $ in temp_message.upper() or \\n' + \
-                '            MONEY in temp_message.upper() or \\n' + \
+                '    elif (temp_message[0:2].upper() == TY or temp_message[0:4].upper() == TOYO) and \n' + \
+                '            (120 in temp_message.upper() or \n' + \
+                '            $ in temp_message.upper() or \n' + \
+                '            MONEY in temp_message.upper() or \n' + \
                 '            零用金 in temp_message.upper()):\n' + \
-                '    elif (temp_message[0:2].upper() == TY or temp_message[0:4].upper() == TOYO) and \\n' + \
-                '            (DOOR in temp_message.upper() or \\n' + \
+                '    elif (temp_message[0:2].upper() == TY or temp_message[0:4].upper() == TOYO) and \n' + \
+                '            (DOOR in temp_message.upper() or \n' + \
                 '            門禁 in temp_message.upper()):\n' + \
-                '    elif (temp_message[0:2].upper() == TY or temp_message[0:4].upper() == TOYO) and \\n' + \
-                '            (NEWFE in temp_message.upper() or \\n' + \
+                '    elif (temp_message[0:2].upper() == TY or temp_message[0:4].upper() == TOYO) and \n' + \
+                '            (NEWFE in temp_message.upper() or \n' + \
                 '            新滅火 in temp_message.upper()):\n' + \
-                '    elif (temp_message[0:2].upper() == TY or temp_message[0:4].upper() == TOYO) and \\n' + \
-                '            (FE in temp_message.upper() or \\n' + \
+                '    elif (temp_message[0:2].upper() == TY or temp_message[0:4].upper() == TOYO) and \n' + \
+                '            (FE in temp_message.upper() or \n' + \
                 '            滅火 in temp_message.upper()):\n' + \
-                '    elif (temp_message[0:2].upper() == TY or temp_message[0:4].upper() == TOYO) and \\n' + \
+                '    elif (temp_message[0:2].upper() == TY or temp_message[0:4].upper() == TOYO) and \n' + \
                 '            (MEMO in temp_message.upper()):\n' + \
                 '    elif (temp_message[0:5].upper() == ECTOR) and (官方帳號教學 in temp_message):\n' + \
                 '    # ***** ***** ***** ***** *****\n' + \
                 '\n' + \
-                '    ##### (Ver)版本 #####\n' + \
                 '    elif temp_message.upper().count(VER) > 0:\n' + \
                 '    # ***** ***** ***** ***** *****'
+
+
 
