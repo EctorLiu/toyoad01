@@ -206,11 +206,12 @@ def handle_message(event):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
-            resList = ms.RS_SQL_ExecQuery('SELECT [DeptCode], [DeptName] ,[MemCode] ,[MemName] ,[MemDate], ' + \
+            strSQL = 'SELECT [DeptCode], [DeptName] ,[MemCode] ,[MemName] ,[MemDate], ' + \
                         ' [Shift] ,[EX01] ,[EX02] ,[EX03] ,[EX04] ' + \
                         ' FROM [TIMHRDB].[dbo].[APP_HRM_Member_Shift_Query_List01]' + \
                         ' WHERE [MemDate] >= Convert(nvarchar, GETDATE()-7, 111)' + \
                         ' ORDER BY EX05, MemDate '
+            resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
             for (DeptCode, DeptName, MemCode, MemName, MemDate, Shift, EX01, EX02, EX03, EX04) in resList:
