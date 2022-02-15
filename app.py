@@ -264,6 +264,7 @@ def handle_message(event):
             strSQL = 'SELECT [CarCode], [CarETag] ,[MemName] ' + \
                         ' FROM [TIM_DB].[dbo].[APP_CAR_Member_CAR_List] ' + \
                         ' WHERE ([CarCode] LIKE %s OR [MemName] LIKE %s) '  % (strCond, strCond) + \
+                            ' AND (LEN([CarCode]) > 0) '
                         ' ORDER BY CarCode '
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
