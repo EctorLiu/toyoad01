@@ -538,8 +538,12 @@ def handle_message(event):
         get_message = GVstrECKeyWord
 
     else:
-        get_TYPE_message = 'TSVI非關鍵字的留言'
-        get_message = strHowToUse
+        if (temp_message[0:5].upper() == 'ECTOR'):
+            get_TYPE_message = 'How_To_Use'
+            get_message = 'EC' + strHowToUse
+        else:
+            get_TYPE_message = 'TSVI非關鍵字的留言'
+            get_message = strHowToUse
 
 
 # ===== ===== ===== ===== ===== 【Line區域】 ===== ===== ===== ===== =====
