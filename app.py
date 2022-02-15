@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M215)1118'
+strVer = '(M215)1128'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -541,7 +541,7 @@ def handle_message(event):
             strCond = temp_message.replace('ECTOR', '')
             strCond = strCond.strip()
         strHHNN = RS_DateTime_2_HHNN(datNow)
-        if (strHHNN in temp_message) and ('KW' in temp_message):        
+        if (strHHNN in strCond) and ('KW' in strCond):        
             get_TYPE_message = 'TY_TEXT_Send_MSG'
             get_message = GVstrECKeyWord
         else:
