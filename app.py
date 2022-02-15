@@ -254,9 +254,10 @@ def handle_message(event):
         if len(temp_message) == 4:
             strCond = '\'%\''
         else:
-            strCond = temp_message.replace('車輛', '')
-            strCond = temp_message.replace('車道', '')
-            strCond = temp_message.replace('查詢', '')
+            strCond = temp_message
+            strCond = strCond.replace('車輛', '')
+            strCond = strCond.replace('車道', '')
+            strCond = strCond.replace('查詢', '')
             strCond = '\'%' + strCond.strip() + '%\''
         strTitle = 'TOYO車輛進廠查詢(車牌/姓名)'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
