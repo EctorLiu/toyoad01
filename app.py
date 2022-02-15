@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M215)1128'
+strVer = '(M215)1138'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -521,7 +521,8 @@ def handle_message(event):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         get_message = strMemo
 
-    elif (temp_message[0:5].upper() == 'ECTOR') and ('官方帳號教學' in temp_message):
+    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
+            ('官方帳號教學' in temp_message.upper()):
         get_message = strLessonLearning
     # ***** ***** ***** ***** *****
 
@@ -530,31 +531,46 @@ def handle_message(event):
         get_message = '『TOYO行政管理部』版本：\n' + strVer
     # ***** ***** ***** ***** *****
 
+    ##### 列出全部的關鍵字清單 #####
     elif (temp_message[0:4].upper() == 'TOYO') and ('!ALL' in temp_message):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         get_message = GVstrCMKeyWord
+    # ***** ***** ***** ***** *****
 
+    ##### 程式開發使用 #####
     elif (temp_message[0:5].upper() == 'ECTOR'):
         if len(temp_message) == 5:
             strCond = ''
         else:
             strCond = temp_message.replace('ECTOR', '')
             strCond = strCond.strip()
+        #比對輸入[小時分鐘](1225)
         strHHNN = RS_DateTime_2_HHNN(datNow)
+        #開發者關鍵字清單
         if (strHHNN in strCond) and ('KW' in strCond):        
             get_TYPE_message = 'TY_TEXT_Send_MSG'
             get_message = GVstrECKeyWord
+        #官方帳號教學
+        elif (strHHNN in strCond) and ('LINE' in strCond):        
+            get_TYPE_message = 'TY_TEXT_Send_MSG'
+            get_message = strLessonLearning
         else:
-            get_TYPE_message = 'How_To_Use'
-            get_message = 'EC' + strHowToUse
+            get_TYPE_message = 'TY_TEXT_Send_MSG'
+            get_message = 'ECTOR\n\n\n\n\n\n\n\n\n\n'
     else:
-        if (temp_message[0:5].upper() == 'ECTOR'):
-            get_TYPE_message = 'How_To_Use'
-            get_message = 'E' + strHowToUse
-        else:
-            get_TYPE_message = 'TSVI非關鍵字的留言'
-            get_message = strHowToUse
+        get_TYPE_message = 'TSVI非關鍵字的留言'
+        get_message = strHowToUse
 
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 
 # ===== ===== ===== ===== ===== 【Line區域】 ===== ===== ===== ===== =====
 
