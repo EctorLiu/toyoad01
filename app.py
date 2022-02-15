@@ -265,21 +265,21 @@ def handle_message(event):
             strSQL = 'SELECT [CarCode], [CarETag] ,[MemName] ' + \
                         ' FROM [TIM_DB].[dbo].[APP_CAR_Member_CAR_List] ' + \
                         ' WHERE ([CarCodeX] LIKE %s OR [MemName] LIKE %s) '  % (strCond, strCond) + \
-                            ' AND (LEN([CarCode]) > 0) ' + \
-                        ' ORDER BY MemName, CarCode '
+                            ' AND (LEN([CarCodeX]) > 0) ' + \
+                        ' ORDER BY CarCode '
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
             for (CarCode, CarETag, MemName) in resList:
                 intCount += 1
-                strTemp += str(MemName) + '\n' + \
-                            '車牌：' + str(CarCode) + '\n' + \
-                            'ETAG：' + str(CarETag) + '\n\n'
+                strTemp += '車牌：' + str(CarCode) + '\n' + \
+                            '  姓名：' + str(MemName) + '\n' + \
+                            '  ETAG：' + str(CarETag) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             strNow  + '\n\n' + \
-                            strTemp
+                            strTemp + strSQL
         else:
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
