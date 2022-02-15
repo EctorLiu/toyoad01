@@ -236,7 +236,7 @@ def handle_message(event):
             strTemp=''
             for (DeptName, MemName, MemDate, Shift, EX01, EX02, EX03, EX04) in resList:
                 intCount += 1
-                strTemp += '[' + str(intCount) + ']' + str(DeptName) + ',' + str(MemName) + '\n' + \
+                strTemp += '[' + str(intCount) + '] ' + str(DeptName) + ',' + str(MemName) + '\n' + \
                             str(MemDate) + '\n' + \
                             str(Shift) + '\n' + \
                             str(EX01) + ',' + str(EX02) + ',' + str(EX03) + ',' + str(EX04) + '\n\n'
@@ -264,7 +264,7 @@ def handle_message(event):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
-            strSQL = 'SELECT [CarCode], [CarETag] ,[MemName] ' + \
+            strSQL = 'SELECT [CarCode], [MemName] ' + \
                         ' FROM [TIM_DB].[dbo].[APP_CAR_Member_CAR_List] ' + \
                         ' WHERE ([CarCodeX] LIKE %s OR [MemName] LIKE %s) '  % (strCond, strCond) + \
                             ' AND (LEN([CarCodeX]) > 0) ' + \
