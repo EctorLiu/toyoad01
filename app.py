@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M215)1042'
+strVer = '(M215)1118'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -737,9 +737,9 @@ def lineNotifyMessage(token, msg):
 
 
     ##### 日期編碼 ######
-def RS_DateTime_2_HHNN(strNow):
-    strHour = str(time.strptime(strNow, '%H'))
-    strMinute = str(time.strptime(strNow, '%M'))
+def RS_DateTime_2_HHNN(datDT):
+    strHour = time.strftime("%H", datDT) 
+    strMinute = time.strftime("%M", datDT) 
     if len(strHour) < 2:
         strHour = '0' + strHour
     if len(strMinute) < 2:
