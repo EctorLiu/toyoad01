@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M215)0956'
+strVer = '(M215)1042'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -533,14 +533,23 @@ def handle_message(event):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         get_message = GVstrCMKeyWord
 
-    elif (temp_message[0:5].upper() == 'ECTOR') and ('.KW' in temp_message):
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
-        get_message = GVstrECKeyWord
-
+    elif (temp_message[0:5].upper() == 'ECTOR'):
+        if len(temp_message) == 5:
+            strCond = ''
+        else:
+            strCond = temp_message.replace('ECTOR', '')
+            strCond = strCond.strip()
+        strHHNN = RS_DateTime_2_HHNN(datNow)
+        if (strHHNN in temp_message) and ('KW' in temp_message):        
+            get_TYPE_message = 'TY_TEXT_Send_MSG'
+            get_message = GVstrECKeyWord
+        else:
+            get_TYPE_message = 'How_To_Use'
+            get_message = 'EC' + strHowToUse
     else:
         if (temp_message[0:5].upper() == 'ECTOR'):
             get_TYPE_message = 'How_To_Use'
-            get_message = 'EC' + strHowToUse
+            get_message = 'E' + strHowToUse
         else:
             get_TYPE_message = 'TSVI非關鍵字的留言'
             get_message = strHowToUse
@@ -724,4 +733,17 @@ def lineNotifyMessage(token, msg):
     return r.status_code
 
     # ***** ***** ***** *****  *****
+
+
+    ##### 日期編碼 ######
+def RS_DateTime_2_HHNN(datDT):
+    strHour = str(datDT.hour)
+    strMinute = str(datDT.minute)
+    if len(strHour) < 2:
+        strHour = '0' + strHour
+    if len(strMinute) < 2:
+        strMinute = '0' + strMinute
+    RS_DateTime_2_HH_NN = strHour + strMinute
+    return RS_DateTime_2_HH_NN
+    # ***** ***** ***** ***** *****
 
