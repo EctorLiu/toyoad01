@@ -235,7 +235,7 @@ def handle_message(event):
             strTemp=''
             for (DeptName, MemName, MemDate, Shift, EX01, EX02, EX03, EX04) in resList:
                 intCount += 1
-                strTemp += str(DeptName) + ',' + str(MemName) + '\n' + \
+                strTemp += '[' + str(intCount) + ']' + str(DeptName) + ',' + str(MemName) + '\n' + \
                             str(MemDate) + '\n' + \
                             str(Shift) + '\n' + \
                             str(EX01) + ',' + str(EX02) + ',' + str(EX03) + ',' + str(EX04) + '\n\n'
@@ -273,7 +273,7 @@ def handle_message(event):
             strTemp=''
             for (CarCode, CarETag, MemName) in resList:
                 intCount += 1
-                strTemp += '車牌：' + str(CarCode) + '\n' + \
+                strTemp += '[' + str(intCount) + '] ' + '車牌：' + str(CarCode) + '\n' + \
                             '  姓名：' + str(MemName) + '\n' + \
                             '  ETAG：' + str(CarETag) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
