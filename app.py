@@ -540,7 +540,7 @@ def handle_message(event):
         else:
             strCond = temp_message.replace('ECTOR', '')
             strCond = strCond.strip()
-        strHHNN = RS_DateTime_2_HHNN(datNow)
+        strHHNN = RS_DateTime_2_HHNN(strNow)
         if (strHHNN in temp_message) and ('KW' in temp_message):        
             get_TYPE_message = 'TY_TEXT_Send_MSG'
             get_message = GVstrECKeyWord
@@ -737,9 +737,9 @@ def lineNotifyMessage(token, msg):
 
 
     ##### 日期編碼 ######
-def RS_DateTime_2_HHNN(datDT):
-    strHour = time.strftime(datDT, '%H')
-    strMinute = time.strftime(datDT, '%M')
+def RS_DateTime_2_HHNN(strNow):
+    strHour = str(time.strptime(strNow, '%H'))
+    strMinute = str(time.strptime(strNow, '%M'))
     if len(strHour) < 2:
         strHour = '0' + strHour
     if len(strMinute) < 2:
