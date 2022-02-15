@@ -75,8 +75,8 @@ import requests
     ##### 時間函數 ######
 from datetime import datetime
 import time
-strNow = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()) 
-datNow = datetime.strptime(strNow, "%d/%m/%y %H:%M:%S")
+datNow = time.localtime()
+strNow = time.strftime("%Y/%m/%d %H:%M:%S", datNow) 
     # ***** ***** ***** ***** *****
 
     ##### Line ######
