@@ -264,7 +264,7 @@ def handle_message(event):
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [CarCode], [CarETag] ,[MemName] ' + \
                         ' FROM [TIM_DB].[dbo].[APP_CAR_Member_CAR_List] ' + \
-                        ' WHERE ([CarCode] LIKE %s OR [MemName] LIKE %s) '  % (strCond, strCond) + \
+                        ' WHERE ([CarCodeX] LIKE %s OR [MemName] LIKE %s) '  % (strCond, strCond) + \
                             ' AND (LEN([CarCode]) > 0) ' + \
                         ' ORDER BY MemName, CarCode '
             resList = ms.RS_SQL_ExecQuery(strSQL)
