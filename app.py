@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M215)1510'
+strVer = '(M215)1525'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -280,7 +280,7 @@ def handle_message(event):
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             strNow  + '\n\n' + \
-                            strTemp + strSQL
+                            strTemp
         else:
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
