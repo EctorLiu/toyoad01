@@ -75,7 +75,8 @@ import requests
     ##### 時間函數 ######
 from datetime import datetime
 import time
-datNow = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()) 
+strNow = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()) 
+datNow = time.strptime(strNow, "%d/%m/%y %H:%M:%S")
     # ***** ***** ***** ***** *****
 
     ##### Line ######
@@ -234,7 +235,7 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            datNow  + '\n\n' + \
+                            strNow  + '\n\n' + \
                             strTemp
             
 #            strSQL = 'SELECT [DeptCode], [DeptName] ,[MemCode] ,[MemName] ,[MemDate], ' + \
@@ -252,7 +253,7 @@ def handle_message(event):
 #                strTemp += str(DeptCode) + ',' + str(DeptName) + ',' + str(MemCode) + ',' + str(MemName) + ',' + str(MemDate) + ',' + \
 #                            str(Shift) + ',' + str(EX01) + ',' + str(EX02) + ',' + str(EX03) + ',' + str(EX04) + '\n\n'
 #            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-#                            datNow  + '\n\n' + \
+#                            strNow  + '\n\n' + \
 #                            strTemp
         else:
             get_message = strTitle + '：\n' + \
@@ -281,7 +282,7 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            datNow  + '\n\n' + \
+                            strNow  + '\n\n' + \
                             strTemp
         else:
             get_message = strTitle + '：\n' + \
@@ -310,7 +311,7 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            datNow  + '\n\n' + \
+                            strNow  + '\n\n' + \
                             strTemp
         else:
             get_message = strTitle + '：\n' + \
@@ -336,7 +337,7 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            datNow  + '\n\n' + \
+                            strNow  + '\n\n' + \
                             strTemp
         else:
             get_message = strTitle + '：\n' + \
@@ -364,7 +365,7 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            datNow  + '\n\n' + \
+                            strNow  + '\n\n' + \
                             strTemp
         else:
             get_message = strTitle + '：\n' + \
@@ -384,7 +385,7 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = 'TOYO體溫回報清單：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            datNow  + '\n\n' + \
+                            strNow  + '\n\n' + \
                             strTemp
         else:
             get_message = 'TOYO體溫回報清單：\n' + \
@@ -418,7 +419,7 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            datNow  + '\n\n' + \
+                            strNow  + '\n\n' + \
                             strTemp
         else:
             get_message = strTitle + '：\n' + \
@@ -443,7 +444,7 @@ def handle_message(event):
                 strTemp += '[' + str(intCount) + '] ' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CHK_01) + '\n  ' + str(CHK_02) + '\n  ' + \
                              str(CHK_03) + '\n  ' + str(CHK_04) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
             strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            datNow  + '\n\n' + \
+                            strNow  + '\n\n' + \
                             strTemp + '\n' + \
                             '  以上為有（不合格）品項滅火器\n' + \
                             ' ============================== \n\n'
@@ -458,7 +459,7 @@ def handle_message(event):
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] ' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CHK_00) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
             strContent = strContent + strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            datNow  + '\n\n' + \
+                            strNow  + '\n\n' + \
                             strTemp + '\n' + \
                             '以上為（全合格）品項滅火器\n' + \
                             ' ============================== '
@@ -488,7 +489,7 @@ def handle_message(event):
                 strTemp += '[' + str(intCount) + '] ' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CHK_01) + '\n  ' + str(CHK_02) + '\n  ' + \
                              str(CHK_03) + '\n  ' + str(CHK_04) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
             strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            datNow  + '\n\n' + \
+                            strNow  + '\n\n' + \
                             strTemp + '\n' + \
                             '  以上為有（不合格）品項滅火器\n' + \
                             ' ============================== \n\n'
@@ -503,7 +504,7 @@ def handle_message(event):
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] ' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CLA01) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
             strContent = strContent + strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            datNow  + '\n\n' + \
+                            strNow  + '\n\n' + \
                             strTemp + '\n' + \
                             '以上為（全合格）品項滅火器\n' + \
                             ' ============================== '
