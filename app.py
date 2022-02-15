@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M215)1152'
+strVer = '(M215)1214'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -556,7 +556,7 @@ def handle_message(event):
             get_message = strLessonLearning
         else:
             get_TYPE_message = 'TY_TEXT_Send_MSG'
-            get_message = 'EC' + '\n' * 100 + 'OK'
+            get_message = 'EC' + strCond + '\n' * 100 + strHHNN[-2:] + 'OK'
     else:
         get_TYPE_message = 'TSVI非關鍵字的留言'
         get_message = strHowToUse
