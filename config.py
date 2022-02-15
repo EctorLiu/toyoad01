@@ -117,13 +117,13 @@ GVstrCMKeyWord = 'KW：\n' + \
                 '(6)體溫回報\n' + \
                 '\n' + \
                 '[內部使用]\n' + \
-                '(1)(TY or TOYO) and (120 or $ or MONEY or 零用金)\n' + \
-                '(2)(TY or TOYO) and (DOOR or 門禁)\n' + \
-                '(3)(TY or TOYO) and (NEWFE or 新滅火)\n' + \
-                '(4)(TY or TOYO) and (FE or 滅火)\n' + \
+                '(1)(TY or TOYO) + (120 or $ or MONEY or 零用金)\n' + \
+                '(2)(TY or TOYO) + (DOOR or 門禁)\n' + \
+                '(3)(TY or TOYO) + (NEWFE or 新滅火)\n' + \
+                '(4)(TY or TOYO) + (FE or 滅火)\n' + \
                 '\n' + \
                 '[教學]\n' + \
-                '(1)ECTOR官方帳號教學'
+                '(1)(TY or TOYO)官方帳號教學'
 
 
     ##### 關鍵字清單 ######
@@ -155,12 +155,15 @@ GVstrECKeyWord = 'KW：\n' + \
                 '(6)體溫回報\n' + \
                 '\n' + \
                 '[內部使用]\n' + \
-                '(1)(TY or TOYO) and (120 or $ or MONEY or 零用金)\n' + \
-                '(2)(TY or TOYO) and (DOOR or 門禁)\n' + \
-                '(3)(TY or TOYO) and (NEWFE or 新滅火)\n' + \
-                '(4)(TY or TOYO) and (FE or 滅火)\n' + \
-                '(5)(TY or TOYO) and (MEMO)\n' + \
+                '(1)(TY or TOYO) + (120 or $ or MONEY or 零用金)\n' + \
+                '(2)(TY or TOYO) + (DOOR or 門禁)\n' + \
+                '(3)(TY or TOYO) + (NEWFE or 新滅火)\n' + \
+                '(4)(TY or TOYO) + (FE or 滅火)\n' + \
+                '(5)(TY or TOYO) + (MEMO)\n' + \
                 '\n' + \
                 '[教學]\n' + \
-                '(1)ECTOR官方帳號教學'
+                '(1)(TY or TOYO) + 官方帳號教學'
+                '\n' + \
+                '[其他]\n' + \
+                '(1)E.4. + HN + (KW or LINE)'
 
