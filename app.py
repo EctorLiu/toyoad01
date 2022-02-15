@@ -217,8 +217,9 @@ def handle_message(event):
         if len(temp_message) == 4:
             strCond = '\'%\''
         else:
-            strCond = temp_message.replace('宿舍', '')
-            strCond = temp_message.replace('防疫', '')
+            strCond = temp_message
+            strCond = strCond.replace('宿舍', '')
+            strCond = strCond.replace('防疫', '')
             strCond = '\'%' + strCond.strip() + '%\''
         strTitle = 'TOYO移工宿舍輪班查詢(前3天到今天)'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
