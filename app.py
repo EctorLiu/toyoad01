@@ -271,11 +271,10 @@ def handle_message(event):
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
-            for (CarCode, CarETag, MemName) in resList:
+            for (CarCode, MemName) in resList:
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] ' + '車牌：' + str(CarCode) + '\n' + \
-                            '  姓名：' + str(MemName) + '\n' + \
-                            '  ETAG：' + str(CarETag) + '\n\n'
+                            '  姓名：' + str(MemName) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
