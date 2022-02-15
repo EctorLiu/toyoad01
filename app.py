@@ -529,7 +529,7 @@ def handle_message(event):
         get_message = '『TOYO行政管理部』版本：\n' + strVer
     # ***** ***** ***** ***** *****
 
-    elif (temp_message[0:5].upper() == 'TOYO') and ('!ALL' in temp_message):
+    elif (temp_message[0:4].upper() == 'TOYO') and ('!ALL' in temp_message):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         get_message = GVstrCMKeyWord
 
