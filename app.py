@@ -540,7 +540,7 @@ def handle_message(event):
         else:
             strCond = temp_message.replace('ECTOR', '')
             strCond = strCond.strip()
-        strHHNN = RS_DateTime_2_HHNN(strNow)
+        strHHNN = RS_DateTime_2_HHNN(datNow)
         if (strHHNN in temp_message) and ('KW' in temp_message):        
             get_TYPE_message = 'TY_TEXT_Send_MSG'
             get_message = GVstrECKeyWord
