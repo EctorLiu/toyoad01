@@ -738,8 +738,8 @@ def lineNotifyMessage(token, msg):
 
     ##### 日期編碼 ######
 def RS_DateTime_2_HHNN(datDT):
-    strHour = str(datDT.hour)
-    strMinute = str(datDT.minute)
+    strHour = time.strftime(datDT, '%H')
+    strMinute = time.strftime(datDT, '%M')
     if len(strHour) < 2:
         strHour = '0' + strHour
     if len(strMinute) < 2:
