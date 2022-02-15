@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M215)1525'
+strVer = '(M215)1608'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -274,9 +274,9 @@ def handle_message(event):
             strTemp=''
             for (MEM_ID, MEM_NAME, CAR_LIST) in resList:
                 intCount += 1
-                strTemp += '[' + str(intCount) + '] ' + '車牌[E-Tag]：\n' + \
+                strTemp += '[' + str(intCount) + '] ' + '車輛：\n' + \
                             str(CAR_LIST) + '\n' + \
-                            '  姓名：(' + str(MEM_ID) + ')' + str(MEM_NAME) + '\n\n'
+                            '=> 姓名：(' + str(MEM_ID) + ')' + str(MEM_NAME) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
