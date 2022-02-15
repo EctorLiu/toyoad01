@@ -264,18 +264,19 @@ def handle_message(event):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
-            strSQL = 'SELECT [CarCode], [MemName] ' + \
-                        ' FROM [TIM_DB].[dbo].[APP_CAR_Member_CAR_List] ' + \
-                        ' WHERE ([CarCodeX] LIKE %s OR [MemName] LIKE %s) '  % (strCond, strCond) + \
-                            ' AND (LEN([CarCodeX]) > 0) ' + \
-                        ' ORDER BY CarCode '
+            strSQL = ' SELECT [MEM_ID], [MEM_NAME], [CAR_LIST] ' + \
+                        ' FROM [TIM_DB].[dbo].[APP_BPM_TNFAB01_MEM_CAR_OKLIST] ' + \
+                        ' WHERE ([CAR_LISTX] LIKE %s OR [MEM_NAME] LIKE %s) '  % (strCond, strCond) + \
+                            ' AND (LEN([CAR_LIST]) > 0) ' + \
+                        ' ORDER BY CarCode '            
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
-            for (CarCode, MemName) in resList:
+            for (MEM_ID, MEM_NAME, CAR_LIST) in resList:
                 intCount += 1
-                strTemp += '[' + str(intCount) + '] ' + '車牌：' + str(CarCode) + '\n' + \
-                            '  姓名：' + str(MemName) + '\n\n'
+                strTemp += '[' + str(intCount) + '] ' + '車牌[E-Tag]：\n' + \
+                            '  ' + str(CAR_LIST) + '\n' + \
+                            '  姓名：(' + str(MEM_ID) + ')' + str(MEM_NAME) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
