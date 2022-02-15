@@ -207,11 +207,13 @@ def handle_message(event):
         get_TYPE_message = 'New_Activity'
         get_message = strNewestActivity
 
-    elif ('宿舍防疫' in temp_message.upper()):
+    elif ('宿舍' in temp_message.upper()) and \
+            ('防疫' in temp_message.upper()):
         if len(temp_message) == 4:
             strCond = '\'%\''
         else:
-            strCond = temp_message.replace('宿舍防疫', '')
+            strCond = temp_message.replace('宿舍', '')
+            strCond = temp_message.replace('防疫', '')
             strCond = '\'%' + strCond.strip() + '%\''
         strTitle = 'TOYO移工宿舍輪班查詢(前3天到今天)'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
@@ -237,24 +239,40 @@ def handle_message(event):
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             strNow  + '\n\n' + \
                             strTemp
-            
-#            strSQL = 'SELECT [DeptCode], [DeptName] ,[MemCode] ,[MemName] ,[MemDate], ' + \
-#                        ' [Shift] ,[EX01] ,[EX02] ,[EX03] ,[EX04] ' + \
-#                        ' FROM [APP_HRM_Member_Shift_Query_List01]' + \
-#                        ' WHERE [MemDate] >= Convert(nvarchar, GETDATE()-5, 111) ' + \
-#                        ' WHERE ([MemDate] >= Convert(nvarchar, GETDATE()-3, 111) AND [MemDate] <= Convert(nvarchar, GETDATE(), 111)) ' + \
-#                            ' AND ([MemName] LIKE %s OR [EX04] LIKE %s) '  % (strCond, strCond) + \
-#                        ' ORDER BY EX05, MemDate '
-#            resList = ms.RS_SQL_ExecQuery(strSQL)
-#            intCount=0
-#            strTemp=''
-#            for (DeptCode, DeptName, MemCode, MemName, MemDate, Shift, EX01, EX02, EX03, EX04) in resList:
-#                intCount += 1
-#                strTemp += str(DeptCode) + ',' + str(DeptName) + ',' + str(MemCode) + ',' + str(MemName) + ',' + str(MemDate) + ',' + \
-#                            str(Shift) + ',' + str(EX01) + ',' + str(EX02) + ',' + str(EX03) + ',' + str(EX04) + '\n\n'
-#            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-#                            strNow  + '\n\n' + \
-#                            strTemp
+        else:
+            get_message = strTitle + '：\n' + \
+                            '目前ECTOR關閉防火牆\n' + \
+                            '暫停使用..有急用可找ECTOR'
+
+    elif ('車輛' in temp_message.upper() or '車道' in temp_message.upper()) and \
+            ('查詢' in temp_message.upper()):
+        if len(temp_message) == 4:
+            strCond = '\'%\''
+        else:
+            strCond = temp_message.replace('車道', '')
+            strCond = temp_message.replace('查詢', '')
+            strCond = '\'%' + strCond.strip() + '%\''
+        strTitle = 'TOYO車輛進廠查詢(車牌/姓名)'
+        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        if strSQL_FW_Switch == 'ON':
+            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+            strSQL = 'SELECT [CarCode], [CarETag] ,[MemName] ' + \
+                        ' FROM [TIM_DB].[dbo].[APP_CAR_Member_CAR_List] ' + \
+                        ' WHERE ([CarCode] LIKE %s OR [MemName] LIKE %s) '  % (strCond, strCond) + \
+                        ' ORDER BY CarCode '
+            resList = ms.RS_SQL_ExecQuery(strSQL)
+            intCount=0
+            strTemp=''
+            for (CarCode, CarETag, MemName) in resList:
+                intCount += 1
+                strTemp += str(MemName) + '\n' + \
+                            '車牌：' + str(CarCode) + '\n' + \
+                            'ETAG：' + str(CarETag) + '\n\n'
+            if len(strTemp) >= intMaxLineMSGString:
+                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
+            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+                            strNow  + '\n\n' + \
+                            strTemp
         else:
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
