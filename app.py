@@ -254,6 +254,7 @@ def handle_message(event):
         if len(temp_message) == 4:
             strCond = '\'%\''
         else:
+            strCond = temp_message.replace('車輛', '')
             strCond = temp_message.replace('車道', '')
             strCond = temp_message.replace('查詢', '')
             strCond = '\'%' + strCond.strip() + '%\''
