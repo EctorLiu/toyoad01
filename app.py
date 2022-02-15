@@ -556,7 +556,7 @@ def handle_message(event):
             get_message = strLessonLearning
         else:
             get_TYPE_message = 'TY_TEXT_Send_MSG'
-            get_message = 'ECTOR\n\n\n\n\n\n\n\n\n\n'
+            get_message = 'EC\n\n\n\n\n\n\n\n\n\nOK'
     else:
         get_TYPE_message = 'TSVI非關鍵字的留言'
         get_message = strHowToUse
