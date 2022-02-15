@@ -76,7 +76,7 @@ import requests
 from datetime import datetime
 import time
 strNow = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()) 
-datNow = time.strptime(strNow, "%d/%m/%y %H:%M:%S")
+datNow = datetime.strptime(strNow, "%d/%m/%y %H:%M:%S")
     # ***** ***** ***** ***** *****
 
     ##### Line ######
