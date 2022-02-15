@@ -268,7 +268,7 @@ def handle_message(event):
                         ' FROM [TIM_DB].[dbo].[APP_BPM_TNFAB01_MEM_CAR_OKLIST] ' + \
                         ' WHERE ([CAR_LISTX] LIKE %s OR [MEM_NAME] LIKE %s) '  % (strCond, strCond) + \
                             ' AND (LEN([CAR_LIST]) > 0) ' + \
-                        ' ORDER BY CarCode '            
+                        ' ORDER BY CAR_LIST '            
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
