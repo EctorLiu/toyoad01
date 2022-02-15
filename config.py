@@ -162,8 +162,8 @@ GVstrECKeyWord = 'KW：\n' + \
                 '(5)(TY or TOYO) + (MEMO)\n' + \
                 '\n' + \
                 '[教學]\n' + \
-                '(1)(TY or TOYO) + 官方帳號教學'
+                '(1)(TY or TOYO) + 官方帳號教學' + \
                 '\n' + \
-                '[其他]\n' + \
+                '[ECTOR]\n' + \
                 '(1)E.4. + HN + (KW or LINE)'
 
