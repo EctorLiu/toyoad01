@@ -545,7 +545,7 @@ def handle_message(event):
             strCond = temp_message.replace('ECTOR', '')
             strCond = strCond.strip()
         #比對輸入[小時分鐘](1225)
-        strHHNN = RS_DateTime_2_HHNN(datNow)
+        strHHNN = RS_DateTime_2_HHNN()
         #開發者關鍵字清單
         if (strHHNN in strCond) and ('KW' in strCond):        
             get_TYPE_message = 'TY_TEXT_Send_MSG'
@@ -557,9 +557,6 @@ def handle_message(event):
         else:
             get_TYPE_message = 'TY_TEXT_Send_MSG'
             get_message = 'EC' + strCond + '\n' * 100 + strHHNN[-2:] + 'OK'
-    else:
-        get_TYPE_message = 'TSVI非關鍵字的留言'
-        get_message = strHowToUse
 
 #
 #
@@ -581,6 +578,11 @@ def handle_message(event):
 #
 #
 #
+
+    else:
+        get_TYPE_message = 'TSVI非關鍵字的留言'
+        get_message = strHowToUse
+
 
 # ===== ===== ===== ===== ===== 【Line區域】 ===== ===== ===== ===== =====
 
@@ -763,7 +765,8 @@ def lineNotifyMessage(token, msg):
 
 
     ##### 日期編碼 ######
-def RS_DateTime_2_HHNN(datDT):
+def RS_DateTime_2_HHNN():
+    datDT = time.localtime()
     strHour = time.strftime("%H", datDT) 
     strMinute = time.strftime("%M", datDT) 
     if len(strHour) < 2:
