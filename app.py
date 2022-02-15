@@ -279,7 +279,7 @@ def handle_message(event):
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             strNow  + '\n\n' + \
-                            strTemp + strCond
+                            strTemp
         else:
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
