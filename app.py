@@ -265,7 +265,7 @@ def handle_message(event):
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = ' SELECT [MEM_ID], [MEM_NAME], [CAR_LIST] ' + \
-                        ' FROM [TIM_DB].[dbo].[APP_BPM_TNFAB01_MEM_CAR_OKLIST] ' + \
+                        ' FROM [TIM_DB].[dbo].[APP_BPM_TNFAB01_R1_MEM_CAR_OKLIST] ' + \
                         ' WHERE ([CAR_LISTX] LIKE %s OR [MEM_NAME] LIKE %s) '  % (strCond, strCond) + \
                             ' AND (LEN([CAR_LIST]) > 0) ' + \
                         ' ORDER BY CAR_LIST '            
@@ -275,7 +275,7 @@ def handle_message(event):
             for (MEM_ID, MEM_NAME, CAR_LIST) in resList:
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] ' + '車牌[E-Tag]：\n' + \
-                            '  ' + str(CAR_LIST) + '\n' + \
+                            str(CAR_LIST) + '\n' + \
                             '  姓名：(' + str(MEM_ID) + ')' + str(MEM_NAME) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
