@@ -91,7 +91,7 @@ class MSSQL:
     ##### 關鍵字清單 ######
 GVstrCMKeyWord = 'KW：\n' + \
                 '[推播功能]\n' + \
-                'TSVI +\n' + \
+                '(TY or TOYO) + \n' + \
                 '(1)推播ECTOR + 內容\n' + \
                 '(2)推播智弘 + 內容\n' + \
                 '(3)推播冠伶 + 內容\n' + \
@@ -113,10 +113,9 @@ GVstrCMKeyWord = 'KW：\n' + \
                 '(7)車輛查詢 + (車牌 or 人名)\n' + \
                 '\n' + \
                 '[內部使用]\n' + \
-                '(1)(TY or TOYO) + (120 or $ or MONEY or 零用金)\n' + \
-                '(2)(TY or TOYO) + (DOOR or 門禁)\n' + \
-                '(3)(TY or TOYO) + (NEWFE or 新滅火)\n' + \
-                '(4)(TY or TOYO) + (FE or 滅火)\n' + \
+                '(1)(TY or TOYO) + (DOOR or 門禁)\n' + \
+                '(2)(TY or TOYO) + (NEWFE or 新滅火)\n' + \
+                '(3)(TY or TOYO) + (FE or 滅火)\n' + \
                 '\n' + \
                 '[教學]\n' + \
                 '(1)(TY or TOYO)官方帳號教學'
@@ -125,7 +124,7 @@ GVstrCMKeyWord = 'KW：\n' + \
     ##### 關鍵字清單 ######
 GVstrECKeyWord = 'KW：\n' + \
                 '[推播功能]\n' + \
-                'TSVI +\n' + \
+                '(TY or TOYO) + \n' + \
                 '(1)推播PROG + 內容\n' + \
                 '(2)推播ECTOR + 內容\n' + \
                 '(3)推播智弘 + 內容\n' + \
@@ -133,10 +132,6 @@ GVstrECKeyWord = 'KW：\n' + \
                 '(5)推播昆霖 + 內容\n' + \
                 '(6)推播宜庭 + 內容\n' + \
                 '(7)推播全部 + 內容\n' + \
-                '\n' + \
-                '[測試中]\n' + \
-                'TSVI +\n' + \
-                '(1)樣版\n' + \
                 '\n' + \
                 '[關鍵字]\n' + \
                 '(1)如何使用/HELP/?/？\n' + \
@@ -152,15 +147,19 @@ GVstrECKeyWord = 'KW：\n' + \
                 '(7)車輛查詢 + (車牌 or 人名)\n' + \
                 '\n' + \
                 '[內部使用]\n' + \
-                '(1)(TY or TOYO) + (120 or $ or MONEY or 零用金)\n' + \
-                '(2)(TY or TOYO) + (DOOR or 門禁)\n' + \
-                '(3)(TY or TOYO) + (NEWFE or 新滅火)\n' + \
-                '(4)(TY or TOYO) + (FE or 滅火)\n' + \
-                '(5)(TY or TOYO) + (MEMO)\n' + \
+                '(1)(TY or TOYO) + (DOOR or 門禁)\n' + \
+                '(2)(TY or TOYO) + (NEWFE or 新滅火)\n' + \
+                '(3)(TY or TOYO) + (FE or 滅火)\n' + \
                 '\n' + \
                 '[教學]\n' + \
                 '(1)(TY or TOYO) + 官方帳號教學' + \
                 '\n' + \
+                '\n' + \
+                '[測試中]\n' + \
+                'TSVI +\n' + \
+                '(2)樣版\n' + \
                 '[ECTOR]\n' + \
-                '(1)E.4. + HN + (KW or LINE)'
+                '(1)(TY or TOYO) + (MEMO)\n' + \
+                '(2)(TY or TOYO) + (120 or $ or MONEY or 零用金)\n' + \
+                '(A)E.4. + HN + (KW or LINE)'
 
