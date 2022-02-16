@@ -268,7 +268,7 @@ def handle_message(event):
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] ' + str(DeptName) + ',' + str(MemName) + '\n' + \
                             str(DormPos) + '\n' + \
-                            str(ShiftResult).replace(',', '\n') + '\n\n'
+                            str(ShiftResult).replace(',', '\n').strip() + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
