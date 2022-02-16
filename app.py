@@ -194,6 +194,14 @@ def handle_message(event):
         temp_message = temp_message.replace('推播昆霖', '')
         get_message = '(只推昆霖)\n' + temp_message
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
+            ('推播汶靜' in temp_message.upper()):
+        get_TYPE_message = 'TSVI2汶靜'
+        temp_message = temp_message.upper()
+        temp_message = temp_message.replace('TY', '')
+        temp_message = temp_message.replace('TOYO', '')
+        temp_message = temp_message.replace('推播汶靜', '')
+        get_message = '(只推汶靜)\n' + temp_message
+    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('推播宜庭' in temp_message.upper()):
         get_TYPE_message = 'TSVI2宜庭'
         temp_message = temp_message.upper()
@@ -711,6 +719,16 @@ def handle_message(event):
         lineNotifyMessage(token, message)
         # ***** ***** ***** ***** *****
 
+    elif get_TYPE_message == 'TSVI2汶靜':
+        ##### 推播 #####
+        # 修改為你要傳送的訊息內容
+        message = get_message
+
+        # 汶靜權杖：
+        token = strJingToken
+        lineNotifyMessage(token, message)
+        # ***** ***** ***** ***** *****
+
     elif get_TYPE_message == 'TSVI2宜庭':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
@@ -757,6 +775,9 @@ def handle_message(event):
         lineNotifyMessage(token, message)
         # 昆霖權杖：
         token = strKunToken
+        lineNotifyMessage(token, message)
+        # 汶靜權杖：
+        token = strJingToken
         lineNotifyMessage(token, message)
         # 宜庭權杖：        
         token = strMichelleToken
