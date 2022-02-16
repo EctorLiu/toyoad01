@@ -258,7 +258,7 @@ def handle_message(event):
             #DeptName MemName ShiftResult   DormPos
             #裝配課    陳文水  08~17_T休息班 (長宏)公學宿舍_3F_301
             strSQL = 'SELECT [DeptName], [MemName], [ShiftResult], [DormPos], FILETIME ' + \
-                        ' FROM [APP_AGENT_ForeignMember_Check_Dorm_Shift_List]' + \
+                        ' FROM [APP_AGENT_Foreign_R1_Check_Dorm_Shift_List]' + \
                         ' WHERE ([MemName] LIKE %s OR [DormPos] LIKE %s) '  % (strCond, strCond) + \
                         ' ORDER BY DormPos, MemName DESC '            
             resList = ms.RS_SQL_ExecQuery(strSQL)
