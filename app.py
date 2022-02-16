@@ -155,83 +155,83 @@ def handle_message(event):
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('推播PROG' in temp_message.upper()):
         get_TYPE_message = 'TSVI推播程式管理員'
-        temp_message = temp_message.upper()
-        temp_message = temp_message.replace('TY', '')
-        temp_message = temp_message.replace('TOYO', '')
-        temp_message = temp_message.replace('推播PROG', '')
+        #temp_message = temp_message.upper()
+        #temp_message = temp_message.replace('TY', '')
+        #temp_message = temp_message.replace('TOYO', '')
+        #temp_message = temp_message.replace('推播PROG', '')
         get_message = '(Admin)\n' + temp_message
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('推播ECTOR' in temp_message.upper()):
         get_TYPE_message = 'TSVI2Ector'
-        temp_message = temp_message.upper()
-        temp_message = temp_message.replace('TY', '')
-        temp_message = temp_message.replace('TOYO', '')
-        temp_message = temp_message.replace('推播ECTOR', '')
+        #temp_message = temp_message.upper()
+        #temp_message = temp_message.replace('TY', '')
+        #temp_message = temp_message.replace('TOYO', '')
+        #temp_message = temp_message.replace('推播ECTOR', '')
         get_message = '(只推Ector)\n' + temp_message
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('推播智弘' in temp_message.upper()):
         # (T1)推播
         get_TYPE_message = 'TSVI2智弘'
-        temp_message = temp_message.upper()
-        temp_message = temp_message.replace('TY', '')
-        temp_message = temp_message.replace('TOYO', '')
-        temp_message = temp_message.replace('推播智弘', '')
+        #temp_message = temp_message.upper()
+        #temp_message = temp_message.replace('TY', '')
+        #temp_message = temp_message.replace('TOYO', '')
+        #temp_message = temp_message.replace('推播智弘', '')
         get_message = '(只推智弘)\n' + temp_message
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('推播冠伶' in temp_message.upper()):
         get_TYPE_message = 'TSVI2冠伶'
-        temp_message = temp_message.upper()
-        temp_message = temp_message.replace('TY', '')
-        temp_message = temp_message.replace('TOYO', '')
-        temp_message = temp_message.replace('推播冠伶', '')
+        #temp_message = temp_message.upper()
+        #temp_message = temp_message.replace('TY', '')
+        #temp_message = temp_message.replace('TOYO', '')
+        #temp_message = temp_message.replace('推播冠伶', '')
         get_message = '(只推冠伶)\n' + temp_message
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('推播昆霖' in temp_message.upper()):
         get_TYPE_message = 'TSVI2昆霖'
-        temp_message = temp_message.upper()
-        temp_message = temp_message.replace('TY', '')
-        temp_message = temp_message.replace('TOYO', '')
-        temp_message = temp_message.replace('推播昆霖', '')
+        #temp_message = temp_message.upper()
+        #temp_message = temp_message.replace('TY', '')
+        #temp_message = temp_message.replace('TOYO', '')
+        #temp_message = temp_message.replace('推播昆霖', '')
         get_message = '(只推昆霖)\n' + temp_message
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('推播汶靜' in temp_message.upper()):
         get_TYPE_message = 'TSVI2汶靜'
-        temp_message = temp_message.upper()
-        temp_message = temp_message.replace('TY', '')
-        temp_message = temp_message.replace('TOYO', '')
-        temp_message = temp_message.replace('推播汶靜', '')
+        #temp_message = temp_message.upper()
+        #temp_message = temp_message.replace('TY', '')
+        #temp_message = temp_message.replace('TOYO', '')
+        #temp_message = temp_message.replace('推播汶靜', '')
         get_message = '(只推汶靜)\n' + temp_message
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('推播宜庭' in temp_message.upper()):
         get_TYPE_message = 'TSVI2宜庭'
-        temp_message = temp_message.upper()
-        temp_message = temp_message.replace('TY', '')
-        temp_message = temp_message.replace('TOYO', '')
-        temp_message = temp_message.replace('推播宜庭', '')
+        #temp_message = temp_message.upper()
+        #temp_message = temp_message.replace('TY', '')
+        #temp_message = temp_message.replace('TOYO', '')
+        #temp_message = temp_message.replace('推播宜庭', '')
         get_message = '(只推宜庭)\n' + temp_message
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('推播玉敏' in temp_message.upper()):
         get_TYPE_message = 'TSVI2玉敏'
-        temp_message = temp_message.upper()
-        temp_message = temp_message.replace('TY', '')
-        temp_message = temp_message.replace('TOYO', '')
-        temp_message = temp_message.replace('推播玉敏', '')
+        #temp_message = temp_message.upper()
+        #temp_message = temp_message.replace('TY', '')
+        #temp_message = temp_message.replace('TOYO', '')
+        #temp_message = temp_message.replace('推播玉敏', '')
         get_message = '(只推玉敏)\n' + temp_message
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('推播MOMO' in temp_message.upper()):
         get_TYPE_message = 'TSVI2MOMO'
-        temp_message = temp_message.upper()
-        temp_message = temp_message.replace('TY', '')
-        temp_message = temp_message.replace('TOYO', '')
-        temp_message = temp_message.replace('推播MOMO', '')
+        #temp_message = temp_message.upper()
+        #temp_message = temp_message.replace('TY', '')
+        #temp_message = temp_message.replace('TOYO', '')
+        #temp_message = temp_message.replace('推播MOMO', '')
         get_message = '(只推MOMO)\n' + temp_message
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('推播全部' in temp_message.upper()):
         get_TYPE_message = 'TSVI推播全部'
-        temp_message = temp_message.upper()
-        temp_message = temp_message.replace('TY', '')
-        temp_message = temp_message.replace('TOYO', '')
-        temp_message = temp_message.replace('推播全部', '')
+        #temp_message = temp_message.upper()
+        #temp_message = temp_message.replace('TY', '')
+        #temp_message = temp_message.replace('TOYO', '')
+        #temp_message = temp_message.replace('推播全部', '')
         get_message = '(推全部)\n' + temp_message
     # ***** ***** ***** ***** *****
     
