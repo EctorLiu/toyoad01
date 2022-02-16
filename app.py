@@ -255,13 +255,12 @@ def handle_message(event):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
-            #DeptName MemName MemDate Shift         DormPos
-            #裝配課    陳文水  02/20   08~17_T休息班 (長宏)公學宿舍_3F_301
-            strSQL = 'SELECT [DeptName] ,[MemName] , ' + \
-                        ' [ShiftResult] ,[DormPos] ' + \
+            #DeptName MemName Shift         DormPos
+            #裝配課    陳文水  08~17_T休息班 (長宏)公學宿舍_3F_301
+            strSQL = 'SELECT [DeptName], [MemName], [ShiftResult], [DormPos] ' + \
                         ' FROM [APP_AGENT_ForeignMember_Check_Dorm_Shift_List]' + \
                         ' WHERE ([MemName] LIKE %s OR [DormPos] LIKE %s) '  % (strCond, strCond) + \
-                        ' ORDER BY DormPos, MemDate, MemName DESC '            
+                        ' ORDER BY DormPos, MemName DESC '            
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
