@@ -22,7 +22,7 @@ strJohnboToken = 'W9a3o7JtKinyfgBRf9oX3oFRIXvrcYKC5XC7yl5KCqV'
 # 冠伶權杖：
 strGwenToken = ''
 # 昆霖權杖：
-strKunToken = 'g3FIWOYakAI4x8S5lRZI0K7e0yFAoL8yp9yKuERuqsH'
+strKunToken = '7MQCitn5m7DACt46wnpXJOFVhiwVdRAhBMpolK74rbG'
 # 汶靜權杖：
 strJingToken = ''
 # 宜庭權杖：        
