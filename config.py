@@ -18,7 +18,7 @@ strchannel_secret = os.environ.get("CHANNEL_SECRET")
 # EctorLiu權杖：
 strEctorToken = 'rOvcCpmikeueH0xYaSLacH8ya3kBDCJPeySEWyjb6KC'
 # 智弘權杖：
-strJohnboToken = ''
+strJohnboToken = '7e6LBsC8Vkk13Gedv5G4c5nyKWcaVWPRaGRLapqUuXm'
 # 冠伶權杖：
 strGwenToken = ''
 # 昆霖權杖：
