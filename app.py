@@ -255,7 +255,7 @@ def handle_message(event):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
-            #DeptName MemName Shift         DormPos
+            #DeptName MemName ShiftResult   DormPos
             #裝配課    陳文水  08~17_T休息班 (長宏)公學宿舍_3F_301
             strSQL = 'SELECT [DeptName], [MemName], [ShiftResult], [DormPos] ' + \
                         ' FROM [APP_AGENT_ForeignMember_Check_Dorm_Shift_List]' + \
@@ -267,8 +267,8 @@ def handle_message(event):
             for (DeptName, MemName, ShiftResult, DormPos) in resList:
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] ' + str(DeptName) + ',' + str(MemName) + '\n' + \
-                            str(DormPos) + '\n\n'
-                            str(ShiftResult) + '\n' + \
+                            str(DormPos) + '\n' + \
+                            str(ShiftResult) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
