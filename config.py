@@ -156,7 +156,8 @@ GVstrCMKeyWord = 'KW：\n' + \
                 '(3)(TY or TOYO) + (FE or 滅火)\n' + \
                 '\n' + \
                 '[教學]\n' + \
-                '(1)(TY or TOYO)官方帳號教學'
+                '(1)(TY or TOYO) + (推播權杖教學)\n' + \
+                '(2)(TY or TOYO) + (官方帳號教學)'
 
 
     ##### 關鍵字清單 ######
@@ -192,7 +193,8 @@ GVstrECKeyWord = 'KW：\n' + \
                 '(3)(TY or TOYO) + (FE or 滅火)\n' + \
                 '\n' + \
                 '[教學]\n' + \
-                '(1)(TY or TOYO) + 官方帳號教學\n' + \
+                '(1)(TY or TOYO) + (推播權杖教學)\n' + \
+                '(2)(TY or TOYO) + (官方帳號教學)\n' + \
                 '\n' + \
                 '[測試中]\n' + \
                 'TSVI +\n' + \
