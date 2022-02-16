@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M216)1225'
+strVer = '(M216)1246'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -268,7 +268,7 @@ def handle_message(event):
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] ' + str(DeptName) + ',' + str(MemName) + '\n' + \
                             str(DormPos) + '\n' + \
-                            str(ShiftResult) + '\n\n'
+                            str(ShiftResult).replace(',', '\n') + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
