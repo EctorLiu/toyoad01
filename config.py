@@ -23,6 +23,8 @@ strJohnboToken = ''
 strGwenToken = ''
 # 昆霖權杖：
 strKunToken = ''
+# 汶靜權杖：
+strJingToken = ''
 # 宜庭權杖：        
 strMichelleToken = 'GksGM2RNtFn3TKz55ajI6ovsJgDcE7AmxJxvgk44Sey'
 # 玉敏權杖：        
@@ -132,10 +134,11 @@ GVstrCMKeyWord = 'KW：\n' + \
                 '(還沒給權杖)(2)推播智弘 + 內容\n' + \
                 '(還沒給權杖)(3)推播冠伶 + 內容\n' + \
                 '(還沒給權杖)(4)推播昆霖 + 內容\n' + \
-                '(5)推播宜庭 + 內容\n' + \
-                '(6)推播玉敏 + 內容\n' + \
-                '(7)推播MOMO + 內容\n' + \
-                '(8)推播全部 + 內容\n' + \
+                '(還沒給權杖)(5)推播汶靜 + 內容\n' + \
+                '(6)推播宜庭 + 內容\n' + \
+                '(7)推播玉敏 + 內容\n' + \
+                '(8)推播MOMO + 內容\n' + \
+                '(9)推播全部 + 內容\n' + \
                 '\n' + \
                 '[關鍵字]\n' + \
                 '(1)如何使用/HELP/?/？\n' + \
