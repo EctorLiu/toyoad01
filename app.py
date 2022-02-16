@@ -291,7 +291,7 @@ def handle_message(event):
             strCond = strCond.replace('車道', '')
             strCond = strCond.replace('查詢', '')
             strCond = '\'%' + strCond.strip() + '%\''
-        strTitle = 'TOYO車輛進廠查詢(車牌/姓名)'
+        strTitle = 'TOYO車輛申請查詢(車牌/姓名)'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
