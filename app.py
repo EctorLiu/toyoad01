@@ -273,8 +273,8 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            '..現在時間：'strNow  + '\n\n' + \
-                            '..檔案更新：'strFileName  + '\n\n' + \
+                            '..現在時間：' + strNow  + '\n' + \
+                            '..檔案更新：' + strFileName  + '\n\n' + \
                             strTemp
         else:
             get_message = strTitle + '：\n' + \
