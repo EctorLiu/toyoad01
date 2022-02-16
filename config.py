@@ -25,6 +25,10 @@ strGwenToken = ''
 strKunToken = ''
 # 宜庭權杖：        
 strMichelleToken = ''
+# 玉敏權杖：        
+strMinToken = 'Z25DvEJjmkdubIEdjK4RUiIQvYiAtOvdG6HjdqHewWR'
+# MOMO權杖：        
+strMomoToken = 'fFmh2ao2ebztFgUT0VhOZDsGNN60CaxYtirCtkkl7Yj'
     # ***** ***** ***** ***** *****
 
 
