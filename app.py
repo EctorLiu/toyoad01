@@ -587,7 +587,7 @@ def handle_message(event):
     elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
             ('推播權杖教學' in temp_message.upper()):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
-        get_message = strLessonLearning
+        get_message = GVstrLineNotifyHowToGetToken
     # ***** ***** ***** ***** *****
 
     ##### (Ver)版本 #####
