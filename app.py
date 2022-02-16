@@ -257,21 +257,19 @@ def handle_message(event):
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             #DeptName MemName MemDate Shift         DormPos
             #裝配課    陳文水  02/20   08~17_T休息班 (長宏)公學宿舍_3F_301
-            strSQL = 'SELECT [DeptName] ,[MemName] ,[MemDate], ' + \
-                        ' [Shift] ,[DormPos] ' + \
-                        ' FROM [APP_HRM_Member_Shift_Query_List01]' + \
-                        ' WHERE ([MemDate] >= Convert(nvarchar, GETDATE()-3, 111) AND [MemDate] <= Convert(nvarchar, GETDATE(), 111)) ' + \
-                            ' AND ([MemName] LIKE %s OR [DormPos] LIKE %s) '  % (strCond, strCond) + \
-                        ' ORDER BY DormPos, MemDate, MemName DESC '
+            strSQL = 'SELECT [DeptName] ,[MemName] , ' + \
+                        ' [ShiftResult] ,[DormPos] ' + \
+                        ' FROM [APP_AGENT_ForeignMember_Check_Dorm_Shift_List]' + \
+                        ' WHERE ([MemName] LIKE %s OR [DormPos] LIKE %s) '  % (strCond, strCond) + \
+                        ' ORDER BY DormPos, MemDate, MemName DESC '            
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
-            for (DeptName, MemName, MemDate, Shift, DormPos) in resList:
+            for (DeptName, MemName, ShiftResult, DormPos) in resList:
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] ' + str(DeptName) + ',' + str(MemName) + '\n' + \
-                            str(MemDate) + '\n' + \
-                            str(Shift) + '\n' + \
                             str(DormPos) + '\n\n'
+                            str(Shift) + '\n' + \
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
