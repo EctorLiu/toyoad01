@@ -781,8 +781,14 @@ def handle_message(event):
             # 昆霖權杖：
             token = strKunToken
             lineNotifyMessage(token, message)
-            # 宜庭權杖：        
+            # 宜庭權杖：
             token = strMichelleToken
+            lineNotifyMessage(token, message)
+            # 玉敏權杖：
+            token = strMinToken
+            lineNotifyMessage(token, message)
+            # MOMO權杖：
+            token = strMomoToken
             lineNotifyMessage(token, message)
         else:
             # EctorLiu權杖：
