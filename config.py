@@ -91,6 +91,38 @@ class MSSQL:
     # ***** ***** ***** ***** *****
 
 
+    ##### 教學資料 ######
+GVstrLineNotifyHowToGetToken = 'Line Notify推播說明：\n' + \
+                                '「Line Notify」推播需要取得「權杖」，取得方式說明：\n' + \
+                                '> 推播範例：\n' + \
+                                '    畫面：https://bit.ly/3BmN9iR\n' + \
+                                '\n' + \
+                                ' Step01：進入網站並以自己帳號登入\n' + \
+                                '> Line Notify網址：\n' + \
+                                '         https://notify-bot.line.me/my/\n' + \
+                                '> 圖片說明：\n' + \
+                                '    畫面：https://bit.ly/3gN7oMT\n' + \
+                                '\n' + \
+                                'Step02：之後進入右上角的「個人頁面」\n' + \
+                                '> 圖片說明：\n' + \
+                                '    畫面：https://bit.ly/3rQTUGi\n' + \
+                                '\n' + \
+                                'Step03：點選下方「發行權杖」按鈕\n' + \
+                                '> 圖片說明：\n' + \
+                                '    畫面：https://bit.ly/3JtpHDe\n' + \
+                                '\n' + \
+                                'Step04：設定推播時的名稱\n' + \
+                                '  4-1. 填寫權杖名稱\n' + \
+                                '  4-2. 點選「透過1對1聊天接收LINE Notify的通知」\n' + \
+                                '  4-3. 點選「發行」\n' + \
+                                '> 圖片說明：\n' + \
+                                '    畫面：https://bit.ly/3oRVSoe\n' + \
+                                '\n' + \
+                                'Step05：取得權杖（文字字串）\n' + \
+                                '> 可以點選複製按鈕，提供該字串資料即可\n' + \
+                                '> 圖片說明：\n' + \
+                                '    畫面：https://bit.ly/3GSCg9q'
+
 
     ##### 關鍵字清單 ######
 GVstrCMKeyWord = 'KW：\n' + \
