@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M216)1246'
+strVer = '(M216)1622'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -257,14 +257,15 @@ def handle_message(event):
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             #DeptName MemName ShiftResult   DormPos
             #裝配課    陳文水  08~17_T休息班 (長宏)公學宿舍_3F_301
-            strSQL = 'SELECT [DeptName], [MemName], [ShiftResult], [DormPos] ' + \
+            strSQL = 'SELECT [DeptName], [MemName], [ShiftResult], [DormPos], FILETIME ' + \
                         ' FROM [APP_AGENT_ForeignMember_Check_Dorm_Shift_List]' + \
                         ' WHERE ([MemName] LIKE %s OR [DormPos] LIKE %s) '  % (strCond, strCond) + \
                         ' ORDER BY DormPos, MemName DESC '            
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
-            for (DeptName, MemName, ShiftResult, DormPos) in resList:
+            for (DeptName, MemName, ShiftResult, DormPos, FILETIME) in resList:
+                strFileName = str(FILETIME)
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] ' + str(DeptName) + ',' + str(MemName) + '\n' + \
                             str(DormPos) + '\n' + \
@@ -272,7 +273,8 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            strNow  + '\n\n' + \
+                            '..現在時間：'strNow  + '\n\n' + \
+                            '..檔案更新：'strFileName  + '\n\n' + \
                             strTemp
         else:
             get_message = strTitle + '：\n' + \
