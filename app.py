@@ -307,7 +307,7 @@ def handle_message(event):
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] ' + '車輛：\n' + \
                             str(CAR_LIST).replace(',', '\n').strip() + '\n' + \
-                            '..姓名：(' + str(DEPT_NAME) + ')' + str(MEM_NAME) + '\n\n'
+                            '..員工：(' + str(DEPT_NAME) + ')' + str(MEM_NAME) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
