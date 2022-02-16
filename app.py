@@ -297,7 +297,7 @@ def handle_message(event):
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = ' SELECT [DEPT_NAME], [MEM_NAME], [CAR_LIST] ' + \
                         ' FROM [TIM_DB].[dbo].[APP_BPM_TNFAB01_R1_MEM_CAR_OKLIST] ' + \
-                        ' WHERE ([CAR_LISTX] LIKE %s OR [MEM_NAME] LIKE %s) '  % (strCond, strCond) + \
+                        ' WHERE ([CAR_LIST] LIKE %s OR [CAR_LISTX] LIKE %s OR [MEM_NAME] LIKE %s) '  % (strCond, strCond, strCond) + \
                             ' AND (LEN([CAR_LIST]) > 0) ' + \
                         ' ORDER BY CAR_LIST '            
             resList = ms.RS_SQL_ExecQuery(strSQL)
