@@ -664,8 +664,10 @@ def handle_message(event):
 # ===== ===== ===== ===== ===== 【Line區域】 ===== ===== ===== ===== =====
 
     pfProfile = line_bot_api.get_profile(event.source.user_id)
-    get_message = 'Hi! ' + pfProfile.display_name + '\n' + get_message
-    # get_message = 'Hi! ' + pfProfile.user_id + '\n' + get_message
+    strLineDisplayName = pfProfile.display_name
+    strLineUserID = pfProfile.user_id
+    get_message = 'Hi! ' + strLineDisplayName + '\n' + get_message
+    # get_message = 'Hi! ' + strLineUserID + '\n' + get_message
 
     # Send To Line
     if get_TYPE_message == 'Initial':
@@ -676,14 +678,13 @@ def handle_message(event):
     elif get_TYPE_message == 'TSVI推播程式管理員':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        message = get_message
+        push_message = get_message
 
         # EctorLiu權杖：
         token = strEctorToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # ***** ***** ***** ***** *****
-
-        # lineNotifyMessage(token, message)        
+    
         #文字訊息
         # reply = TextSendMessage(text=f"{get_message}")
         # line_bot_api.reply_message(event.reply_token,  reply)
@@ -691,147 +692,153 @@ def handle_message(event):
     elif get_TYPE_message == 'TSVI2Ector':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        message = get_message
+        push_message = get_message
 
         # EctorLiu權杖：
         token = strEctorToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # ***** ***** ***** ***** *****
 
     elif get_TYPE_message == 'TSVI2智弘':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        message = get_message
+        push_message = get_message
 
         # 智弘權杖：
         token = strJohnboToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # ***** ***** ***** ***** *****
 
     elif get_TYPE_message == 'TSVI2冠伶':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        message = get_message
+        push_message = get_message
 
         # 冠伶權杖：
         token = strGwenToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # ***** ***** ***** ***** *****
 
     elif get_TYPE_message == 'TSVI2昆霖':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        message = get_message
+        push_message = get_message
 
         # 昆霖權杖：
         token = strKunToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # ***** ***** ***** ***** *****
 
     elif get_TYPE_message == 'TSVI2汶靜':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        message = get_message
+        push_message = get_message
 
         # 汶靜權杖：
         token = strJingToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # ***** ***** ***** ***** *****
 
     elif get_TYPE_message == 'TSVI2宜庭':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        message = get_message
+        push_message = get_message
 
         # 宜庭權杖：        
         token = strMichelleToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # ***** ***** ***** ***** *****
 
     elif get_TYPE_message == 'TSVI2玉敏':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        message = get_message
+        push_message = get_message
 
         # 玉敏權杖：        
         token = strMinToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # ***** ***** ***** ***** *****
 
     elif get_TYPE_message == 'TSVI2MOMO':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        message = get_message
+        push_message = get_message
 
         # MOMO權杖：        
         token = strMomoToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # ***** ***** ***** ***** *****
 
     elif get_TYPE_message == 'TSVI推播全部':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        message = get_message
+        push_message = get_message
 
         # EctorLiu權杖：
         token = strEctorToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # 智弘權杖：
         token = strJohnboToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # 冠伶權杖：
         token = strGwenToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # 昆霖權杖：
         token = strKunToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # 汶靜權杖：
         token = strJingToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # 宜庭權杖：        
         token = strMichelleToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # 玉敏權杖：        
         token = strMinToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # MOMO權杖：        
         token = strMomoToken
-        lineNotifyMessage(token, message)
+        lineNotifyMessage(token, push_message)
         # ***** ***** ***** ***** *****
 
     elif get_TYPE_message == 'TSVI非關鍵字的留言':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        # message = get_message
-        message = 'TOYO行政管理部有留言如下：\n' + temp_message
+        push_message = 'TOYO行政管理部有留言如下：\n' + temp_message
 
         if strPush_NotKeyWord2All_Switch == 'ON': 
             # EctorLiu權杖：
             token = strEctorToken
-            lineNotifyMessage(token, message)
+            lineNotifyMessage(token, push_message)
             # 智弘權杖：
             token = strJohnboToken
-            lineNotifyMessage(token, message)
+            lineNotifyMessage(token, push_message)
             # 冠伶權杖：
             token = strGwenToken
-            lineNotifyMessage(token, message)
+            lineNotifyMessage(token, push_message)
             # 昆霖權杖：
             token = strKunToken
-            lineNotifyMessage(token, message)
+            lineNotifyMessage(token, push_message)
+            # 汶靜權杖：
+            token = strJingToken
+            lineNotifyMessage(token, push_message)
             # 宜庭權杖：
             token = strMichelleToken
-            lineNotifyMessage(token, message)
+            lineNotifyMessage(token, push_message)
             # 玉敏權杖：
             token = strMinToken
-            lineNotifyMessage(token, message)
+            lineNotifyMessage(token, push_message)
             # MOMO權杖：
             token = strMomoToken
-            lineNotifyMessage(token, message)
+            lineNotifyMessage(token, push_message)
         else:
             # EctorLiu權杖：
-            message = 'DebugModeForEctor\n：' + message
+            push_message = 'DebugModeForEctor\n：' + \
+                            'LineName： ' + strLineDisplayName + '\n' + \
+                            'LineUserID： ' + strLineUserID + '\n' + \
+                            'LineReplyToker： ' + event.reply_token + '\n' + \
+                            push_message            
             token = strEctorToken
-            lineNotifyMessage(token, message)
+            lineNotifyMessage(token, push_message)
         # ***** ***** ***** ***** *****
 
         reply = TextSendMessage(text=f"{get_message}")
