@@ -142,7 +142,19 @@ GVstrLineNotifyHowToGetToken = 'Line Notify推播說明：\n' + \
                                 'Step05：取得權杖（文字字串）\n' + \
                                 '> 可以點選複製按鈕，提供該字串資料即可\n' + \
                                 '> 圖片說明：\n' + \
-                                '    畫面：https://bit.ly/3GSCg9q'
+                                '    畫面：https://bit.ly/3GSCg9q\n' + \
+                                '\n' + \
+                                '\n' + \
+                                '其他補充：若上述完成後仍無法LineNotify推播：\n' + \
+                                '> (1) 可手動加入LineNotify服務\n' + \
+                                '>   ID搜尋：「@linenotify」\n' + \
+                                '    畫面：https://bit.ly/3GSCg9q\n' + \
+                                '> (2) 可確認Line設定是否有「阻擋訊息」\n' + \
+                                '    畫面：https://bit.ly/3HVA2Yc\n' + \
+                                ''
+
+# https://github.com/EctorLiu/Ectorliu/raw/main/img/LineNTF_StepT1.jpg
+# https://github.com/EctorLiu/Ectorliu/raw/main/img/LineNTF_StepT2.jpg
     # ***** ***** ***** ***** *****
 
 
