@@ -148,7 +148,7 @@ GVstrLineNotifyHowToGetToken = 'Line Notify推播說明：\n' + \
                                 '其他補充：若上述完成後仍無法LineNotify推播：\n' + \
                                 '> (1) 可手動加入LineNotify服務\n' + \
                                 '>   ID搜尋：「@linenotify」\n' + \
-                                '    畫面：https://bit.ly/3GSCg9q\n' + \
+                                '    畫面：https://bit.ly/3Bub93j\n' + \
                                 '> (2) 可確認Line設定是否有「阻擋訊息」\n' + \
                                 '    畫面：https://bit.ly/3HVA2Yc\n' + \
                                 ''
