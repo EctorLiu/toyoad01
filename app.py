@@ -860,6 +860,15 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,  reply)
 
     elif get_TYPE_message == 'TY_TEXT_Send_MSG':
+        # EctorLiu權杖：
+        push_message = 'TY_TEXT_Send_MSG\n：' + \
+                        'LineName： ' + strLineDisplayName + '\n' + \
+                        'LineUserID： ' + strLineUserID + '\n' + \
+                        'LineReplyToker： ' + event.reply_token + '\n' + \
+                        push_message            
+        token = strEctorToken
+        lineNotifyMessage(token, push_message)
+
         reply = TextSendMessage(text=f"{get_message}")
         line_bot_api.reply_message(event.reply_token,  reply)
 
@@ -878,6 +887,15 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, reply)
 
     else:
+        # EctorLiu權杖：
+        push_message = 'DebugModeForEctor(Else)\n：' + \
+                        'LineName： ' + strLineDisplayName + '\n' + \
+                        'LineUserID： ' + strLineUserID + '\n' + \
+                        'LineReplyToker： ' + event.reply_token + '\n' + \
+                        push_message            
+        token = strEctorToken
+        lineNotifyMessage(token, push_message)
+
         reply = TextSendMessage(text=f"{get_message}")
         line_bot_api.reply_message(event.reply_token,  reply)
 
