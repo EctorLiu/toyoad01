@@ -665,7 +665,7 @@ def handle_message(event):
 
     pfProfile = line_bot_api.get_profile(event.source.user_id)
     get_message = 'Hi! ' + pfProfile.display_name + '\n' + get_message
-    get_message = 'Hi! ' + pfProfile.user_id + '\n' + get_message
+    # get_message = 'Hi! ' + pfProfile.user_id + '\n' + get_message
 
     # Send To Line
     if get_TYPE_message == 'Initial':
