@@ -152,9 +152,6 @@ GVstrLineNotifyHowToGetToken = 'Line Notify推播說明：\n' + \
                                 '> (2) 可確認Line設定是否有「阻擋訊息」\n' + \
                                 '    畫面：https://bit.ly/3HVA2Yc\n' + \
                                 ''
-
-# https://github.com/EctorLiu/Ectorliu/raw/main/img/LineNTF_StepT1.jpg
-# https://github.com/EctorLiu/Ectorliu/raw/main/img/LineNTF_StepT2.jpg
     # ***** ***** ***** ***** *****
 
 
