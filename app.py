@@ -865,7 +865,7 @@ def handle_message(event):
                         'LineName： ' + strLineDisplayName + '\n' + \
                         'LineUserID： ' + strLineUserID + '\n' + \
                         'LineReplyToker： ' + event.reply_token + '\n' + \
-                        push_message            
+                        get_message            
         token = strEctorToken
         lineNotifyMessage(token, push_message)
 
@@ -892,7 +892,7 @@ def handle_message(event):
                         'LineName： ' + strLineDisplayName + '\n' + \
                         'LineUserID： ' + strLineUserID + '\n' + \
                         'LineReplyToker： ' + event.reply_token + '\n' + \
-                        push_message            
+                        get_message            
         token = strEctorToken
         lineNotifyMessage(token, push_message)
 
