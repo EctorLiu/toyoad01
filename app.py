@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M216)1725'
+strVer = '(M217)0954'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -246,9 +246,14 @@ def handle_message(event):
     elif ('如何使用' in temp_message or 'HELP' in temp_message.upper() or '?' in temp_message.strip() or '？' in temp_message.strip()):
         get_TYPE_message = 'How_To_Use'
         get_message = strHowToUse
+
     elif ('最近' in temp_message or '最新' in temp_message) and ('訊息' in temp_message or '活動' in temp_message):
         get_TYPE_message = 'New_Activity'
         get_message = strNewestActivity
+
+    elif ('SOP' in temp_message) and ('清單' in temp_message or '下載' in temp_message):
+        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_message = GVstrSOPList01
 
     elif ('宿舍' in temp_message.upper()) and \
             ('防疫' in temp_message.upper()):
