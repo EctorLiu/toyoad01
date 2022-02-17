@@ -93,6 +93,25 @@ class MSSQL:
     # ***** ***** ***** ***** *****
 
 
+    ##### 選單資料 ######
+GVstrSOPList01 = 'SOP清單：\n' + \
+                                '（一）郵件\n' + \
+                                '> (A) 台南大廳郵件領用SOP：\n' + \
+                                ' (冠伶檔案修訂中)\n' + \
+                                '\n' + \
+                                '（二）餐廳電視 \n' + \
+                                '> (A) 台南4F餐廳電視開啟SOP：\n' + \
+                                '  連線：https://bit.ly/36e5kvn\n' + \
+                                '\n' + \
+                                '（三）宿舍\n' + \
+                                '> (A) 台南長溪路宿舍保全設定SOP：\n' + \
+                                '  連線：https://bit.ly/353NVVz'
+
+#https://github.com/EctorLiu/toyoad01/raw/main/files/(New)SOP_TN4F_TV01.pptx
+#https://github.com/EctorLiu/toyoad01/raw/main/files/(New)SOP_TNDorm01_Safety01.pdf
+    # ***** ***** ***** ***** *****
+
+
     ##### 教學資料 ######
 GVstrLineNotifyHowToGetToken = 'Line Notify推播說明：\n' + \
                                 '「Line Notify」推播需要取得「權杖」，取得方式說明：\n' + \
@@ -124,6 +143,7 @@ GVstrLineNotifyHowToGetToken = 'Line Notify推播說明：\n' + \
                                 '> 可以點選複製按鈕，提供該字串資料即可\n' + \
                                 '> 圖片說明：\n' + \
                                 '    畫面：https://bit.ly/3GSCg9q'
+    # ***** ***** ***** ***** *****
 
 
     ##### 關鍵字清單 ######
@@ -161,6 +181,7 @@ GVstrCMKeyWord = 'KW：\n' + \
                 '[教學]\n' + \
                 '(1)(TY or TOYO) + (推播權杖教學)\n' + \
                 '(2)(TY or TOYO) + (官方帳號教學)'
+    # ***** ***** ***** ***** *****
 
 
     ##### 關鍵字清單 ######
@@ -207,4 +228,5 @@ GVstrECKeyWord = 'KW：\n' + \
                 '(1)(TY or TOYO) + (MEMO)\n' + \
                 '(2)(TY or TOYO) + (120 or $ or MONEY or 零用金)\n' + \
                 '\n(A)E.4. + HN + (KW or LINE)'
+    # ***** ***** ***** ***** *****
 
