@@ -148,6 +148,9 @@ GVstrLineNotifyHowToGetToken = 'Line Notify推播說明：\n' + \
 
     ##### 關鍵字清單 ######
 GVstrCMKeyWord = 'KW：\n' + \
+                '[開放使用]\n' + \
+                '(1)(SOP) + (清單 or 下載)\n' + \
+                '\n' + \
                 '[推播功能]\n' + \
                 '(TY or TOYO) + \n' + \
                 '(1)推播ECTOR + 內容\n' + \
@@ -186,6 +189,9 @@ GVstrCMKeyWord = 'KW：\n' + \
 
     ##### 關鍵字清單 ######
 GVstrECKeyWord = 'KW：\n' + \
+                '[開放使用]\n' + \
+                '(1)(SOP) + (清單 or 下載)\n' + \
+                '\n' + \
                 '[推播功能]\n' + \
                 '(TY or TOYO) + \n' + \
                 '(1)推播PROG + 內容\n' + \
