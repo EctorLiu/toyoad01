@@ -113,60 +113,67 @@ def handle_message(event):
 
     ##### (TSVI)推播 #####
     elif (strEventMSG[0:4].upper() == 'TY推播' or strEventMSG[0:6].upper() == 'TOYO推播'):
-        #類別
-        get_TYPE_message = 'SYS_ASSIGN_PUSH_MSG_Text'
-        #開頭的關鍵字長度
-        if strEventMSG[0:4].upper() == 'TY推播':
-            intInitialKWLen = 4
-        elif strEventMSG[0:6].upper() == 'TOYO推播':
-            intInitialKWLen = 6
-        strPushKW = RS_RIGHT_String_NotLeftStrNum(strEventMSG, intInitialKWLen)
-        #strReply_MSG
-        if (strPushKW[0:5].upper() == 'ECTOR'):
-            intKWLength = 5
-            strPush2Who = strEctorToken
-            strStartInfo = '(只推Ector)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:2].upper() == '智弘'):
-            intKWLength = 2
-            strPush2Who = strJohnboToken
-            strStartInfo = '(只推智弘)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:2].upper() == '冠伶'):
-            intKWLength = 2
-            strPush2Who = strGwenToken
-            strStartInfo = '(只推冠伶)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:2].upper() == '昆霖'):
-            intKWLength = 2
-            strPush2Who = strKunToken
-            strStartInfo = '(只推昆霖)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:2].upper() == '汶靜'):
-            intKWLength = 2
-            strPush2Who = strJingToken
-            strStartInfo = '(只推汶靜)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:2].upper() == '宜庭'):
-            intKWLength = 2
-            strPush2Who = strMichelleToken
-            strStartInfo = '(只推宜庭)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:2].upper() == '玉敏'):
-            intKWLength = 2
-            strPush2Who = strMinToken
-            strStartInfo = '(只推玉敏)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:4].upper() == 'MOMO'):
-            intKWLength = 4
-            strPush2Who = strMomoToken
-            strStartInfo = '(只推MOMO)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:2].upper() == '全部'):
-            intKWLength = 2
-            strPush2Who = 'SYS_PUSH_ALL'
-            strStartInfo = '(推全部)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+        ##### 此項需有權限才能執行 #####
+        strAUTHKWQuery = 'TYPUSH'
+        strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+        if strAUTH_CHK[0:2] == 'GO':            
+            #類別
+            get_TYPE_message = 'SYS_ASSIGN_PUSH_MSG_Text'
+            #開頭的關鍵字長度
+            if strEventMSG[0:4].upper() == 'TY推播':
+                intInitialKWLen = 4
+            elif strEventMSG[0:6].upper() == 'TOYO推播':
+                intInitialKWLen = 6
+            strPushKW = RS_RIGHT_String_NotLeftStrNum(strEventMSG, intInitialKWLen)
+            #strReply_MSG
+            if (strPushKW[0:5].upper() == 'ECTOR'):
+                intKWLength = 5
+                strPush2Who = strEctorToken
+                strStartInfo = '(只推Ector)\n'
+                strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+            if (strPushKW[0:2].upper() == '智弘'):
+                intKWLength = 2
+                strPush2Who = strJohnboToken
+                strStartInfo = '(只推智弘)\n'
+                strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+            if (strPushKW[0:2].upper() == '冠伶'):
+                intKWLength = 2
+                strPush2Who = strGwenToken
+                strStartInfo = '(只推冠伶)\n'
+                strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+            if (strPushKW[0:2].upper() == '昆霖'):
+                intKWLength = 2
+                strPush2Who = strKunToken
+                strStartInfo = '(只推昆霖)\n'
+                strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+            if (strPushKW[0:2].upper() == '汶靜'):
+                intKWLength = 2
+                strPush2Who = strJingToken
+                strStartInfo = '(只推汶靜)\n'
+                strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+            if (strPushKW[0:2].upper() == '宜庭'):
+                intKWLength = 2
+                strPush2Who = strMichelleToken
+                strStartInfo = '(只推宜庭)\n'
+                strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+            if (strPushKW[0:2].upper() == '玉敏'):
+                intKWLength = 2
+                strPush2Who = strMinToken
+                strStartInfo = '(只推玉敏)\n'
+                strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+            if (strPushKW[0:4].upper() == 'MOMO'):
+                intKWLength = 4
+                strPush2Who = strMomoToken
+                strStartInfo = '(只推MOMO)\n'
+                strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+            if (strPushKW[0:2].upper() == '全部'):
+                intKWLength = 2
+                strPush2Who = 'SYS_PUSH_ALL'
+                strStartInfo = '(推全部)\n'
+                strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()            
+        else:
+            strReply_MSG = '權限不足!'
+        # ***** ***** ***** ***** *****
     # ***** ***** ***** ***** *****
 
     ##### TSVI樣版 #####
