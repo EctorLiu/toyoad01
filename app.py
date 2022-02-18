@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M218)1006'
+strVer = '(M218)1102'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -654,14 +654,14 @@ def handle_message(event):
 
     ##### 推播Line Notify內容 #####
     elif get_TYPE_message == 'SYS_KW_INPUT_MSG':
-#        ##### 推播 #####
-#        # 修改為你要傳送的訊息內容
-#        push_message = '\nTOYO行政管理部『KeyWord』訊息：\n' + strEventMSG
-#        #推播訊息編輯
-#        push_message = '『KeyWord』DebugModeForEctor：\n' + push_message
-#        # EctorLiu權杖：
-#        token = strEctorToken
-#        lineNotifyMessage(token, push_message)
+        ##### 推播 #####
+        # 修改為你要傳送的訊息內容
+        push_message = '\nTOYO行政管理部『KeyWord』訊息：\n' + strEventMSG
+        #推播訊息編輯
+        push_message = '『KeyWord』DebugModeForEctor：\n' + push_message
+        # EctorLiu權杖：
+        token = strEctorToken
+        lineNotifyMessage(token, push_message)
 
         #使用者取得的訊息
         reply = TextSendMessage(text=f"{strReply_MSG}")
