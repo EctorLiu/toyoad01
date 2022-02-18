@@ -844,7 +844,7 @@ def handle_message(event):
                             'LineReplyToker： ' + event.reply_token + '\n' + \
                             push_message
             # ===== SQL_LOG
-            push_message = RS_Line_LOG(strLineDisplayName, strLineUserID, event.reply_token, get_message) + push_message
+            push_message = RS_Line_LOG(strLineDisplayName, strLineUserID, str(event.reply_token), get_message) + push_message
             # ***** ***** ***** ***** *****
             token = strEctorToken
             lineNotifyMessage(token, push_message)
