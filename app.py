@@ -644,14 +644,14 @@ def handle_message(event):
         #開發者關鍵字清單
         if (strHHNN in strCond) and ('KW' in strCond):        
             get_TYPE_message = 'SYS_KW_INPUT_MSG'
-            strReply_MSG = GVstrECKeyWord
+            strContent = GVstrECKeyWord
         #官方帳號教學
         elif (strHHNN in strCond) and ('LINE' in strCond):        
             get_TYPE_message = 'SYS_KW_INPUT_MSG'
-            strReply_MSG = GVstrLessonLearning
+            strContent = GVstrLessonLearning
         else:
             get_TYPE_message = 'SYS_KW_INPUT_MSG'
-            strReply_MSG = 'EC' + strCond + '\n' * 100 + strHHNN[-2:] + 'OK'
+            strContent = 'EC' + strCond + '\n' * 100 + strHHNN[-2:] + 'OK'
         ##### 此項需有權限才能執行 #####
         strAUTHKWQuery = 'SYSADMIN'
         strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
