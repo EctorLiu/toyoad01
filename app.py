@@ -828,13 +828,13 @@ def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
                     ' WHERE ( [AUTH_UserID] = \'Ua42052df655d4d9538b864a3c4deaf28\' ) '
                     # ' WHERE ( [AUTH_UserID] = \' %s \' ) '  % (strUserId)
         resList = ms.RS_SQL_ExecQuery(strSQL)
-        strAuthKWList = ''
-        strAuthUnitName = ''
-        strAuthMemName = ''
+        strAuthKWList = '1'
+        strAuthUnitName = '2'
+        strAuthMemName = '3'
         for ([AUTH_UnitName],[AUTH_MemName],[AUTH_KW_List]) in resList:
-            strAuthKWList = str(AUTH_KW_List)
             strAuthUnitName = str(AUTH_UnitName)
             strAuthMemName = str(AUTH_MemName)
+            strAuthKWList = str(AUTH_KW_List)
         if ('ALL' in strAuthKWList):
             RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList + '-' + strUserId
         elif (strQueryKW.upper() in strAuthKWList):
