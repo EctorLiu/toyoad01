@@ -116,47 +116,47 @@ def handle_message(event):
             intInitialKWLen = 6
         strPushKW = RS_RIGHT_String_NotLeftStrNum(strEventMSG, intInitialKWLen)
         #strReply_MSG
-        if (strPushKW[0:5].upper() ='ECTOR'):
+        if (strPushKW[0:5].upper() == 'ECTOR'):
             intKWLength = 5
             strPush2Who = strEctorToken
             strStartInfo = '(只推Ector)\n'
             strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:2].upper() ='智弘'):
+        if (strPushKW[0:2].upper() == '智弘'):
             intKWLength = 2
             strPush2Who = strJohnboToken
             strStartInfo = '(只推智弘)\n'
             strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:2].upper() ='冠伶'):
+        if (strPushKW[0:2].upper() == '冠伶'):
             intKWLength = 2
             strPush2Who = strGwenToken
             strStartInfo = '(只推冠伶)\n'
             strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:2].upper() ='昆霖'):
+        if (strPushKW[0:2].upper() == '昆霖'):
             intKWLength = 2
             strPush2Who = strKunToken
             strStartInfo = '(只推昆霖)\n'
             strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:2].upper() ='汶靜'):
+        if (strPushKW[0:2].upper() == '汶靜'):
             intKWLength = 2
             strPush2Who = strJingToken
             strStartInfo = '(只推汶靜)\n'
             strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:2].upper() ='宜庭'):
+        if (strPushKW[0:2].upper() == '宜庭'):
             intKWLength = 2
             strPush2Who = strMichelleToken
             strStartInfo = '(只推宜庭)\n'
             strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:2].upper() ='玉敏'):
+        if (strPushKW[0:2].upper() == '玉敏'):
             intKWLength = 2
             strPush2Who = strMinToken
             strStartInfo = '(只推玉敏)\n'
             strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:4].upper() ='MOMO'):
+        if (strPushKW[0:4].upper() == 'MOMO'):
             intKWLength = 4
             strPush2Who = strMomoToken
             strStartInfo = '(只推MOMO)\n'
             strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
-        if (strPushKW[0:2].upper() ='全部'):
+        if (strPushKW[0:2].upper() == '全部'):
             intKWLength = 2
             strPush2Who = 'SYS_PUSH_ALL'
             strStartInfo = '(推全部)\n'
