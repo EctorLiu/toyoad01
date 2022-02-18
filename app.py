@@ -1,12 +1,12 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M218)1320'
+strVer = '(M218)1406'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
     # 切換同仁推播功能選擇：ON/OFF
-strPush_NotKeyWord2All_Switch = 'OFF'
+strPush_NotKeyWord2All_Switch = 'ON'
     # ***** ***** ***** ***** *****
 
     ##### 限制 ######
