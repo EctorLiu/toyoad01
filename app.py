@@ -517,7 +517,7 @@ def handle_message(event):
         if RS_CHECK_KWAUTH_by_UserId[0:2] == 'OK':
             get_TYPE_message = 'SYS_KW_INPUT_MSG'
             strReply_MSG = GVstrMemo
-        elif
+        else:
             get_TYPE_message = 'SYS_KW_INPUT_MSG'
             strReply_MSG = '權限不足!'
 
