@@ -827,6 +827,9 @@ def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
                     ' FROM [TIM_DB].[dbo].[tblAPP_TYAD_Auth_List] ' + \
                     ' WHERE ( [AUTH_UserID] = \' %s \' ) '  % (strUserId)
         resList = ms.RS_SQL_ExecQuery(strSQL)
+        strAuthKWList = ''
+        strAuthUnitName = ''
+        strAuthMemName = ''
         for ([AUTH_UnitName],[AUTH_MemName],[AUTH_KW_List]) in resList:
             strAuthKWList = str(AUTH_KW_List)
             strAuthUnitName = str(AUTH_UnitName)
