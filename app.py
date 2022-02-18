@@ -828,20 +828,20 @@ def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
                     ' FROM [TIM_DB].[dbo].[tblAPP_TYAD_Auth_List] ' + \
                     ' WHERE ( [AUTH_UserID] = \'' + str(strUserId) + '\')'
         resList = ms.RS_SQL_ExecQuery(strSQL)
-        strAuthKWList = '1'
-        strAuthUnitName = '2'
-        strAuthMemName = '3'
+        strAuthUnitName = 'INI_A'
+        strAuthMemName = 'INI_B'
+        strAuthKWList = 'INI_C'
         for (AUTH_UnitName, AUTH_MemName, AUTH_KW_List) in resList:
             strAuthUnitName = str(AUTH_UnitName)
             strAuthMemName = str(AUTH_MemName)
             strAuthKWList = str(AUTH_KW_List)
 
         if ('ALL' in strAuthKWList):
-            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList + ':' + strSQL
+            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList
         elif (strQueryKW.upper() in strAuthKWList):
-            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList + ':' + strSQL
+            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList
         else:
-            RS_CHECK_KWAUTH_by_UserId = 'NG' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList + ':' + strSQL
+            RS_CHECK_KWAUTH_by_UserId = 'NG' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList
 
     return RS_CHECK_KWAUTH_by_UserId
 
