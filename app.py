@@ -844,7 +844,7 @@ def handle_message(event):
                             'LineReplyToker： ' + event.reply_token + '\n' + \
                             push_message
             # ===== SQL_LOG
-            push_message = RS_Line_LOG(strLineDisplayName, strLineUserID, get_message) + push_message
+            push_message = RS_Line_LOG_ADD(strLineDisplayName, strLineUserID, temp_message, get_message) + push_message
             # ***** ***** ***** ***** *****
             token = strEctorToken
             lineNotifyMessage(token, push_message)
@@ -938,7 +938,7 @@ def RS_DateTime_2_HHNN():
     # ***** ***** ***** ***** *****
 
     ##### LineLOG ######
-def RS_Line_LOG(strLineName, strLineUserID, strLineMSG):
+def RS_Line_LOG_ADD(strLineName, strLineUserID, strKeyInMSG, strLineRpMSG):
     #取得時間
     datDT = datetime.now()
     strDateTime = datDT.strftime("%Y-%m-%d %H:%M:%S")
@@ -950,8 +950,9 @@ def RS_Line_LOG(strLineName, strLineUserID, strLineMSG):
         #連線
         ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
         strSQL = ' INSERT INTO [TIM_DB].[dbo].[tblAPP_TYAD_LineLog] ' + \
-                    ' (EX01, EX02, EX03, TXT01, EXDT01) ' + \
-                    ' VALUES (\'' + (strDateTime) + '\',\'' + (strLineName) + '\',\'' + (strLineUserID) + '\',\'' + (strLineMSG) + '\',Convert(datetime, \'' + strDateTime + '\',111)) '
+                    ' (EX01, EX02, EX03, TXT01, TXT02, EXDT01) ' + \
+                    ' VALUES (\'' + (strDateTime) + '\',\'' + (strLineName) + '\',\'' + (strLineUserID) + '\',\'' + (strKeyInMSG) + '\',\'' + (strLineRpMSG) + \
+                                '\',Convert(datetime, \'' + strDateTime + '\',111)) '
         resList = ms.RS_SQL_ExecNonQuery(strSQL)
         RS_Line_LOG = strDateTime + '：寫入DB OK!\n' + \
                         strSQL
