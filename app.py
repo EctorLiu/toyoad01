@@ -138,7 +138,7 @@ def handle_message(event):
             strPush2Who = strMomoToken
             strReply_MSG = '(只推MOMO)\n' + strEventMSG
         if ('推播全部' in strEventMSG.upper()):
-            strPush2Who = 'NOTE_PUSH_ALL'
+            strPush2Who = 'SYS_PUSH_ALL'
             strReply_MSG = '(推全部)\n' + strEventMSG
     # ***** ***** ***** ***** *****
 
@@ -598,7 +598,7 @@ def handle_message(event):
         #推播訊息編輯
         push_message = strReply_MSG
         #推播ALL or 個人
-        if strPush2Who = 'NOTE_PUSH_ALL':
+        if strPush2Who == 'SYS_PUSH_ALL':
             # EctorLiu權杖:
             token = strEctorToken
             lineNotifyMessage(token, push_message)
