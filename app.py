@@ -218,10 +218,18 @@ def handle_message(event):
                             str(ShiftResult).replace(',', '\n').strip() + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            strReply_MSG = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             '..現在時間：' + FVstrNow  + '\n' + \
                             '..檔案更新：' + strFileName  + '\n\n' + \
                             strTemp
+            ##### 此項需有權限才能執行 #####
+            strAUTHKWQuery = 'TYDORM'
+            strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+            if strAUTH_CHK[0:2] == 'GO':
+                strReply_MSG = strContent
+            else:
+                strReply_MSG = '權限不足!'
+            # ***** ***** ***** ***** *****
         else:
             strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
@@ -256,9 +264,17 @@ def handle_message(event):
                             '..員工：(' + str(DEPT_NAME) + ')' + str(MEM_NAME) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            strReply_MSG = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
+            ##### 此項需有權限才能執行 #####
+            strAUTHKWQuery = 'TYCAR'
+            strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+            if strAUTH_CHK[0:2] == 'GO':
+                strReply_MSG = strContent
+            else:
+                strReply_MSG = '權限不足!'
+            # ***** ***** ***** ***** *****
         else:
             strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
@@ -285,9 +301,17 @@ def handle_message(event):
                                 '  ' + str(IN_TIME) + ', ' + str(DEPT_CODE) + ', ' + str(IN_NAME) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            strReply_MSG = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
+            ##### 此項需有權限才能執行 #####
+            strAUTHKWQuery = 'TYHRINTERVIEW'
+            strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+            if strAUTH_CHK[0:2] == 'GO':
+                strReply_MSG = strContent
+            else:
+                strReply_MSG = '權限不足!'
+            # ***** ***** ***** ***** *****
         else:
             strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
@@ -312,9 +336,17 @@ def handle_message(event):
                                 '  更新日期: ' + str(SA_DATAUP) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            strReply_MSG = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
+            ##### 此項需有權限才能執行 #####
+            strAUTHKWQuery = 'TYSATEL'
+            strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+            if strAUTH_CHK[0:2] == 'GO':
+                strReply_MSG = strContent
+            else:
+                strReply_MSG = '權限不足!'
+            # ***** ***** ***** ***** *****
         else:
             strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
@@ -338,9 +370,17 @@ def handle_message(event):
                                 '  更新日期: ' + str(FOOD_UPDATE) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            strReply_MSG = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
+            ##### 此項需有權限才能執行 #####
+            strAUTHKWQuery = 'TYDINNER'
+            strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+            if strAUTH_CHK[0:2] == 'GO':
+                strReply_MSG = strContent
+            else:
+                strReply_MSG = '權限不足!'
+            # ***** ***** ***** ***** *****
         else:
             strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
@@ -366,13 +406,22 @@ def handle_message(event):
                                     '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            strReply_MSG = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
+            ##### 此項需有權限才能執行 #####
+            strAUTHKWQuery = 'TYPV'
+            strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+            if strAUTH_CHK[0:2] == 'GO':
+                strReply_MSG = strContent
+            else:
+                strReply_MSG = '權限不足!'
+            # ***** ***** ***** ***** *****
         else:
             strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
+
     elif ('體溫回報' in strEventMSG):
         strTitle = 'TOYO體溫回報(當天)'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
@@ -386,21 +435,21 @@ def handle_message(event):
                 intCount += 1
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            strReply_MSG = 'TOYO體溫回報清單：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strContent = 'TOYO體溫回報清單：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
+            ##### 此項需有權限才能執行 #####
+            strAUTHKWQuery = 'TYBT'
+            strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+            if strAUTH_CHK[0:2] == 'GO':
+                strReply_MSG = strContent
+            else:
+                strReply_MSG = '權限不足!'
+            # ***** ***** ***** ***** *****
         else:
             strReply_MSG = 'TOYO體溫回報清單：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
-
-    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('120' in strEventMSG or \
-            '$' in strEventMSG or \
-            'MONEY' in strEventMSG.upper() or \
-            '零用金' in strEventMSG):
-        get_TYPE_message = 'SYS_KW_INPUT_MSG'
-        strReply_MSG = GVstrMoneyText
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('DOOR' in strEventMSG.upper() or \
@@ -420,9 +469,17 @@ def handle_message(event):
                 strTemp += '[' + str(intCount) + ']' + str(DrDateTime) + '\n..' + str(HRM_Dept_Name) + ', ' + str(HRM_USER_NAME) + ', ' + str(DoorText) + '\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            strReply_MSG = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strContent = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
+            ##### 此項需有權限才能執行 #####
+            strAUTHKWQuery = 'TYDOOR'
+            strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+            if strAUTH_CHK[0:2] == 'GO':
+                strReply_MSG = strContent
+            else:
+                strReply_MSG = '權限不足!'
+            # ***** ***** ***** ***** *****
         else:
             strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
@@ -467,7 +524,14 @@ def handle_message(event):
                             ' ============================== '
             if len(strContent) >= intMaxLineMSGString:
                 strContent = strContent[0:intMaxLineMSGString] + '...(資料過多)'
-            strReply_MSG = strContent
+            ##### 此項需有權限才能執行 #####
+            strAUTHKWQuery = 'TYNEWFE'
+            strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+            if strAUTH_CHK[0:2] == 'GO':
+                strReply_MSG = strContent
+            else:
+                strReply_MSG = '權限不足!'
+            # ***** ***** ***** ***** *****
         else:
             strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
@@ -557,7 +621,15 @@ def handle_message(event):
     elif (strEventMSG[0:4].upper() == 'TOYO') and ('!ALL' in strEventMSG):
         get_TYPE_message = 'Initial'
         #get_TYPE_message = 'SYS_KW_INPUT_MSG'
-        strReply_MSG = GVstrCMKeyWord
+        strContent = GVstrCMKeyWord
+        ##### 此項需有權限才能執行 #####
+        strAUTHKWQuery = 'TYKW'
+        strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+        if strAUTH_CHK[0:2] == 'GO':
+            strReply_MSG = strContent
+        else:
+            strReply_MSG = '權限不足!'
+        # ***** ***** ***** ***** *****
     # ***** ***** ***** ***** *****
 
     ##### 程式開發使用 #####
@@ -580,6 +652,14 @@ def handle_message(event):
         else:
             get_TYPE_message = 'SYS_KW_INPUT_MSG'
             strReply_MSG = 'EC' + strCond + '\n' * 100 + strHHNN[-2:] + 'OK'
+        ##### 此項需有權限才能執行 #####
+        strAUTHKWQuery = 'SYSADMIN'
+        strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+        if strAUTH_CHK[0:2] == 'GO':
+            strReply_MSG = strContent
+        else:
+            strReply_MSG = '權限不足!'
+        # ***** ***** ***** ***** *****
 
 #
 #
