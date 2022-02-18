@@ -514,8 +514,12 @@ def handle_message(event):
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('MEMO' in strEventMSG.upper()):
-        get_TYPE_message = 'SYS_KW_INPUT_MSG'
-        strReply_MSG = GVstrMemo
+        if RS_CHECK_KWAUTH_by_UserId[0:2] == 'OK':
+            get_TYPE_message = 'SYS_KW_INPUT_MSG'
+            strReply_MSG = GVstrMemo
+        elif
+            get_TYPE_message = 'SYS_KW_INPUT_MSG'
+            strReply_MSG = '權限不足!'
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('官方帳號教學' in strEventMSG):
@@ -812,6 +816,29 @@ def RS_MID_String_Start_StrNum(strTemp, intStart, intNum):
     return strTemp[intStart:intStart+intNum]
     # ***** ***** ***** ***** *****
 
+
+    ##### 權限查詢 ######
+def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
+    #查詢資料
+    if strSQL_FW_Switch == 'ON':
+        ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+        strSQL = ' SELECT [AUTH_KW_List],[AUTH_UnitName],[AUTH_MemName] ' + \
+                    ' FROM [TIM_DB].[dbo].[tblAPP_TYAD_Auth_List] ' + \
+                    ' WHERE ([AUTH_UserID] = %s) '  % (strUserId) '            
+        resList = ms.RS_SQL_ExecQuery(strSQL)
+        strTemp=''
+        for ([AUTH_UnitName],[AUTH_MemName],[AUTH_KW_List]) in resList:
+            strAuthUnitName = str(AUTH_UnitName)
+            strAuthMemName = str(AUTH_MemName)
+            strAuthKWList = str(AUTH_KW_List)
+        if ('ALL' in strAuthKWList.upper()):
+            RS_CHECK_AUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName
+        elif (strQueryKW.upper() in strAuthKWList.upper()):
+            RS_CHECK_AUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName
+        else:
+            RS_CHECK_AUTH_by_UserId = 'NG' + ',' + strAuthUnitName + ',' + strAuthMemName
+
+    return RS_CHECK_AUTH_by_UserId
 
     ##### LineLOG ######
 def RS_Line_LOG_ADD(strLineName, strLineUserID, strKeyInMSG, strLineRpMSG):
