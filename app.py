@@ -942,7 +942,7 @@ def RS_Line_LOG(strLineName, strLineUserID, strLineMSG):
     # 使用 UTC 時間：FVstrGMToday、FVstrGMNow
     datDT = time.localtime()
     strDateTime = time.strftime("%Y-%m-%d %H:%M:%S", datDT)
-    datDateTime = time.strptime(strDateTime, "%Y-%m-%d %H:%M:%S")
+    datDateTime = datetime.strptime(strDateTime, "%Y-%m-%d %H:%M:%S")
 
     #寫入LOG
     if strSQL_FW_Switch == 'ON':
