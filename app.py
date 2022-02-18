@@ -643,14 +643,14 @@ def handle_message(event):
         strHHNN = RS_DateTime_2_HHNN()
         #開發者關鍵字清單
         if (strHHNN in strCond) and ('KW' in strCond):        
-            get_TYPE_message = 'SYS_KW_INPUT_MSG'
+            get_TYPE_message = 'SYS_ADMIN'
             strContent = GVstrECKeyWord
         #官方帳號教學
         elif (strHHNN in strCond) and ('LINE' in strCond):        
-            get_TYPE_message = 'SYS_KW_INPUT_MSG'
+            get_TYPE_message = 'SYS_ADMIN'
             strContent = GVstrLessonLearning
         else:
-            get_TYPE_message = 'SYS_KW_INPUT_MSG'
+            get_TYPE_message = 'SYS_ADMIN'
             strContent = 'EC' + strCond + '\n' * 100 + strHHNN[-2:] + 'OK'
         ##### 此項需有權限才能執行 #####
         strAUTHKWQuery = 'SYSADMIN'
