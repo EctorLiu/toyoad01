@@ -825,7 +825,8 @@ def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
         ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
         strSQL = ' SELECT [AUTH_KW_List],[AUTH_UnitName],[AUTH_MemName] ' + \
                     ' FROM [TIM_DB].[dbo].[tblAPP_TYAD_Auth_List] ' + \
-                    ' WHERE ( [AUTH_UserID] = \' %s \' ) '  % (strUserId)
+                    ' WHERE ( [AUTH_UserID] = \'Ua42052df655d4d9538b864a3c4deaf28\' )
+                    # ' WHERE ( [AUTH_UserID] = \' %s \' ) '  % (strUserId)
         resList = ms.RS_SQL_ExecQuery(strSQL)
         strAuthKWList = ''
         strAuthUnitName = ''
@@ -841,6 +842,12 @@ def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
         else:
             RS_CHECK_KWAUTH_by_UserId = 'NG' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList + '-' + strUserId
 
+
+        for (FE_TIME, FE_EQNAME, CHK_01, CHK_02, CHK_03, CHK_04, FE_NAME) in resList:
+            intCount += 1
+            strTemp += '[' + str(intCount) + '] ' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CHK_01) + '\n  ' + str(CHK_02) + '\n  ' + \
+                         str(CHK_03) + '\n  ' + str(CHK_04) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
+            
     return RS_CHECK_KWAUTH_by_UserId
 
     ##### LineLOG ######
