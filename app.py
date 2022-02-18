@@ -112,10 +112,14 @@ def handle_message(event):
         #strReply_MSG
         if ('推播PROG' in strEventMSG.upper()):
             strPush2Who = strEctorToken
-            strReply_MSG = '(Admin)\n' + strEventMSG
+            intKWLength = 6
+            strStartInfo = '(Admin)\n'
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength)
         if ('推播ECTOR' in strEventMSG.upper()):
             strPush2Who = strEctorToken
-            strReply_MSG = '(只推Ector)\n' + strEventMSG
+            intKWLength = 7
+            strStartInfo = '(只推Ector)\n'
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength)
         if ('推播智弘' in strEventMSG.upper()):
             strPush2Who = strJohnboToken
             strReply_MSG = '(只推智弘)\n' + strEventMSG
@@ -596,7 +600,7 @@ def handle_message(event):
     ##### 推播Line Notify內容 #####
     elif get_TYPE_message == 'SJ_Push_MSG_Text':
         #推播訊息編輯
-        push_message = '來自' + strLineDisplayName + '的訊息：\n' + strReply_MSG
+        push_message = '來自[' + strLineDisplayName + ']推播訊息：\n' + strReply_MSG
         #推播ALL or 個人
         if strPush2Who == 'SYS_PUSH_ALL':
             # EctorLiu權杖:
@@ -759,6 +763,22 @@ def RS_DateTime_2_HHNN():
     RS_DateTime_2_HH_NN = strHour + strMinute
     return RS_DateTime_2_HH_NN
     # ***** ***** ***** ***** *****
+
+
+    ##### 字串處理 ######
+def RS_LEFT_String_StrNum(strTemp, intNum):
+    return strTemp[:intNum]
+
+def RS_RIGHT_String_StrNum(strTemp, intNum):
+    return strTemp[-intNum:]
+
+def RS_RIGHT_String_NotLeftStrNum(strTemp, intNum):    
+    return strTemp[-(len(strTemp)-intNum):]
+
+def RS_MID_String_Start_StrNum(strTemp, intStart, intNum):
+    return strTemp[intStart:intStart+intNum]
+    # ***** ***** ***** ***** *****
+
 
     ##### LineLOG ######
 def RS_Line_LOG_ADD(strLineName, strLineUserID, strKeyInMSG, strLineRpMSG):
