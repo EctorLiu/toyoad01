@@ -80,8 +80,14 @@ import requests
     ##### 時間函數 ######
 from datetime import datetime
 import time
-datNow = time.localtime()
-strNow = time.strftime("%Y/%m/%d %H:%M:%S", datNow) 
+
+FVdatNow = datetime.now()
+FVstrToday = FVdatNow.strftime("%Y-%m-%d") 
+FVstrNow = FVdatNow.strftime("%Y-%m-%d %H:%M:%S") 
+
+# FVstrLCNow = time.strftime("%Y-%m-%d %H:%M:%S.%f", time.localtime())
+FVstrGMNow = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
+FVdatGMNow = datetime.strptime(FVstrGMNow, "%Y-%m-%d %H:%M:%S") 
     # ***** ***** ***** ***** *****
 
     ##### Line ######
@@ -286,7 +292,7 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            '..現在時間：' + strNow  + '\n' + \
+                            '..現在時間：' + FVstrNow  + '\n' + \
                             '..檔案更新：' + strFileName  + '\n\n' + \
                             strTemp
         else:
@@ -324,7 +330,7 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            strNow  + '\n\n' + \
+                            FVstrNow  + '\n\n' + \
                             strTemp
         else:
             get_message = strTitle + '：\n' + \
@@ -353,7 +359,7 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            strNow  + '\n\n' + \
+                            FVstrNow  + '\n\n' + \
                             strTemp
         else:
             get_message = strTitle + '：\n' + \
@@ -382,7 +388,7 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            strNow  + '\n\n' + \
+                            FVstrNow  + '\n\n' + \
                             strTemp
         else:
             get_message = strTitle + '：\n' + \
@@ -408,7 +414,7 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            strNow  + '\n\n' + \
+                            FVstrNow  + '\n\n' + \
                             strTemp
         else:
             get_message = strTitle + '：\n' + \
@@ -436,7 +442,7 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            strNow  + '\n\n' + \
+                            FVstrNow  + '\n\n' + \
                             strTemp
         else:
             get_message = strTitle + '：\n' + \
@@ -456,7 +462,7 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = 'TOYO體溫回報清單：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            strNow  + '\n\n' + \
+                            FVstrNow  + '\n\n' + \
                             strTemp
         else:
             get_message = 'TOYO體溫回報清單：\n' + \
@@ -490,7 +496,7 @@ def handle_message(event):
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
             get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            strNow  + '\n\n' + \
+                            FVstrNow  + '\n\n' + \
                             strTemp
         else:
             get_message = strTitle + '：\n' + \
@@ -515,7 +521,7 @@ def handle_message(event):
                 strTemp += '[' + str(intCount) + '] ' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CHK_01) + '\n  ' + str(CHK_02) + '\n  ' + \
                              str(CHK_03) + '\n  ' + str(CHK_04) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
             strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            strNow  + '\n\n' + \
+                            FVstrNow  + '\n\n' + \
                             strTemp + '\n' + \
                             '  以上為有（不合格）品項滅火器\n' + \
                             ' ============================== \n\n'
@@ -530,7 +536,7 @@ def handle_message(event):
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] ' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CHK_00) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
             strContent = strContent + strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            strNow  + '\n\n' + \
+                            FVstrNow  + '\n\n' + \
                             strTemp + '\n' + \
                             '以上為（全合格）品項滅火器\n' + \
                             ' ============================== '
@@ -560,7 +566,7 @@ def handle_message(event):
                 strTemp += '[' + str(intCount) + '] ' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CHK_01) + '\n  ' + str(CHK_02) + '\n  ' + \
                              str(CHK_03) + '\n  ' + str(CHK_04) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
             strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            strNow  + '\n\n' + \
+                            FVstrNow  + '\n\n' + \
                             strTemp + '\n' + \
                             '  以上為有（不合格）品項滅火器\n' + \
                             ' ============================== \n\n'
@@ -575,7 +581,7 @@ def handle_message(event):
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] ' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CLA01) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
             strContent = strContent + strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
-                            strNow  + '\n\n' + \
+                            FVstrNow  + '\n\n' + \
                             strTemp + '\n' + \
                             '以上為（全合格）品項滅火器\n' + \
                             ' ============================== '
@@ -836,7 +842,10 @@ def handle_message(event):
                             'LineName： ' + strLineDisplayName + '\n' + \
                             'LineUserID： ' + strLineUserID + '\n' + \
                             'LineReplyToker： ' + event.reply_token + '\n' + \
-                            push_message            
+                            push_message
+            # ===== SQL_LOG
+            push_message = RS_Line_LOG(strLineDisplayName, strLineUserID, event.reply_token, get_message) + push_message
+            # ***** ***** ***** ***** *****
             token = strEctorToken
             lineNotifyMessage(token, push_message)
         # ***** ***** ***** ***** *****
@@ -926,5 +935,30 @@ def RS_DateTime_2_HHNN():
         strMinute = '0' + strMinute
     RS_DateTime_2_HH_NN = strHour + strMinute
     return RS_DateTime_2_HH_NN
+    # ***** ***** ***** ***** *****
+
+    ##### LineLOG ######
+def RS_Line_LOG(strLineName, strLineUserID, strLineToken, strLineMSG):
+    # 使用 UTC 時間：FVstrGMToday、FVstrGMNow
+    datDT = time.localtime()
+    strDateTime = time.strftime("%Y-%m-%d %H:%M:%S", datDT)
+
+    #寫入LOG
+    if strSQL_FW_Switch == 'ON':
+        #Table Name
+        strDB_Table = '[TIM_DB].[dbo].[tblAPP_TYAD_LineLog]'
+        #連線
+        ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+        strSQL = ' INSERT INTO ' + strDB_Table + ' ' + \
+                    ' (EX01, EX02, EX03, EX04, TXT01, EXDT01) ' + \
+                    ' VALUES (' + str(strDateTime) + ',' + str(strLineName) + ',' + str(strLineUserID) + ',' + str(strLineToken) + ',' + str(strLineMSG) + ',' + datDT + ') '
+        resList = ms.RS_SQL_ExecNonQuery(strSQL)
+        RS_Line_LOG = strTitle + '：寫入DB(WEB) BT OK!\n' + \
+                        strDateTime  + '\n\n' + \
+                        strSQL
+        return RS_Line_LOG
+    else:
+        RS_Line_LOG = 'SQL_2'
+        return RS_Line_LOG
     # ***** ***** ***** ***** *****
 
