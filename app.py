@@ -660,9 +660,9 @@ def handle_message(event):
     elif get_TYPE_message == 'SYS_KW_INPUT_MSG':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        push_message = '\nTOYO行政管理部『KeyWord』訊息：\n' + strEventMSG
+        push_message = 'TOYO行政管理部『KeyWord』訊息：\n' + strEventMSG
         #推播訊息編輯
-        push_message = '『KeyWord』DebugModeForEctor：\n' + push_message
+        push_message = '\n『KeyWord』DebugModeForEctor：' + push_message
         # EctorLiu權杖：
         token = strEctorToken
         lineNotifyMessage(token, push_message)
@@ -703,7 +703,7 @@ def handle_message(event):
             lineNotifyMessage(token, push_message)
         else:
             #推播訊息編輯
-            push_message = '『非關鍵字』DebugModeForEctor：\n' + push_message
+            push_message = '\n『非關鍵字』DebugModeForEctor：' + push_message
             # EctorLiu權杖：
             token = strEctorToken
             lineNotifyMessage(token, push_message)
@@ -712,10 +712,6 @@ def handle_message(event):
         reply = TextSendMessage(text=f"{strReply_MSG}")
         line_bot_api.reply_message(event.reply_token,  reply)
     # ***** ***** ***** ***** *****
-
-    elif get_TYPE_message == 'TY_TEXT_Send_MSG':
-        reply = TextSendMessage(text=f"{strReply_MSG}")
-        line_bot_api.reply_message(event.reply_token,  reply)
 
 
     elif get_TYPE_message == 'TSVI樣版':
@@ -732,15 +728,18 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, reply)
 
+
     else:
+        ##### 推播 #####
+        # 修改為你要傳送的訊息內容
+        push_message = 'TOYO行政管理部『KeyWord』訊息：\n' + strEventMSG
+        #推播訊息編輯
+        push_message = '\n『特殊狀況』DebugModeForEctor：' + push_message
         # EctorLiu權杖：
-        push_message = 'DebugModeForEctor(Else)\n：' + \
-                        'LineName： ' + strLineDisplayName + '\n' + \
-                        'LineUserID： ' + strLineUserID + '\n' + \
-                        strReply_MSG            
         token = strEctorToken
         lineNotifyMessage(token, push_message)
 
+        #使用者取得的訊息
         reply = TextSendMessage(text=f"{strReply_MSG}")
         line_bot_api.reply_message(event.reply_token,  reply)
 
@@ -766,7 +765,7 @@ def handle_message(event):
 # ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
 # ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
 
-# 推播相關部分
+    ##### 推播相關部分 ######
 def lineNotifyMessage(token, msg):
     headers = {
       'Authorization': 'Bearer ' + token, 
@@ -775,7 +774,6 @@ def lineNotifyMessage(token, msg):
     payload = {'message': msg}
     r = requests.post('https://notify-api.line.me/api/notify', headers = headers, params = payload)
     return r.status_code
-
     # ***** ***** ***** *****  *****
 
 
