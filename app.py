@@ -952,7 +952,7 @@ def RS_Line_LOG(strLineName, strLineUserID, strLineMSG):
         strSQL = ' INSERT INTO [TIM_DB].[dbo].[tblAPP_TYAD_LineLog] ' + \
                     ' (EX01, EX02, EX03, TXT01, EXDT01) ' + \
                     ' VALUES (\'' + (strDateTime) + '\',\'' + (strLineName) + '\',\'' + (strLineUserID) + '\',\'' + (strLineMSG) + '\',Convert(datetime, ' + strDateTime + ',111)) '
-        #resList = ms.RS_SQL_ExecNonQuery(strSQL)
+        resList = ms.RS_SQL_ExecNonQuery(strSQL)
         RS_Line_LOG = strDateTime + '：寫入DB OK!\n' + \
                         strSQL
         return RS_Line_LOG
