@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M218)1406'
+strVer = '(M218)1652'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -323,6 +323,7 @@ def handle_message(event):
             strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
+
     elif ('業務電話' in strEventMSG):
         strTitle = 'TOYO業務電話'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
@@ -358,6 +359,7 @@ def handle_message(event):
             strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
+
     elif ('夜點晚餐' in strEventMSG):
         strTitle = 'TOYO夜點晚餐'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
@@ -392,6 +394,7 @@ def handle_message(event):
             strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
+
     elif ('防疫群組' in strEventMSG):
         strTitle = 'TOYO防疫群組7天內'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
@@ -600,23 +603,23 @@ def handle_message(event):
             ('MEMO' in strEventMSG.upper()):
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         ##### 此項需有權限才能執行 #####
-        strAUTHKWQuery = 'MEMO'
+        strAUTHKWQuery = 'TYMEMO'
         strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
         if strAUTH_CHK[0:2] == 'GO':
             strReply_MSG = GVstrMemo
         else:
             strReply_MSG = '權限不足!'
-        # ***** ***** ***** ***** *****
-
-    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('官方帳號教學' in strEventMSG):
-        get_TYPE_message = 'SYS_KW_INPUT_MSG'
-        strReply_MSG = GVstrLessonLearning
+        # ***** ***** ***** ***** *****GVstrLessonLearning
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('推播權杖教學' in strEventMSG):
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = GVstrLineNotifyHowToGetToken
+
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('官方帳號教學' in strEventMSG):
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
+        strReply_MSG = 
     # ***** ***** ***** ***** *****
 
     ##### (Ver)版本 #####
