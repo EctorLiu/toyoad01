@@ -19,58 +19,6 @@ strNewestActivity = '『TOYO行政管理部』：最近活動\n' + \
                 '更新：2022/01/17 17:20 ...\n\n' + \
                 '..'
 
-strMoneyText = '公費使用狀況'
-
-strMemo = '公司住址：70947台南市安南區新吉三路55號\n' + \
-            '導航：https://g.page/TOYOROBOT?share'
-
-strHowToUse = '『TOYO行政管理部』：\n' + \
-                'Hi！這是行政管理部之官方帳號！\n謝謝你的訊息！\n\n' + \
-                '也許您可用下述常用關鍵字查詢：\n' + \
-                '「面試報到」\n' + \
-                '「業務電話」\n' + \
-                '「夜點晚餐」\n' + \
-                '「防疫群組」\n' + \
-                '「體溫回報」\n' + \
-                '「如何使用」\n' + \
-                '「最新訊息」等..'
-
-strLessonLearning = 'A1. 申請官方帳號：\n' + \
-                    'https://manager.line.biz/\n' + \
-                    '\n' + \
-                    'A2. 自動回覆的類別有三種..\n' + \
-                    '    (1) 『關鍵字』回應\n' + \
-                    '    (2) 『智慧聊天』回應\n' + \
-                    '    (3) 『程式』回應 (需自己寫程式)\n' + \
-                    'A3. 第一種..『關鍵字』回應\n' + \
-                    '    回應模式：選「聊天機器人」、Webhook：選「停用」\n' + \
-                    'A4. 第二種..『智慧聊天』回應\n' + \
-                    '    回應模式：選「聊天」\n' + \
-                    'A5. 第三種..『程式』回應 (需自己寫程式)\n' + \
-                    '    回應模式：選「聊天機器人」、Webhook：選「啟用」\n' + \
-                    '    > 是用上面的設定決定哪一種回應方式..\n' + \
-                    '\n' + \
-                    'A6. 應用面的教學\n' + \
-                    '    可參考範例1..\n' + \
-                    'https://ithelp.ithome.com.tw/articles/10192259\n' + \
-                    '    可參考範例2..\n' + \
-                    'https://ithelp.ithome.com.tw/articles/10233234\n' + \
-                    '\n' + \
-                    'A7. 這個是我一開始看的官方文件：\n' + \
-                    'https://developers.line.biz/zh-hant/docs/messaging-api/building-bot/\n' + \
-                    'A8. 同上..Line官方有提供範例\n' + \
-                    'https://developers.line.biz/zh-hant/docs/messaging-api/building-bot/\n' + \
-                    '選擇語言進行開發..\n' + \
-                    '\n' + \
-                    'A9. 開發環境網站Line Develop（之後再看其他教學網站）\n' + \
-                    'https://developers.line.biz/zh-hant/\n' + \
-                    '\n' + \
-                    'B1. 『推播』的話要拿權杖：\n' + \
-                    'https://notify-bot.line.me/my/\n' + \
-                    'B2. 『推播』教學可參考這一篇：\n' + \
-                    'https://bustlec.github.io/note/2018/07/10/line-notify-using-python/'
-
-
     # ***** ***** ***** ***** *****
 
     ##### (TSVI)推播 ######
@@ -203,7 +151,7 @@ def handle_message(event):
     ##### 關鍵字 #####
     elif ('如何使用' in strEventMSG or 'HELP' in strEventMSG.upper() or '?' in strEventMSG.strip() or '？' in strEventMSG.strip()):
         get_TYPE_message = 'How_To_Use'
-        strReply_MSG = strHowToUse
+        strReply_MSG = GVstrHowToUse
 
     elif ('最近' in strEventMSG or '最新' in strEventMSG) and ('訊息' in strEventMSG or '活動' in strEventMSG):
         get_TYPE_message = 'New_Activity'
@@ -427,7 +375,7 @@ def handle_message(event):
             'MONEY' in strEventMSG.upper() or \
             '零用金' in strEventMSG):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
-        strReply_MSG = strMoneyText
+        strReply_MSG = GVstrMoneyText
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('DOOR' in strEventMSG.upper() or \
@@ -548,12 +496,12 @@ def handle_message(event):
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('MEMO' in strEventMSG.upper()):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
-        strReply_MSG = strMemo
+        strReply_MSG = GVstrMemo
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('官方帳號教學' in strEventMSG):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
-        strReply_MSG = strLessonLearning
+        strReply_MSG = GVstrLessonLearning
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('推播權杖教學' in strEventMSG):
@@ -588,7 +536,7 @@ def handle_message(event):
         #官方帳號教學
         elif (strHHNN in strCond) and ('LINE' in strCond):        
             get_TYPE_message = 'TY_TEXT_Send_MSG'
-            strReply_MSG = strLessonLearning
+            strReply_MSG = GVstrLessonLearning
         else:
             get_TYPE_message = 'TY_TEXT_Send_MSG'
             strReply_MSG = 'EC' + strCond + '\n' * 100 + strHHNN[-2:] + 'OK'
@@ -616,7 +564,7 @@ def handle_message(event):
 
     else:
         get_TYPE_message = 'TSVI非關鍵字的留言'
-        strReply_MSG = strHowToUse
+        strReply_MSG = GVstrHowToUse
 
         
 # ===== ===== ===== ===== ===== 【Line區域】 ===== ===== ===== ===== =====
