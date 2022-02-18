@@ -607,10 +607,10 @@ def handle_message(event):
     strLineUserID = pfProfile.user_id
     strReply_MSG = 'Hi! ' + strLineDisplayName + '\n' + strReply_MSG
     # SQL_LOG紀錄
-    strEventMSG=strEventMSG.replace('\'', '')
-    strEventMSG=strEventMSG.replace('\'", '')
-    strReply_MSG=strReply_MSG.replace('\'", '')
-    strReply_MSG=strReply_MSG.replace('\'", '')
+    strEventMSG=strEventMSG.replace("'", '')
+    strEventMSG=strEventMSG.replace('"', '')
+    strReply_MSG=strReply_MSG.replace("'", '')
+    strReply_MSG=strReply_MSG.replace('"', '')
     strSQLReturn = RS_Line_LOG_ADD(strLineDisplayName, strLineUserID, strEventMSG, strReply_MSG)
     # ***** ***** ***** ***** *****
 
