@@ -6,7 +6,7 @@ strVer = '(M218)1130'
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
     # 切換同仁推播功能選擇：ON/OFF
-strPush_NotKeyWord2All_Switch = 'ON'
+strPush_NotKeyWord2All_Switch = 'OFF'
     # ***** ***** ***** ***** *****
 
     ##### 限制 ######
@@ -606,12 +606,6 @@ def handle_message(event):
     pfProfile = line_bot_api.get_profile(event.source.user_id)
     strLineDisplayName = pfProfile.display_name
     strLineUserID = pfProfile.user_id
-    # SQL_LOG紀錄
-    strEventMSG=strEventMSG.replace("'", '')
-    strEventMSG=strEventMSG.replace('"', '')
-    strReply_MSG=strReply_MSG.replace("'", '')
-    strReply_MSG=strReply_MSG.replace('"', '')
-    strSQLReturn = RS_Line_LOG_ADD(strLineDisplayName, strLineUserID, strEventMSG, strReply_MSG)
     # ***** ***** ***** ***** *****
 
     # #####Send To Line
@@ -743,6 +737,23 @@ def handle_message(event):
         reply = TextSendMessage(text=f"{strReply_MSG}")
         line_bot_api.reply_message(event.reply_token,  reply)
 
+# ===== ===== ===== ===== ===== 【LOG】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【LOG】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【LOG】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【LOG】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【LOG】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【LOG】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【LOG】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【LOG】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【LOG】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【LOG】 ===== ===== ===== ===== =====
+
+    # SQL_LOG紀錄
+    strEventMSG = strEventMSG.replace("'", '')
+    strEventMSG = strEventMSG.replace('"', '')
+    strReply_MSG = strReply_MSG.replace("'", '')
+    strReply_MSG = strReply_MSG.replace('"', '')
+    strSQLReturn = RS_Line_LOG_ADD(strLineDisplayName, strLineUserID, strEventMSG, strReply_MSG)
 
 # ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
 # ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
