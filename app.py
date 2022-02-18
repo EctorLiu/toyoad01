@@ -942,7 +942,7 @@ def RS_Line_LOG(strLineName, strLineUserID, strLineMSG):
     #取得時間
     datDT = datetime.now()
     strDateTime = datDT.strftime("%Y-%m-%d %H:%M:%S")
-    datDateTime = datDT.strptime("%Y-%m-%d %H:%M:%S")
+    datDateTime = datetime.strptime(strDateTime, "%Y-%m-%d %H:%M:%S")
 
     #寫入LOG
     if strSQL_FW_Switch == 'ON':
