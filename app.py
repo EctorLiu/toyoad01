@@ -301,8 +301,6 @@ def handle_message(event):
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
-            # strDATAUP = ss ,[SA_FILEUP]
-            # SA_FILEUP = ss, SA_FILEUP
             for (SA_NAME, SA_DEPT, SA_AREA, SA_PHONE, SA_EMAIL, SA_DATAUP) in resList:
                 intCount += 1
                 strTemp += '[' + str(intCount) + '] \n' + \
