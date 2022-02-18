@@ -520,13 +520,15 @@ def handle_message(event):
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('MEMO' in strEventMSG.upper()):
-        strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, 'MEMO')
-        if strAUTH_CHK[0:2] == 'OK':
-            get_TYPE_message = 'SYS_KW_INPUT_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
+        ##### 此項需有權限才能執行 #####
+        strAUTHKWQuery = 'MEMO'
+        strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+        if strAUTH_CHK[0:2] == 'GO':
             strReply_MSG = GVstrMemo
         else:
-            get_TYPE_message = 'SYS_KW_INPUT_MSG'
             strReply_MSG = '權限不足!' + '-' + strAUTH_CHK
+        # ***** ***** ***** ***** *****
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('官方帳號教學' in strEventMSG):
