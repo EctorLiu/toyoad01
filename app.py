@@ -93,7 +93,7 @@ def handle_message(event):
     strEventMSG = strEventMSG.replace('？','?')
     # ***** ***** ***** ***** *****
 
-    ##### 關鍵字處理消空白 #####
+    ##### 關鍵字處理大寫消空白 #####
     strEventMSG = strEventMSG.upper()
     strEventMSG = strEventMSG.strip()
     # ***** ***** ***** ***** *****
@@ -539,7 +539,8 @@ def handle_message(event):
 
     ##### 列出全部的關鍵字清單 #####
     elif (strEventMSG[0:4].upper() == 'TOYO') and ('!ALL' in strEventMSG):
-        get_TYPE_message = 'SYS_KW_INPUT_MSG'
+        get_TYPE_message = 'Initial'
+        #get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = GVstrCMKeyWord
     # ***** ***** ***** ***** *****
 
