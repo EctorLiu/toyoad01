@@ -841,12 +841,6 @@ def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
             RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList + '-' + strUserId
         else:
             RS_CHECK_KWAUTH_by_UserId = 'NG' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList + '-' + strUserId
-
-
-        for (FE_TIME, FE_EQNAME, CHK_01, CHK_02, CHK_03, CHK_04, FE_NAME) in resList:
-            intCount += 1
-            strTemp += '[' + str(intCount) + '] ' + str(FE_TIME) + '\n  ' + str(FE_EQNAME) + '\n  ' + str(CHK_01) + '\n  ' + str(CHK_02) + '\n  ' + \
-                         str(CHK_03) + '\n  ' + str(CHK_04) + '\n  檢查人：' + str(FE_NAME) + '\n\n'
             
     return RS_CHECK_KWAUTH_by_UserId
 
