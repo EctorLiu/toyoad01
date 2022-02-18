@@ -835,11 +835,11 @@ def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
             strAuthUnitName = str(AUTH_UnitName)
             strAuthMemName = str(AUTH_MemName)
         if ('ALL' in strAuthKWList):
-            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList
+            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList + '-' + strUserId
         elif (strQueryKW.upper() in strAuthKWList):
-            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList
+            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList + '-' + strUserId
         else:
-            RS_CHECK_KWAUTH_by_UserId = 'NG' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList
+            RS_CHECK_KWAUTH_by_UserId = 'NG' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList + '-' + strUserId
 
     return RS_CHECK_KWAUTH_by_UserId
 
