@@ -106,65 +106,61 @@ def handle_message(event):
         strReply_MSG = '『TOYO行政管理部』：您好' + event.message.text
 
     ##### (TSVI)推播 #####
-    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO'):
+    elif (strEventMSG[0:4].upper() == 'TY推播' or strEventMSG[0:6].upper() == 'TOYO推播'):
         #類別
         get_TYPE_message = 'SYS_ASSIGN_PUSH_MSG_Text'
         #開頭的關鍵字長度
-        if strEventMSG[0:2].upper() == 'TY':
-            intInitialKWLen = 2
-        elif strEventMSG[0:4].upper() == 'TOYO':
+        if strEventMSG[0:4].upper() == 'TY推播':
             intInitialKWLen = 4
+        elif strEventMSG[0:6].upper() == 'TOYO推播':
+            intInitialKWLen = 6
+        strPushKW = RS_RIGHT_String_NotLeftStrNum(strEventMSG, intInitialKWLen)
         #strReply_MSG
-        if ('推播PROG' in strEventMSG.upper()):
+        if (strPushKW[0:5].upper() ='ECTOR'):
+            intKWLength = 5
             strPush2Who = strEctorToken
-            intKWLength = 6 + intInitialKWLen
-            strStartInfo = '(Admin)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
-        if ('推播ECTOR' in strEventMSG.upper()):
-            strPush2Who = strEctorToken
-            intKWLength = 7 + intInitialKWLen
             strStartInfo = '(只推Ector)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
-        if ('推播智弘' in strEventMSG.upper()):
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+        if (strPushKW[0:2].upper() ='智弘'):
+            intKWLength = 2
             strPush2Who = strJohnboToken
-            intKWLength = 4 + intInitialKWLen
             strStartInfo = '(只推智弘)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
-        if ('推播冠伶' in strEventMSG.upper()):
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+        if (strPushKW[0:2].upper() ='冠伶'):
+            intKWLength = 2
             strPush2Who = strGwenToken
-            intKWLength = 4 + intInitialKWLen
             strStartInfo = '(只推冠伶)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
-        if ('推播昆霖' in strEventMSG.upper()):
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+        if (strPushKW[0:2].upper() ='昆霖'):
+            intKWLength = 2
             strPush2Who = strKunToken
-            intKWLength = 4 + intInitialKWLen
             strStartInfo = '(只推昆霖)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
-        if ('推播汶靜' in strEventMSG.upper()):
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+        if (strPushKW[0:2].upper() ='汶靜'):
+            intKWLength = 2
             strPush2Who = strJingToken
-            intKWLength = 4 + intInitialKWLen
             strStartInfo = '(只推汶靜)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
-        if ('推播宜庭' in strEventMSG.upper()):
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+        if (strPushKW[0:2].upper() ='宜庭'):
+            intKWLength = 2
             strPush2Who = strMichelleToken
-            intKWLength = 4 + intInitialKWLen
             strStartInfo = '(只推宜庭)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
-        if ('推播玉敏' in strEventMSG.upper()):
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+        if (strPushKW[0:2].upper() ='玉敏'):
+            intKWLength = 2
             strPush2Who = strMinToken
-            intKWLength = 4 + intInitialKWLen
             strStartInfo = '(只推玉敏)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
-        if ('推播MOMO' in strEventMSG.upper()):
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+        if (strPushKW[0:4].upper() ='MOMO'):
+            intKWLength = 4
             strPush2Who = strMomoToken
-            intKWLength = 6 + intInitialKWLen
             strStartInfo = '(只推MOMO)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
-        if ('推播全部' in strEventMSG.upper()):
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
+        if (strPushKW[0:2].upper() ='全部'):
+            intKWLength = 2
             strPush2Who = 'SYS_PUSH_ALL'
-            intKWLength = 4 + intInitialKWLen
             strStartInfo = '(推全部)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strPushKW, intKWLength).strip()
     # ***** ***** ***** ***** *****
 
     ##### TSVI樣版 #####
