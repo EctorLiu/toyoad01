@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M218)0856'
+strVer = '(M218)1006'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -155,75 +155,63 @@ def handle_message(event):
 
     if strEventMSG == '您好':
         # (A)禮貌回覆
-        get_message = '『TOYO行政管理部』：您好' + event.message.text
+        strReply_MSG = '『TOYO行政管理部』：您好' + event.message.text
 
     ##### (TSVI)推播 #####
-    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('推播PROG' in strEventMSG.upper()):
-        get_TYPE_message = 'TSVI推播程式管理員'
-        #strEventMSG = strEventMSG.upper()
-        #strEventMSG = strEventMSG.replace('TY', '')
-        #strEventMSG = strEventMSG.replace('TOYO', '')
-        #strEventMSG = strEventMSG.replace('推播PROG', '')
-        get_message = '(Admin)\n' + strEventMSG
-    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('推播ECTOR' in strEventMSG.upper()):
-        get_TYPE_message = 'TSVI2Ector'
-        get_message = '(只推Ector)\n' + strEventMSG
-    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('推播智弘' in strEventMSG.upper()):
-        # (T1)推播
-        get_TYPE_message = 'TSVI2智弘'
-        get_message = '(只推智弘)\n' + strEventMSG
-    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('推播冠伶' in strEventMSG.upper()):
-        get_TYPE_message = 'TSVI2冠伶'
-        get_message = '(只推冠伶)\n' + strEventMSG
-    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('推播昆霖' in strEventMSG.upper()):
-        get_TYPE_message = 'TSVI2昆霖'
-        get_message = '(只推昆霖)\n' + strEventMSG
-    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('推播汶靜' in strEventMSG.upper()):
-        get_TYPE_message = 'TSVI2汶靜'
-        get_message = '(只推汶靜)\n' + strEventMSG
-    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('推播宜庭' in strEventMSG.upper()):
-        get_TYPE_message = 'TSVI2宜庭'
-        get_message = '(只推宜庭)\n' + strEventMSG
-    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('推播玉敏' in strEventMSG.upper()):
-        get_TYPE_message = 'TSVI2玉敏'
-        get_message = '(只推玉敏)\n' + strEventMSG
-    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('推播MOMO' in strEventMSG.upper()):
-        get_TYPE_message = 'TSVI2MOMO'
-        get_message = '(只推MOMO)\n' + strEventMSG
-    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('推播全部' in strEventMSG.upper()):
-        get_TYPE_message = 'TSVI推播全部'
-        get_message = '(推全部)\n' + strEventMSG
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO'):
+        #類別
+        get_TYPE_message = 'SJ_Push_MSG_Text'
+        #strReply_MSG
+        if ('推播PROG' in strEventMSG.upper()):
+            strPush2Who = strEctorToken
+            strReply_MSG = '(Admin)\n' + strEventMSG
+        if ('推播ECTOR' in strEventMSG.upper()):
+            strPush2Who = strEctorToken
+            strReply_MSG = '(只推Ector)\n' + strEventMSG
+        if ('推播智弘' in strEventMSG.upper()):
+            strPush2Who = strJohnboToken
+            strReply_MSG = '(只推智弘)\n' + strEventMSG
+        if ('推播冠伶' in strEventMSG.upper()):
+            strPush2Who = strGwenToken
+            strReply_MSG = '(只推冠伶)\n' + strEventMSG
+        if ('推播昆霖' in strEventMSG.upper()):
+            strPush2Who = strKunToken
+            strReply_MSG = '(只推昆霖)\n' + strEventMSG
+        if ('推播汶靜' in strEventMSG.upper()):
+            strPush2Who = strJingToken
+            strReply_MSG = '(只推汶靜)\n' + strEventMSG
+        if ('推播宜庭' in strEventMSG.upper()):
+            strPush2Who = strMichelleToken
+            strReply_MSG = '(只推宜庭)\n' + strEventMSG
+        if ('推播玉敏' in strEventMSG.upper()):
+            strPush2Who = strMinToken
+            strReply_MSG = '(只推玉敏)\n' + strEventMSG
+        if ('推播MOMO' in strEventMSG.upper()):
+            strPush2Who = strMomoToken
+            strReply_MSG = '(只推MOMO)\n' + strEventMSG
+        if ('推播全部' in strEventMSG.upper()):
+            strPush2Who = 'NOTE_PUSH_ALL'
+            strReply_MSG = '(推全部)\n' + strEventMSG
     # ***** ***** ***** ***** *****
-    
+
     ##### TSVI樣版 #####
     elif (strEventMSG[0:4].upper() == 'TSVI') and \
             ('樣版' in strEventMSG.upper()):
         get_TYPE_message = 'TSVI樣版'   
     # ***** ***** ***** ***** *****
 
-
     ##### 關鍵字 #####
     elif ('如何使用' in strEventMSG or 'HELP' in strEventMSG.upper() or '?' in strEventMSG.strip() or '？' in strEventMSG.strip()):
         get_TYPE_message = 'How_To_Use'
-        get_message = strHowToUse
+        strReply_MSG = strHowToUse
 
     elif ('最近' in strEventMSG or '最新' in strEventMSG) and ('訊息' in strEventMSG or '活動' in strEventMSG):
         get_TYPE_message = 'New_Activity'
-        get_message = strNewestActivity
+        strReply_MSG = strNewestActivity
 
     elif ('SOP' in strEventMSG) and ('清單' in strEventMSG or '下載' in strEventMSG):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
-        get_message = GVstrSOPList01
+        strReply_MSG = GVstrSOPList01
 
     elif ('宿舍' in strEventMSG) and \
             ('防疫' in strEventMSG):
@@ -255,12 +243,12 @@ def handle_message(event):
                             str(ShiftResult).replace(',', '\n').strip() + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strReply_MSG = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             '..現在時間：' + FVstrNow  + '\n' + \
                             '..檔案更新：' + strFileName  + '\n\n' + \
                             strTemp
         else:
-            get_message = strTitle + '：\n' + \
+            strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
@@ -293,11 +281,11 @@ def handle_message(event):
                             '..員工：(' + str(DEPT_NAME) + ')' + str(MEM_NAME) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strReply_MSG = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
         else:
-            get_message = strTitle + '：\n' + \
+            strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
@@ -322,11 +310,11 @@ def handle_message(event):
                                 '  ' + str(IN_TIME) + ', ' + str(DEPT_CODE) + ', ' + str(IN_NAME) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strReply_MSG = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
         else:
-            get_message = strTitle + '：\n' + \
+            strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
     elif ('業務電話' in strEventMSG):
@@ -351,11 +339,11 @@ def handle_message(event):
                                 '  更新日期: ' + str(SA_DATAUP) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strReply_MSG = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
         else:
-            get_message = strTitle + '：\n' + \
+            strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
     elif ('夜點晚餐' in strEventMSG):
@@ -377,11 +365,11 @@ def handle_message(event):
                                 '  更新日期: ' + str(FOOD_UPDATE) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strReply_MSG = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
         else:
-            get_message = strTitle + '：\n' + \
+            strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
     elif ('防疫群組' in strEventMSG):
@@ -405,11 +393,11 @@ def handle_message(event):
                                     '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            get_message = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strReply_MSG = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
         else:
-            get_message = strTitle + '：\n' + \
+            strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
     elif ('體溫回報' in strEventMSG):
@@ -425,11 +413,11 @@ def handle_message(event):
                 intCount += 1
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            get_message = 'TOYO體溫回報清單：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strReply_MSG = 'TOYO體溫回報清單：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
         else:
-            get_message = 'TOYO體溫回報清單：\n' + \
+            strReply_MSG = 'TOYO體溫回報清單：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
@@ -439,7 +427,7 @@ def handle_message(event):
             'MONEY' in strEventMSG.upper() or \
             '零用金' in strEventMSG):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
-        get_message = strMoneyText
+        strReply_MSG = strMoneyText
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('DOOR' in strEventMSG.upper() or \
@@ -459,11 +447,11 @@ def handle_message(event):
                 strTemp += '[' + str(intCount) + ']' + str(DrDateTime) + '\n..' + str(HRM_Dept_Name) + ', ' + str(HRM_USER_NAME) + ', ' + str(DoorText) + '\n'
             if len(strTemp) >= intMaxLineMSGString:
                 strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
-            get_message = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
+            strReply_MSG = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
         else:
-            get_message = strTitle + '：\n' + \
+            strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
@@ -506,9 +494,9 @@ def handle_message(event):
                             ' ============================== '
             if len(strContent) >= intMaxLineMSGString:
                 strContent = strContent[0:intMaxLineMSGString] + '...(資料過多)'
-            get_message = strContent
+            strReply_MSG = strContent
         else:
-            get_message = strTitle + '：\n' + \
+            strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
@@ -551,37 +539,37 @@ def handle_message(event):
                             ' ============================== '
             if len(strContent) >= intMaxLineMSGString:
                 strContent = strContent[0:intMaxLineMSGString] + '...(資料過多)'
-            get_message = strContent
+            strReply_MSG = strContent
         else:
-            get_message = strTitle + '：\n' + \
+            strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('MEMO' in strEventMSG.upper()):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
-        get_message = strMemo
+        strReply_MSG = strMemo
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('官方帳號教學' in strEventMSG):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
-        get_message = strLessonLearning
+        strReply_MSG = strLessonLearning
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('推播權杖教學' in strEventMSG):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
-        get_message = GVstrLineNotifyHowToGetToken
+        strReply_MSG = GVstrLineNotifyHowToGetToken
     # ***** ***** ***** ***** *****
 
     ##### (Ver)版本 #####
     elif strEventMSG.upper().count('VER') > 0:
-        get_message = '『TOYO行政管理部』版本：\n' + strVer
+        strReply_MSG = '『TOYO行政管理部』版本：\n' + strVer
     # ***** ***** ***** ***** *****
 
     ##### 列出全部的關鍵字清單 #####
     elif (strEventMSG[0:4].upper() == 'TOYO') and ('!ALL' in strEventMSG):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
-        get_message = GVstrCMKeyWord
+        strReply_MSG = GVstrCMKeyWord
     # ***** ***** ***** ***** *****
 
     ##### 程式開發使用 #####
@@ -596,14 +584,14 @@ def handle_message(event):
         #開發者關鍵字清單
         if (strHHNN in strCond) and ('KW' in strCond):        
             get_TYPE_message = 'TY_TEXT_Send_MSG'
-            get_message = GVstrECKeyWord
+            strReply_MSG = GVstrECKeyWord
         #官方帳號教學
         elif (strHHNN in strCond) and ('LINE' in strCond):        
             get_TYPE_message = 'TY_TEXT_Send_MSG'
-            get_message = strLessonLearning
+            strReply_MSG = strLessonLearning
         else:
             get_TYPE_message = 'TY_TEXT_Send_MSG'
-            get_message = 'EC' + strCond + '\n' * 100 + strHHNN[-2:] + 'OK'
+            strReply_MSG = 'EC' + strCond + '\n' * 100 + strHHNN[-2:] + 'OK'
 
 #
 #
@@ -628,146 +616,69 @@ def handle_message(event):
 
     else:
         get_TYPE_message = 'TSVI非關鍵字的留言'
-        get_message = strHowToUse
+        strReply_MSG = strHowToUse
 
-
+        
+# ===== ===== ===== ===== ===== 【Line區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【Line區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【Line區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【Line區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【Line區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【Line區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【Line區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【Line區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【Line區域】 ===== ===== ===== ===== =====
 # ===== ===== ===== ===== ===== 【Line區域】 ===== ===== ===== ===== =====
 
+    ##### 取得Line訊息 #####
     pfProfile = line_bot_api.get_profile(event.source.user_id)
     strLineDisplayName = pfProfile.display_name
     strLineUserID = pfProfile.user_id
-    get_message = 'Hi! ' + strLineDisplayName + '\n' + get_message
-    # get_message = 'Hi! ' + strLineUserID + '\n' + get_message
+    strReply_MSG = 'Hi! ' + strLineDisplayName + '\n' + strReply_MSG
+    # ===== SQL_LOG
+    strSQLReturn = RS_Line_LOG_ADD(strLineDisplayName, strLineUserID, strEventMSG, strReply_MSG)
+    # ***** ***** ***** ***** *****
 
-    # Send To Line
+    # #####Send To Line
     if get_TYPE_message == 'Initial':
-        reply = TextSendMessage(text=f"{get_message}")
+        reply = TextSendMessage(text=f"{strReply_MSG}")
         line_bot_api.reply_message(event.reply_token,  reply)
+    # ***** ***** ***** ***** *****
 
     ##### 推播Line Notify內容 #####
-    elif get_TYPE_message == 'TSVI推播程式管理員':
-        ##### 推播 #####
-        # 修改為你要傳送的訊息內容
-        push_message = get_message
-
-        # EctorLiu權杖：
-        token = strEctorToken
-        lineNotifyMessage(token, push_message)
-        # ***** ***** ***** ***** *****
-    
-        #文字訊息
-        # reply = TextSendMessage(text=f"{get_message}")
-        # line_bot_api.reply_message(event.reply_token,  reply)
-
-    elif get_TYPE_message == 'TSVI2Ector':
-        ##### 推播 #####
-        # 修改為你要傳送的訊息內容
-        push_message = get_message
-
-        # EctorLiu權杖：
-        token = strEctorToken
-        lineNotifyMessage(token, push_message)
-        # ***** ***** ***** ***** *****
-
-    elif get_TYPE_message == 'TSVI2智弘':
-        ##### 推播 #####
-        # 修改為你要傳送的訊息內容
-        push_message = get_message
-
-        # 智弘權杖：
-        token = strJohnboToken
-        lineNotifyMessage(token, push_message)
-        # ***** ***** ***** ***** *****
-
-    elif get_TYPE_message == 'TSVI2冠伶':
-        ##### 推播 #####
-        # 修改為你要傳送的訊息內容
-        push_message = get_message
-
-        # 冠伶權杖：
-        token = strGwenToken
-        lineNotifyMessage(token, push_message)
-        # ***** ***** ***** ***** *****
-
-    elif get_TYPE_message == 'TSVI2昆霖':
-        ##### 推播 #####
-        # 修改為你要傳送的訊息內容
-        push_message = get_message
-
-        # 昆霖權杖：
-        token = strKunToken
-        lineNotifyMessage(token, push_message)
-        # ***** ***** ***** ***** *****
-
-    elif get_TYPE_message == 'TSVI2汶靜':
-        ##### 推播 #####
-        # 修改為你要傳送的訊息內容
-        push_message = get_message
-
-        # 汶靜權杖：
-        token = strJingToken
-        lineNotifyMessage(token, push_message)
-        # ***** ***** ***** ***** *****
-
-    elif get_TYPE_message == 'TSVI2宜庭':
-        ##### 推播 #####
-        # 修改為你要傳送的訊息內容
-        push_message = get_message
-
-        # 宜庭權杖：        
-        token = strMichelleToken
-        lineNotifyMessage(token, push_message)
-        # ***** ***** ***** ***** *****
-
-    elif get_TYPE_message == 'TSVI2玉敏':
-        ##### 推播 #####
-        # 修改為你要傳送的訊息內容
-        push_message = get_message
-
-        # 玉敏權杖：        
-        token = strMinToken
-        lineNotifyMessage(token, push_message)
-        # ***** ***** ***** ***** *****
-
-    elif get_TYPE_message == 'TSVI2MOMO':
-        ##### 推播 #####
-        # 修改為你要傳送的訊息內容
-        push_message = get_message
-
-        # MOMO權杖：        
-        token = strMomoToken
-        lineNotifyMessage(token, push_message)
-        # ***** ***** ***** ***** *****
-
-    elif get_TYPE_message == 'TSVI推播全部':
-        ##### 推播 #####
-        # 修改為你要傳送的訊息內容
-        push_message = get_message
-
-        # EctorLiu權杖：
-        token = strEctorToken
-        lineNotifyMessage(token, push_message)
-        # 智弘權杖：
-        token = strJohnboToken
-        lineNotifyMessage(token, push_message)
-        # 冠伶權杖：
-        token = strGwenToken
-        lineNotifyMessage(token, push_message)
-        # 昆霖權杖：
-        token = strKunToken
-        lineNotifyMessage(token, push_message)
-        # 汶靜權杖：
-        token = strJingToken
-        lineNotifyMessage(token, push_message)
-        # 宜庭權杖：        
-        token = strMichelleToken
-        lineNotifyMessage(token, push_message)
-        # 玉敏權杖：        
-        token = strMinToken
-        lineNotifyMessage(token, push_message)
-        # MOMO權杖：        
-        token = strMomoToken
-        lineNotifyMessage(token, push_message)
+    elif get_TYPE_message == 'SJ_Push_MSG_Text':
+        #推播訊息編輯
+        push_message = strReply_MSG
+        #推播ALL or 個人
+        if strPush2Who = 'NOTE_PUSH_ALL':
+            # EctorLiu權杖:
+            token = strEctorToken
+            lineNotifyMessage(token, push_message)
+            # 智弘權杖:
+            token = strJohnboToken
+            lineNotifyMessage(token, push_message)
+            # 冠伶權杖:
+            token = strGwenToken
+            lineNotifyMessage(token, push_message)
+            # 昆霖權杖:
+            token = strKunToken
+            lineNotifyMessage(token, push_message)
+            # 汶靜權杖:
+            token = strJingToken
+            lineNotifyMessage(token, push_message)
+            # 宜庭權杖:
+            token = strMichelleToken
+            lineNotifyMessage(token, push_message)
+            # 玉敏權杖:
+            token = strMinToken
+            lineNotifyMessage(token, push_message)
+            # MOMO權杖:
+            token = strMomoToken
+            lineNotifyMessage(token, push_message)            
+        else:
+            # 個人:            
+            token = strPush2Who
+            lineNotifyMessage(token, push_message)
         # ***** ***** ***** ***** *****
 
     elif get_TYPE_message == 'TSVI非關鍵字的留言':
@@ -808,23 +719,23 @@ def handle_message(event):
                             'LineReplyToker： ' + event.reply_token + '\n' + \
                             push_message
             # ===== SQL_LOG
-            push_message = RS_Line_LOG_ADD(strLineDisplayName, strLineUserID, strEventMSG, get_message) + push_message
+            push_message = strSQLReturn + push_message
             # ***** ***** ***** ***** *****
             token = strEctorToken
             lineNotifyMessage(token, push_message)
         # ***** ***** ***** ***** *****
 
-        reply = TextSendMessage(text=f"{get_message}")
+        reply = TextSendMessage(text=f"{strReply_MSG}")
         line_bot_api.reply_message(event.reply_token,  reply)
 
     # ***** ***** ***** ***** *****
 
     elif get_TYPE_message == 'How_To_Use':
-        reply = TextSendMessage(text=f"{get_message}")
+        reply = TextSendMessage(text=f"{strReply_MSG}")
         line_bot_api.reply_message(event.reply_token,  reply)
 
     elif get_TYPE_message == 'New_Activity':
-        reply = TextSendMessage(text=f"{get_message}")
+        reply = TextSendMessage(text=f"{strReply_MSG}")
         line_bot_api.reply_message(event.reply_token,  reply)
 
     elif get_TYPE_message == 'TY_LOGO':
@@ -838,11 +749,11 @@ def handle_message(event):
                         'LineName： ' + strLineDisplayName + '\n' + \
                         'LineUserID： ' + strLineUserID + '\n' + \
                         'LineReplyToker： ' + event.reply_token + '\n' + \
-                        get_message            
+                        strReply_MSG            
         token = strEctorToken
         lineNotifyMessage(token, push_message)
 
-        reply = TextSendMessage(text=f"{get_message}")
+        reply = TextSendMessage(text=f"{strReply_MSG}")
         line_bot_api.reply_message(event.reply_token,  reply)
 
     elif get_TYPE_message == 'TSVI樣版':
@@ -865,11 +776,11 @@ def handle_message(event):
                         'LineName： ' + strLineDisplayName + '\n' + \
                         'LineUserID： ' + strLineUserID + '\n' + \
                         'LineReplyToker： ' + event.reply_token + '\n' + \
-                        get_message            
+                        strReply_MSG            
         token = strEctorToken
         lineNotifyMessage(token, push_message)
 
-        reply = TextSendMessage(text=f"{get_message}")
+        reply = TextSendMessage(text=f"{strReply_MSG}")
         line_bot_api.reply_message(event.reply_token,  reply)
 
 
