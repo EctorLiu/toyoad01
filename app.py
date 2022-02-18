@@ -831,7 +831,7 @@ def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
         strAuthKWList = '1'
         strAuthUnitName = '2'
         strAuthMemName = '3'
-        for ([AUTH_UnitName], [AUTH_MemName], [AUTH_KW_List]) in resList:
+        for (AUTH_UnitName, AUTH_MemName, AUTH_KW_List) in resList:
             strAuthUnitName = str(AUTH_UnitName)
             strAuthMemName = str(AUTH_MemName)
             strAuthKWList = str(AUTH_KW_List)
