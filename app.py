@@ -949,7 +949,7 @@ def RS_Line_LOG(strLineName, strLineUserID, strLineMSG):
         strDB_Table = '[TIM_DB].[dbo].[tblAPP_TYAD_LineLog]'
         #連線
         ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
-        strSQL = ' INSERT INTO ' + strDB_Table + ' ' + \
+        strSQL = ' INSERT INTO [TIM_DB].[dbo].[tblAPP_TYAD_LineLog] ' + \
                     ' (EX01, EX02, EX03, TXT01, EXDT01) ' + \
                     ' VALUES (' + (strDateTime) + ',' + (strLineName) + ',' + (strLineUserID) + ',' + (strLineMSG) + ',' + datDT + ') '
         resList = ms.RS_SQL_ExecNonQuery(strSQL)
