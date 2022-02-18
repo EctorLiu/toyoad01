@@ -526,7 +526,7 @@ def handle_message(event):
             strReply_MSG = GVstrMemo
         else:
             get_TYPE_message = 'SYS_KW_INPUT_MSG'
-            strReply_MSG = '權限不足!'
+            strReply_MSG = '權限不足!' + '-' + strAUTH_CHK
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('官方帳號教學' in strEventMSG):
@@ -835,11 +835,11 @@ def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
             strAuthUnitName = str(AUTH_UnitName)
             strAuthMemName = str(AUTH_MemName)
         if ('ALL' in strAuthKWList):
-            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName
+            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList
         elif (strQueryKW.upper() in strAuthKWList):
-            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName
+            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList
         else:
-            RS_CHECK_KWAUTH_by_UserId = 'NG' + ',' + strAuthUnitName + ',' + strAuthMemName
+            RS_CHECK_KWAUTH_by_UserId = 'NG' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList
 
     return RS_CHECK_KWAUTH_by_UserId
 
