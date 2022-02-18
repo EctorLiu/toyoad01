@@ -941,8 +941,8 @@ def RS_DateTime_2_HHNN():
 def RS_Line_LOG(strLineName, strLineUserID, strLineMSG):
     #取得時間
     datDT = datetime.now()
-    strDateTime = datDT.strftime("%Y-%m-%d %H:%M:%S")
-    datDateTime = datetime.strptime(strDateTime, "%Y-%m-%d %H:%M:%S")
+    FVstrToday = datDT.strftime("%Y-%m-%d") 
+    FVstrNow = datDT.strftime("%Y-%m-%d %H:%M:%S")
 
     #寫入LOG
     if strSQL_FW_Switch == 'ON':
@@ -952,7 +952,7 @@ def RS_Line_LOG(strLineName, strLineUserID, strLineMSG):
         ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
         strSQL = ' INSERT INTO [TIM_DB].[dbo].[tblAPP_TYAD_LineLog] ' + \
                     ' (EX01, EX02, EX03, TXT01, EXDT01) ' + \
-                    ' VALUES (' + (strDateTime) + ',' + (strLineName) + ',' + (strLineUserID) + ',' + (strLineMSG) + ',' + datDateTime + ') '
+                    ' VALUES (' + (strDateTime) + ',' + (strLineName) + ',' + (strLineUserID) + ',' + (strLineMSG) + ',' + datDT + ') '
         resList = ms.RS_SQL_ExecNonQuery(strSQL)
         RS_Line_LOG = strTitle + '：寫入DB(WEB) BT OK!\n' + \
                         strDateTime  + '\n\n' + \
