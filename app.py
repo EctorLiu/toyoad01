@@ -831,15 +831,14 @@ def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
             strAuthKWList = str(AUTH_KW_List)
             strAuthUnitName = str(AUTH_UnitName)
             strAuthMemName = str(AUTH_MemName)
-
-        if ('ALL' in strAuthKWList.upper()):
-            RS_CHECK_AUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName
-        elif (strQueryKW.upper() in strAuthKWList.upper()):
-            RS_CHECK_AUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName
+        if ('ALL' in strAuthKWList):
+            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName
+        elif (strQueryKW.upper() in strAuthKWList):
+            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName
         else:
-            RS_CHECK_AUTH_by_UserId = 'NG' + ',' + strAuthUnitName + ',' + strAuthMemName
+            RS_CHECK_KWAUTH_by_UserId = 'NG' + ',' + strAuthUnitName + ',' + strAuthMemName
 
-    return RS_CHECK_AUTH_by_UserId
+    return RS_CHECK_KWAUTH_by_UserId
 
     ##### LineLOG ######
 def RS_Line_LOG_ADD(strLineName, strLineUserID, strKeyInMSG, strLineRpMSG):
