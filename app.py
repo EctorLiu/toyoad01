@@ -821,14 +821,14 @@ def RS_MID_String_Start_StrNum(strTemp, intStart, intNum):
 
 
     ##### 權限查詢 ######
-def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
+def RS_CHECK_KWAUTH_by_UserId(strCondUserId, strCondQueryKW):
     RS_CHECK_KWAUTH_by_UserId = 'INITIAL_STATE'
     #查詢資料
     if strSQL_FW_Switch == 'ON':
         ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
         strSQL = ' SELECT [AUTH_UnitName],[AUTH_MemName],[AUTH_KW_List] ' + \
                     ' FROM [TIM_DB].[dbo].[tblAPP_TYAD_Auth_List] ' + \
-                    ' WHERE ( [AUTH_UserID] = \'' + str(strUserId) + '\')'
+                    ' WHERE ( [AUTH_UserID] = \'' + str(strCondUserId) + '\')'
         resList = ms.RS_SQL_ExecQuery(strSQL)
         strAuthUnitName = 'INI_A'
         strAuthMemName = 'INI_B'
@@ -839,11 +839,11 @@ def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
             strAuthKWList = str(AUTH_KW_List)
 
         if ('ALL' in strAuthKWList):
-            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList
-        elif (strQueryKW.upper() in strAuthKWList):
-            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList
+            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',(U)' + strAuthUnitName + ',(M)' + strAuthMemName + ',(A)' + strAuthKWList
+        elif (strCondQueryKW.upper() in strAuthKWList):
+            RS_CHECK_KWAUTH_by_UserId = 'GO' + ',(U)' + strAuthUnitName + ',(M)' + strAuthMemName + ',(A)' + strAuthKWList
         else:
-            RS_CHECK_KWAUTH_by_UserId = 'NG' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList
+            RS_CHECK_KWAUTH_by_UserId = 'NG' + ',(U)' + strAuthUnitName + ',(M)' + strAuthMemName + ',(A)' + strAuthKWList
 
     return RS_CHECK_KWAUTH_by_UserId
 
