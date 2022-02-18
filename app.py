@@ -119,52 +119,52 @@ def handle_message(event):
             strPush2Who = strEctorToken
             intKWLength = 6 + intInitialKWLen
             strStartInfo = '(Admin)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength)
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
         if ('推播ECTOR' in strEventMSG.upper()):
             strPush2Who = strEctorToken
             intKWLength = 7 + intInitialKWLen
             strStartInfo = '(只推Ector)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength)
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
         if ('推播智弘' in strEventMSG.upper()):
             strPush2Who = strJohnboToken
             intKWLength = 4 + intInitialKWLen
             strStartInfo = '(只推智弘)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength)
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
         if ('推播冠伶' in strEventMSG.upper()):
             strPush2Who = strGwenToken
             intKWLength = 4 + intInitialKWLen
             strStartInfo = '(只推冠伶)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength)
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
         if ('推播昆霖' in strEventMSG.upper()):
             strPush2Who = strKunToken
             intKWLength = 4 + intInitialKWLen
             strStartInfo = '(只推昆霖)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength)
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
         if ('推播汶靜' in strEventMSG.upper()):
             strPush2Who = strJingToken
             intKWLength = 4 + intInitialKWLen
             strStartInfo = '(只推汶靜)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength)
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
         if ('推播宜庭' in strEventMSG.upper()):
             strPush2Who = strMichelleToken
             intKWLength = 4 + intInitialKWLen
             strStartInfo = '(只推宜庭)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength)
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
         if ('推播玉敏' in strEventMSG.upper()):
             strPush2Who = strMinToken
             intKWLength = 4 + intInitialKWLen
             strStartInfo = '(只推玉敏)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength)
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
         if ('推播MOMO' in strEventMSG.upper()):
             strPush2Who = strMomoToken
             intKWLength = 6 + intInitialKWLen
             strStartInfo = '(只推MOMO)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength)
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
         if ('推播全部' in strEventMSG.upper()):
             strPush2Who = 'SYS_PUSH_ALL'
             intKWLength = 4 + intInitialKWLen
             strStartInfo = '(推全部)\n'
-            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength)
+            strReply_MSG = strStartInfo + RS_RIGHT_String_NotLeftStrNum(strEventMSG, intKWLength).strip()
     # ***** ***** ***** ***** *****
 
     ##### TSVI樣版 #####
@@ -621,7 +621,7 @@ def handle_message(event):
     ##### 推播Line Notify內容 #####
     elif get_TYPE_message == 'SJ_Push_MSG_Text':
         #推播訊息編輯
-        push_message = '來自[' + strLineDisplayName + ']推播訊息：\n' + strReply_MSG
+        push_message = '\n來自[' + strLineDisplayName + ']推播訊息：\n' + strReply_MSG
         #推播ALL or 個人
         if strPush2Who == 'SYS_PUSH_ALL':
             # EctorLiu權杖:
