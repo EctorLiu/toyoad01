@@ -826,7 +826,7 @@ def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
         ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
         strSQL = ' SELECT [AUTH_KW_List],[AUTH_UnitName],[AUTH_MemName] ' + \
                     ' FROM [TIM_DB].[dbo].[tblAPP_TYAD_Auth_List] ' + \
-                    ' WHERE ( [AUTH_UserID] = \'' + str(strUserId) + '\''
+                    ' WHERE ( [AUTH_UserID] = \'' + str(strUserId) + '\')'
         resList = ms.RS_SQL_ExecQuery(strSQL)
         strAuthKWList = '1'
         strAuthUnitName = '2'
