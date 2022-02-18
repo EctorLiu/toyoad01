@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M217)1116'
+strVer = '(M218)0856'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -939,7 +939,7 @@ def RS_DateTime_2_HHNN():
 
     ##### LineLOG ######
 def RS_Line_LOG(strLineName, strLineUserID, strLineMSG):
-    # 使用 UTC 時間：FVstrGMToday、FVstrGMNow
+    #取得時間
     datDT = datetime.now()
     strDateTime = datDT.strftime("%Y-%m-%d %H:%M:%S")
     datDateTime = datDT.strptime("%Y-%m-%d %H:%M:%S")
