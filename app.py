@@ -605,7 +605,6 @@ def handle_message(event):
     pfProfile = line_bot_api.get_profile(event.source.user_id)
     strLineDisplayName = pfProfile.display_name
     strLineUserID = pfProfile.user_id
-    strReply_MSG = 'Hi! ' + strLineDisplayName + '\n' + strReply_MSG
     # SQL_LOG紀錄
     strEventMSG=strEventMSG.replace("'", '')
     strEventMSG=strEventMSG.replace('"', '')
