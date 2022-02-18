@@ -6,7 +6,7 @@ strVer = '(M218)1102'
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
     # 切換同仁推播功能選擇：ON/OFF
-strPush_NotKeyWord2All_Switch = 'OFF'
+strPush_NotKeyWord2All_Switch = 'ON'
     # ***** ***** ***** ***** *****
 
     ##### 限制 ######
@@ -662,7 +662,7 @@ def handle_message(event):
         # 修改為你要傳送的訊息內容
         push_message = 'TOYO行政管理部『KeyWord』訊息：\n' + strEventMSG
         #推播訊息編輯
-        push_message = '\n『KeyWord』DebugModeForEctor：' + push_message
+        push_message = '『KeyWord』\nDebugModeForEctor：' + push_message
         # EctorLiu權杖：
         token = strEctorToken
         lineNotifyMessage(token, push_message)
@@ -703,7 +703,7 @@ def handle_message(event):
             lineNotifyMessage(token, push_message)
         else:
             #推播訊息編輯
-            push_message = '\n『非關鍵字』DebugModeForEctor：' + push_message
+            push_message = '『非關鍵字』\nDebugModeForEctor：' + push_message
             # EctorLiu權杖：
             token = strEctorToken
             lineNotifyMessage(token, push_message)
@@ -734,7 +734,7 @@ def handle_message(event):
         # 修改為你要傳送的訊息內容
         push_message = 'TOYO行政管理部『KeyWord』訊息：\n' + strEventMSG
         #推播訊息編輯
-        push_message = '\n『特殊狀況』DebugModeForEctor：' + push_message
+        push_message = '『特殊狀況』\nDebugModeForEctor：' + push_message
         # EctorLiu權杖：
         token = strEctorToken
         lineNotifyMessage(token, push_message)
