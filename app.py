@@ -583,7 +583,7 @@ def handle_message(event):
     strLineDisplayName = pfProfile.display_name
     strLineUserID = pfProfile.user_id
     strReply_MSG = 'Hi! ' + strLineDisplayName + '\n' + strReply_MSG
-    # ===== SQL_LOG
+    # SQL_LOG紀錄
     strSQLReturn = RS_Line_LOG_ADD(strLineDisplayName, strLineUserID, strEventMSG, strReply_MSG)
     # ***** ***** ***** ***** *****
 
@@ -596,7 +596,7 @@ def handle_message(event):
     ##### 推播Line Notify內容 #####
     elif get_TYPE_message == 'SJ_Push_MSG_Text':
         #推播訊息編輯
-        push_message = strReply_MSG
+        push_message = '來自' + strLineDisplayName + '的訊息：\n' + strReply_MSG
         #推播ALL or 個人
         if strPush2Who == 'SYS_PUSH_ALL':
             # EctorLiu權杖:
