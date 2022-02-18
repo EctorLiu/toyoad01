@@ -50,12 +50,6 @@ line_bot_api = LineBotApi(strchannel_access_token)
 handler = WebhookHandler(strchannel_secret)
     # ***** ***** ***** ***** *****
 
-    ##### 取得Line訊息 #####
-pfProfile = line_bot_api.get_profile(event.source.user_id)
-FVstrLineDisplayName = pfProfile.display_name
-FVstrLineUserID = pfProfile.user_id
-    # ***** ***** ***** ***** *****
-
     ##### Flask ######
 from flask import Flask, abort, request
 app = Flask(__name__)
@@ -89,6 +83,12 @@ def callback():
 def handle_message(event):
     # 取得事件變數
     strEventMSG = event.message.text
+
+    ##### 取得Line訊息 #####
+    pfProfile = line_bot_api.get_profile(event.source.user_id)
+    strLineDisplayName = pfProfile.display_name
+    strLineUserID = pfProfile.user_id
+    # ***** ***** ***** ***** *****
 
     ##### 全型符號轉換 #####
     strEventMSG = strEventMSG.replace('！','!')
@@ -520,7 +520,7 @@ def handle_message(event):
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('MEMO' in strEventMSG.upper()):
-        strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(FVstrLineUserID, 'MEMO')
+        strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, 'MEMO')
         if strAUTH_CHK[0:2] == 'OK':
             get_TYPE_message = 'SYS_KW_INPUT_MSG'
             strReply_MSG = GVstrMemo
@@ -618,7 +618,7 @@ def handle_message(event):
     ##### 推播Line Notify內容 #####
     elif get_TYPE_message == 'SYS_ASSIGN_PUSH_MSG_Text':
         #推播訊息編輯
-        push_message = '\n來自[' + FVstrLineDisplayName + ']推播訊息：\n' + strReply_MSG
+        push_message = '\n來自[' + strLineDisplayName + ']推播訊息：\n' + strReply_MSG
         #推播ALL or 個人
         if strPush2Who == 'SYS_PUSH_ALL':
             # EctorLiu權杖:
@@ -655,7 +655,7 @@ def handle_message(event):
     elif get_TYPE_message == 'SYS_KW_INPUT_MSG':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        push_message = '\n來自[' + FVstrLineDisplayName + ']輸入訊息：\n' + strEventMSG
+        push_message = '\n來自[' + strLineDisplayName + ']輸入訊息：\n' + strEventMSG
         #推播訊息編輯
         push_message = '『KeyWord』\nDebugModeForEctor：' + push_message
         # EctorLiu權杖：
@@ -670,7 +670,7 @@ def handle_message(event):
     elif get_TYPE_message == 'SYS_NOT_KW_INPUT_MSG':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        push_message = '\n來自[' + FVstrLineDisplayName + ']輸入訊息：\n' + strEventMSG
+        push_message = '\n來自[' + strLineDisplayName + ']輸入訊息：\n' + strEventMSG
         if strPush_NotKeyWord2All_Switch == 'ON': 
             # EctorLiu權杖：
             token = strEctorToken
@@ -727,7 +727,7 @@ def handle_message(event):
     else:
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        push_message = '\n來自[' + FVstrLineDisplayName + ']輸入訊息：\n' + strEventMSG
+        push_message = '\n來自[' + strLineDisplayName + ']輸入訊息：\n' + strEventMSG
         #推播訊息編輯
         push_message = '『特殊狀況』\nDebugModeForEctor：' + push_message
         # EctorLiu權杖：
@@ -754,7 +754,7 @@ def handle_message(event):
     strEventMSG = strEventMSG.replace('"', '')
     strReply_MSG = strReply_MSG.replace("'", '')
     strReply_MSG = strReply_MSG.replace('"', '')
-    strSQLReturn = RS_Line_LOG_ADD(FVstrLineDisplayName, FVstrLineUserID, strEventMSG, strReply_MSG)
+    strSQLReturn = RS_Line_LOG_ADD(strLineDisplayName, strLineUserID, strEventMSG, strReply_MSG)
 
 # ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
 # ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
@@ -842,7 +842,7 @@ def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
     return RS_CHECK_AUTH_by_UserId
 
     ##### LineLOG ######
-def RS_Line_LOG_ADD(strLineName, FVstrLineUserID, strKeyInMSG, strLineRpMSG):
+def RS_Line_LOG_ADD(strLineName, strLineUserID, strKeyInMSG, strLineRpMSG):
     #取得時間
     datDT = datetime.now()
     strDateTime = datDT.strftime("%Y-%m-%d %H:%M:%S")
@@ -855,7 +855,7 @@ def RS_Line_LOG_ADD(strLineName, FVstrLineUserID, strKeyInMSG, strLineRpMSG):
         ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
         strSQL = ' INSERT INTO [TIM_DB].[dbo].[tblAPP_TYAD_LineLog] ' + \
                     ' (EX01, EX02, EX03, TXT01, TXT02, EXDT01) ' + \
-                    ' VALUES (\'' + (strDateTime) + '\',\'' + (strLineName) + '\',\'' + (FVstrLineUserID) + '\',\'' + (strKeyInMSG) + '\',\'' + (strLineRpMSG) + \
+                    ' VALUES (\'' + (strDateTime) + '\',\'' + (strLineName) + '\',\'' + (strLineUserID) + '\',\'' + (strKeyInMSG) + '\',\'' + (strLineRpMSG) + \
                                 '\',Convert(datetime, \'' + strDateTime + '\',111)) '
         resList = ms.RS_SQL_ExecNonQuery(strSQL)
         RS_Line_LOG = strDateTime + '：寫入DB OK!\n' + \
