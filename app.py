@@ -711,14 +711,10 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,  reply)
     # ***** ***** ***** ***** *****
 
-    elif get_TYPE_message == 'TY_LOGO':
-        reply = ImageSendMessage(original_content_url = 'https://github.com/EctorLiu/Ector01/raw/main/img/A.jpg', \
-                                 preview_image_url = 'https://raw.githubusercontent.com/EctorLiu/Ector01/main/img/A.jpg')
-        line_bot_api.reply_message(event.reply_token,  reply)
-
     elif get_TYPE_message == 'TY_TEXT_Send_MSG':
         reply = TextSendMessage(text=f"{strReply_MSG}")
         line_bot_api.reply_message(event.reply_token,  reply)
+
 
     elif get_TYPE_message == 'TSVI樣版':
         reply = TemplateSendMessage(alt_text='樣版：需使用手機版方可顯示', \
@@ -739,7 +735,6 @@ def handle_message(event):
         push_message = 'DebugModeForEctor(Else)\n：' + \
                         'LineName： ' + strLineDisplayName + '\n' + \
                         'LineUserID： ' + strLineUserID + '\n' + \
-                        'LineReplyToker： ' + event.reply_token + '\n' + \
                         strReply_MSG            
         token = strEctorToken
         lineNotifyMessage(token, push_message)
