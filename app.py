@@ -112,7 +112,7 @@ def handle_message(event):
         #開頭的關鍵字長度
         if strEventMSG[0:2].upper() == 'TY':
             intInitialKWLen = 2
-        elif strEventMSG[0:2].upper() == 'TOYO':
+        elif strEventMSG[0:4].upper() == 'TOYO':
             intInitialKWLen = 4
         #strReply_MSG
         if ('推播PROG' in strEventMSG.upper()):
