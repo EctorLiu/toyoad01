@@ -942,6 +942,7 @@ def RS_Line_LOG(strLineName, strLineUserID, strLineMSG):
     # 使用 UTC 時間：FVstrGMToday、FVstrGMNow
     datDT = time.localtime()
     strDateTime = time.strftime("%Y-%m-%d %H:%M:%S", datDT)
+    datDateTime = time.strptime(strDateTime, "%Y-%m-%d %H:%M:%S")
 
     #寫入LOG
     if strSQL_FW_Switch == 'ON':
@@ -951,7 +952,7 @@ def RS_Line_LOG(strLineName, strLineUserID, strLineMSG):
         ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
         strSQL = ' INSERT INTO [TIM_DB].[dbo].[tblAPP_TYAD_LineLog] ' + \
                     ' (EX01, EX02, EX03, TXT01, EXDT01) ' + \
-                    ' VALUES (' + (strDateTime) + ',' + (strLineName) + ',' + (strLineUserID) + ',' + (strLineMSG) + ',' + strDateTime + ') '
+                    ' VALUES (' + (strDateTime) + ',' + (strLineName) + ',' + (strLineUserID) + ',' + (strLineMSG) + ',' + datDateTime + ') '
         resList = ms.RS_SQL_ExecNonQuery(strSQL)
         RS_Line_LOG = strTitle + '：寫入DB(WEB) BT OK!\n' + \
                         strDateTime  + '\n\n' + \
