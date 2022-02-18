@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M218)1130'
+strVer = '(M218)1320'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -820,28 +820,29 @@ def RS_MID_String_Start_StrNum(strTemp, intStart, intNum):
 
     ##### 權限查詢 ######
 def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
+    RS_CHECK_KWAUTH_by_UserId = 'INITIAL_STATE'
     #查詢資料
     if strSQL_FW_Switch == 'ON':
         ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
         strSQL = ' SELECT [AUTH_KW_List],[AUTH_UnitName],[AUTH_MemName] ' + \
                     ' FROM [TIM_DB].[dbo].[tblAPP_TYAD_Auth_List] ' + \
-                    ' WHERE ( [AUTH_UserID] = \'Ua42052df655d4d9538b864a3c4deaf28\' ) '
-                    # ' WHERE ( [AUTH_UserID] = \' %s \' ) '  % (strUserId)
+                    ' WHERE ( [AUTH_UserID] = \'' + strUserId + '\''
         resList = ms.RS_SQL_ExecQuery(strSQL)
         strAuthKWList = '1'
         strAuthUnitName = '2'
         strAuthMemName = '3'
-        for ([AUTH_UnitName],[AUTH_MemName],[AUTH_KW_List]) in resList:
+        for ([AUTH_UnitName], [AUTH_MemName], [AUTH_KW_List]) in resList:
             strAuthUnitName = str(AUTH_UnitName)
             strAuthMemName = str(AUTH_MemName)
             strAuthKWList = str(AUTH_KW_List)
+
         if ('ALL' in strAuthKWList):
             RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList + '-' + strUserId
         elif (strQueryKW.upper() in strAuthKWList):
             RS_CHECK_KWAUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList + '-' + strUserId
         else:
             RS_CHECK_KWAUTH_by_UserId = 'NG' + ',' + strAuthUnitName + ',' + strAuthMemName + '_' + strAuthKWList + '-' + strUserId
-            
+
     return RS_CHECK_KWAUTH_by_UserId
 
     ##### LineLOG ######
