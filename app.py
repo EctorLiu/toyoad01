@@ -134,139 +134,103 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     # 取得事件變數
-    temp_message = event.message.text
+    strEventMSG = event.message.text
 
     ##### 全型符號轉換 #####
-    temp_message = temp_message.replace('！','!')
-    temp_message = temp_message.replace('（','(')
-    temp_message = temp_message.replace('）',')')
-    temp_message = temp_message.replace('，',',')
-    temp_message = temp_message.replace('＄','$')
-    temp_message = temp_message.replace('？','?')
+    strEventMSG = strEventMSG.replace('！','!')
+    strEventMSG = strEventMSG.replace('（','(')
+    strEventMSG = strEventMSG.replace('）',')')
+    strEventMSG = strEventMSG.replace('，',',')
+    strEventMSG = strEventMSG.replace('＄','$')
+    strEventMSG = strEventMSG.replace('？','?')
     # ***** ***** ***** ***** *****
 
     ##### 關鍵字處理消空白 #####
-    temp_message = temp_message.upper()
-    temp_message = temp_message.strip()
+    strEventMSG = strEventMSG.upper()
+    strEventMSG = strEventMSG.strip()
     # ***** ***** ***** ***** *****
 
     # 確認資料類別
     get_TYPE_message = 'Initial'
 
-    if temp_message == '您好':
+    if strEventMSG == '您好':
         # (A)禮貌回覆
         get_message = '『TOYO行政管理部』：您好' + event.message.text
 
     ##### (TSVI)推播 #####
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('推播PROG' in temp_message.upper()):
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('推播PROG' in strEventMSG.upper()):
         get_TYPE_message = 'TSVI推播程式管理員'
-        #temp_message = temp_message.upper()
-        #temp_message = temp_message.replace('TY', '')
-        #temp_message = temp_message.replace('TOYO', '')
-        #temp_message = temp_message.replace('推播PROG', '')
-        get_message = '(Admin)\n' + temp_message
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('推播ECTOR' in temp_message.upper()):
+        #strEventMSG = strEventMSG.upper()
+        #strEventMSG = strEventMSG.replace('TY', '')
+        #strEventMSG = strEventMSG.replace('TOYO', '')
+        #strEventMSG = strEventMSG.replace('推播PROG', '')
+        get_message = '(Admin)\n' + strEventMSG
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('推播ECTOR' in strEventMSG.upper()):
         get_TYPE_message = 'TSVI2Ector'
-        #temp_message = temp_message.upper()
-        #temp_message = temp_message.replace('TY', '')
-        #temp_message = temp_message.replace('TOYO', '')
-        #temp_message = temp_message.replace('推播ECTOR', '')
-        get_message = '(只推Ector)\n' + temp_message
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('推播智弘' in temp_message.upper()):
+        get_message = '(只推Ector)\n' + strEventMSG
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('推播智弘' in strEventMSG.upper()):
         # (T1)推播
         get_TYPE_message = 'TSVI2智弘'
-        #temp_message = temp_message.upper()
-        #temp_message = temp_message.replace('TY', '')
-        #temp_message = temp_message.replace('TOYO', '')
-        #temp_message = temp_message.replace('推播智弘', '')
-        get_message = '(只推智弘)\n' + temp_message
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('推播冠伶' in temp_message.upper()):
+        get_message = '(只推智弘)\n' + strEventMSG
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('推播冠伶' in strEventMSG.upper()):
         get_TYPE_message = 'TSVI2冠伶'
-        #temp_message = temp_message.upper()
-        #temp_message = temp_message.replace('TY', '')
-        #temp_message = temp_message.replace('TOYO', '')
-        #temp_message = temp_message.replace('推播冠伶', '')
-        get_message = '(只推冠伶)\n' + temp_message
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('推播昆霖' in temp_message.upper()):
+        get_message = '(只推冠伶)\n' + strEventMSG
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('推播昆霖' in strEventMSG.upper()):
         get_TYPE_message = 'TSVI2昆霖'
-        #temp_message = temp_message.upper()
-        #temp_message = temp_message.replace('TY', '')
-        #temp_message = temp_message.replace('TOYO', '')
-        #temp_message = temp_message.replace('推播昆霖', '')
-        get_message = '(只推昆霖)\n' + temp_message
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('推播汶靜' in temp_message.upper()):
+        get_message = '(只推昆霖)\n' + strEventMSG
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('推播汶靜' in strEventMSG.upper()):
         get_TYPE_message = 'TSVI2汶靜'
-        #temp_message = temp_message.upper()
-        #temp_message = temp_message.replace('TY', '')
-        #temp_message = temp_message.replace('TOYO', '')
-        #temp_message = temp_message.replace('推播汶靜', '')
-        get_message = '(只推汶靜)\n' + temp_message
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('推播宜庭' in temp_message.upper()):
+        get_message = '(只推汶靜)\n' + strEventMSG
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('推播宜庭' in strEventMSG.upper()):
         get_TYPE_message = 'TSVI2宜庭'
-        #temp_message = temp_message.upper()
-        #temp_message = temp_message.replace('TY', '')
-        #temp_message = temp_message.replace('TOYO', '')
-        #temp_message = temp_message.replace('推播宜庭', '')
-        get_message = '(只推宜庭)\n' + temp_message
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('推播玉敏' in temp_message.upper()):
+        get_message = '(只推宜庭)\n' + strEventMSG
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('推播玉敏' in strEventMSG.upper()):
         get_TYPE_message = 'TSVI2玉敏'
-        #temp_message = temp_message.upper()
-        #temp_message = temp_message.replace('TY', '')
-        #temp_message = temp_message.replace('TOYO', '')
-        #temp_message = temp_message.replace('推播玉敏', '')
-        get_message = '(只推玉敏)\n' + temp_message
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('推播MOMO' in temp_message.upper()):
+        get_message = '(只推玉敏)\n' + strEventMSG
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('推播MOMO' in strEventMSG.upper()):
         get_TYPE_message = 'TSVI2MOMO'
-        #temp_message = temp_message.upper()
-        #temp_message = temp_message.replace('TY', '')
-        #temp_message = temp_message.replace('TOYO', '')
-        #temp_message = temp_message.replace('推播MOMO', '')
-        get_message = '(只推MOMO)\n' + temp_message
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('推播全部' in temp_message.upper()):
+        get_message = '(只推MOMO)\n' + strEventMSG
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('推播全部' in strEventMSG.upper()):
         get_TYPE_message = 'TSVI推播全部'
-        #temp_message = temp_message.upper()
-        #temp_message = temp_message.replace('TY', '')
-        #temp_message = temp_message.replace('TOYO', '')
-        #temp_message = temp_message.replace('推播全部', '')
-        get_message = '(推全部)\n' + temp_message
+        get_message = '(推全部)\n' + strEventMSG
     # ***** ***** ***** ***** *****
     
     ##### TSVI樣版 #####
-    elif (temp_message[0:4].upper() == 'TSVI') and \
-            ('樣版' in temp_message.upper()):
+    elif (strEventMSG[0:4].upper() == 'TSVI') and \
+            ('樣版' in strEventMSG.upper()):
         get_TYPE_message = 'TSVI樣版'   
     # ***** ***** ***** ***** *****
 
 
     ##### 關鍵字 #####
-    elif ('如何使用' in temp_message or 'HELP' in temp_message.upper() or '?' in temp_message.strip() or '？' in temp_message.strip()):
+    elif ('如何使用' in strEventMSG or 'HELP' in strEventMSG.upper() or '?' in strEventMSG.strip() or '？' in strEventMSG.strip()):
         get_TYPE_message = 'How_To_Use'
         get_message = strHowToUse
 
-    elif ('最近' in temp_message or '最新' in temp_message) and ('訊息' in temp_message or '活動' in temp_message):
+    elif ('最近' in strEventMSG or '最新' in strEventMSG) and ('訊息' in strEventMSG or '活動' in strEventMSG):
         get_TYPE_message = 'New_Activity'
         get_message = strNewestActivity
 
-    elif ('SOP' in temp_message) and ('清單' in temp_message or '下載' in temp_message):
+    elif ('SOP' in strEventMSG) and ('清單' in strEventMSG or '下載' in strEventMSG):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         get_message = GVstrSOPList01
 
-    elif ('宿舍' in temp_message.upper()) and \
-            ('防疫' in temp_message.upper()):
-        if len(temp_message) == 4:
+    elif ('宿舍' in strEventMSG) and \
+            ('防疫' in strEventMSG):
+        if len(strEventMSG) == 4:
             strCond = '\'%\''
         else:
-            strCond = temp_message
+            strCond = strEventMSG
             strCond = strCond.replace('宿舍', '')
             strCond = strCond.replace('防疫', '')
             strCond = '\'%' + strCond.strip() + '%\''
@@ -300,12 +264,12 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
-    elif ('車輛' in temp_message.upper() or '車道' in temp_message.upper()) and \
-            ('查詢' in temp_message.upper()):
-        if len(temp_message) == 4:
+    elif ('車輛' in strEventMSG or '車道' in strEventMSG) and \
+            ('查詢' in strEventMSG):
+        if len(strEventMSG) == 4:
             strCond = '\'%\''
         else:
-            strCond = temp_message
+            strCond = strEventMSG
             strCond = strCond.replace('車輛', '')
             strCond = strCond.replace('車道', '')
             strCond = strCond.replace('查詢', '')
@@ -337,7 +301,7 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
-    elif ('面試報到' in temp_message.upper()):
+    elif ('面試報到' in strEventMSG):
         strTitle = 'TOYO面試報到10天內'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -365,7 +329,7 @@ def handle_message(event):
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
-    elif ('業務電話' in temp_message.upper()):
+    elif ('業務電話' in strEventMSG):
         strTitle = 'TOYO業務電話'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -394,7 +358,7 @@ def handle_message(event):
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
-    elif ('夜點晚餐' in temp_message.upper()):
+    elif ('夜點晚餐' in strEventMSG):
         strTitle = 'TOYO夜點晚餐'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -420,7 +384,7 @@ def handle_message(event):
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
-    elif ('防疫群組' in temp_message.upper()):
+    elif ('防疫群組' in strEventMSG):
         strTitle = 'TOYO防疫群組7天內'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -448,7 +412,7 @@ def handle_message(event):
             get_message = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
-    elif ('體溫回報' in temp_message.upper()):
+    elif ('體溫回報' in strEventMSG):
         strTitle = 'TOYO體溫回報(當天)'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -469,17 +433,17 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('120' in temp_message.upper() or \
-            '$' in temp_message.upper() or \
-            'MONEY' in temp_message.upper() or \
-            '零用金' in temp_message.upper()):
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('120' in strEventMSG or \
+            '$' in strEventMSG or \
+            'MONEY' in strEventMSG.upper() or \
+            '零用金' in strEventMSG):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         get_message = strMoneyText
 
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('DOOR' in temp_message.upper() or \
-            '門禁' in temp_message.upper()):
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('DOOR' in strEventMSG.upper() or \
+            '門禁' in strEventMSG):
         strTitle = 'TOYO門禁清單(最新)'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -503,9 +467,9 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('NEWFE' in temp_message.upper() or \
-            '新滅火' in temp_message.upper()):
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('NEWFE' in strEventMSG.upper() or \
+            '新滅火' in strEventMSG):
         strTitle = 'TOYO 廠區滅火器最近1次清點情況'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -548,9 +512,9 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('FE' in temp_message.upper() or \
-            '滅火' in temp_message.upper()):
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('FE' in strEventMSG.upper() or \
+            '滅火' in strEventMSG):
         strTitle = 'TOYO 廠區滅火器最近1個月清點情況'
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -593,39 +557,39 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('MEMO' in temp_message.upper()):
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('MEMO' in strEventMSG.upper()):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         get_message = strMemo
 
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('官方帳號教學' in temp_message.upper()):
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('官方帳號教學' in strEventMSG):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         get_message = strLessonLearning
 
-    elif (temp_message[0:2].upper() == 'TY' or temp_message[0:4].upper() == 'TOYO') and \
-            ('推播權杖教學' in temp_message.upper()):
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
+            ('推播權杖教學' in strEventMSG):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         get_message = GVstrLineNotifyHowToGetToken
     # ***** ***** ***** ***** *****
 
     ##### (Ver)版本 #####
-    elif temp_message.upper().count('VER') > 0:
+    elif strEventMSG.upper().count('VER') > 0:
         get_message = '『TOYO行政管理部』版本：\n' + strVer
     # ***** ***** ***** ***** *****
 
     ##### 列出全部的關鍵字清單 #####
-    elif (temp_message[0:4].upper() == 'TOYO') and ('!ALL' in temp_message):
+    elif (strEventMSG[0:4].upper() == 'TOYO') and ('!ALL' in strEventMSG):
         get_TYPE_message = 'TY_TEXT_Send_MSG'
         get_message = GVstrCMKeyWord
     # ***** ***** ***** ***** *****
 
     ##### 程式開發使用 #####
-    elif (temp_message[0:5].upper() == 'ECTOR'):
-        if len(temp_message) == 5:
+    elif (strEventMSG[0:5].upper() == 'ECTOR'):
+        if len(strEventMSG) == 5:
             strCond = ''
         else:
-            strCond = temp_message.replace('ECTOR', '')
+            strCond = strEventMSG.replace('ECTOR', '')
             strCond = strCond.strip()
         #比對輸入[小時分鐘](1225)
         strHHNN = RS_DateTime_2_HHNN()
@@ -809,7 +773,7 @@ def handle_message(event):
     elif get_TYPE_message == 'TSVI非關鍵字的留言':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        push_message = 'TOYO行政管理部有留言如下：\n' + temp_message
+        push_message = 'TOYO行政管理部有留言如下：\n' + strEventMSG
 
         if strPush_NotKeyWord2All_Switch == 'ON': 
             # EctorLiu權杖：
@@ -844,7 +808,7 @@ def handle_message(event):
                             'LineReplyToker： ' + event.reply_token + '\n' + \
                             push_message
             # ===== SQL_LOG
-            push_message = RS_Line_LOG_ADD(strLineDisplayName, strLineUserID, temp_message, get_message) + push_message
+            push_message = RS_Line_LOG_ADD(strLineDisplayName, strLineUserID, strEventMSG, get_message) + push_message
             # ***** ***** ***** ***** *****
             token = strEctorToken
             lineNotifyMessage(token, push_message)
