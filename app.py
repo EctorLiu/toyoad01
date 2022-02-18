@@ -951,7 +951,7 @@ def RS_Line_LOG(strLineName, strLineUserID, strLineMSG):
         ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
         strSQL = ' INSERT INTO ' + strDB_Table + ' ' + \
                     ' (EX01, EX02, EX03, TXT01, EXDT01) ' + \
-                    ' VALUES (' + str(strDateTime) + ',' + str(strLineName) + ',' + str(strLineUserID) + ',' + str(strLineMSG) + ',' + datDT + ') '
+                    ' VALUES (' + (strDateTime) + ',' + (strLineName) + ',' + (strLineUserID) + ',' + (strLineMSG) + ',' + datDT + ') '
         resList = ms.RS_SQL_ExecNonQuery(strSQL)
         RS_Line_LOG = strTitle + '：寫入DB(WEB) BT OK!\n' + \
                         strDateTime  + '\n\n' + \
