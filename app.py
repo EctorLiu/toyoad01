@@ -512,7 +512,14 @@ def handle_message(event):
                             ' ============================== '
             if len(strContent) >= intMaxLineMSGString:
                 strContent = strContent[0:intMaxLineMSGString] + '...(資料過多)'
-            strReply_MSG = strContent
+            ##### 此項需有權限才能執行 #####
+            strAUTHKWQuery = 'TYFE'
+            strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+            if strAUTH_CHK[0:2] == 'GO':
+                strReply_MSG = strContent
+            else:
+                strReply_MSG = '權限不足!'
+            # ***** ***** ***** ***** *****
         else:
             strReply_MSG = strTitle + '：\n' + \
                             '目前ECTOR關閉防火牆\n' + \
@@ -527,7 +534,7 @@ def handle_message(event):
         if strAUTH_CHK[0:2] == 'GO':
             strReply_MSG = GVstrMemo
         else:
-            strReply_MSG = '權限不足!' + '-' + strAUTH_CHK
+            strReply_MSG = '權限不足!'
         # ***** ***** ***** ***** *****
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
