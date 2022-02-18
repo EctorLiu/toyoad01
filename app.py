@@ -619,7 +619,7 @@ def handle_message(event):
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('官方帳號教學' in strEventMSG):
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
-        strReply_MSG = 
+        strReply_MSG = GVstrLessonLearning
     # ***** ***** ***** ***** *****
 
     ##### (Ver)版本 #####
@@ -628,7 +628,7 @@ def handle_message(event):
     # ***** ***** ***** ***** *****
 
     ##### 列出全部的關鍵字清單 #####
-    elif (strEventMSG[0:4].upper() == 'TOYO') and ('!ALL' in strEventMSG):
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and ('!ALL' in strEventMSG):
         get_TYPE_message = 'Initial'
         #get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strContent = GVstrCMKeyWord
