@@ -941,8 +941,8 @@ def RS_DateTime_2_HHNN():
 def RS_Line_LOG(strLineName, strLineUserID, strLineMSG):
     #取得時間
     datDT = datetime.now()
-    FVstrToday = datDT.strftime("%Y-%m-%d") 
-    FVstrNow = datDT.strftime("%Y-%m-%d %H:%M:%S")
+    strToday = datDT.strftime("%Y-%m-%d") 
+    strDateTime = datDT.strftime("%Y-%m-%d %H:%M:%S")
 
     #寫入LOG
     if strSQL_FW_Switch == 'ON':
