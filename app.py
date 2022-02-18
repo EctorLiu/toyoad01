@@ -108,7 +108,7 @@ def handle_message(event):
     ##### (TSVI)推播 #####
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO'):
         #類別
-        get_TYPE_message = 'SJ_Push_MSG_Text'
+        get_TYPE_message = 'SYS_ASSIGN_PUSH_MSG_Text'
         #開頭的關鍵字長度
         if strEventMSG[0:2].upper() == 'TY':
             intInitialKWLen = 2
@@ -175,15 +175,15 @@ def handle_message(event):
 
     ##### 關鍵字 #####
     elif ('如何使用' in strEventMSG or 'HELP' in strEventMSG.upper() or '?' in strEventMSG.strip() or '？' in strEventMSG.strip()):
-        get_TYPE_message = 'How_To_Use'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = GVstrHowToUse
 
     elif ('最近' in strEventMSG or '最新' in strEventMSG) and ('訊息' in strEventMSG or '活動' in strEventMSG):
-        get_TYPE_message = 'New_Activity'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = strNewestActivity
 
     elif ('SOP' in strEventMSG) and ('清單' in strEventMSG or '下載' in strEventMSG):
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = GVstrSOPList01
 
     elif ('宿舍' in strEventMSG) and \
@@ -196,7 +196,7 @@ def handle_message(event):
             strCond = strCond.replace('防疫', '')
             strCond = '\'%' + strCond.strip() + '%\''
         strTitle = 'TOYO移工宿舍輪班查詢(前3天到今天)'
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             #DeptName MemName ShiftResult   DormPos
@@ -236,7 +236,7 @@ def handle_message(event):
             strCond = strCond.replace('查詢', '')
             strCond = '\'%' + strCond.strip() + '%\''
         strTitle = 'TOYO車輛申請查詢(車牌/姓名)'
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = ' SELECT [DEPT_NAME], [MEM_NAME], [CAR_LIST] ' + \
@@ -264,7 +264,7 @@ def handle_message(event):
 
     elif ('面試報到' in strEventMSG):
         strTitle = 'TOYO面試報到10天內'
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT AF_DAY, IN_TYPE, IN_DAY,IN_TIME,DEPT_CODE, IN_NAME ' + \
@@ -292,7 +292,7 @@ def handle_message(event):
                             '暫停使用..有急用可找ECTOR'
     elif ('業務電話' in strEventMSG):
         strTitle = 'TOYO業務電話'
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [SA_NAME] ,[SA_DEPT] ,[SA_AREA] ,[SA_PHONE] ,[SA_EMAIL] ,[SA_DATAUP] ' + \
@@ -321,7 +321,7 @@ def handle_message(event):
                             '暫停使用..有急用可找ECTOR'
     elif ('夜點晚餐' in strEventMSG):
         strTitle = 'TOYO夜點晚餐'
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [FOOD_KIND] ,[FOOD_NAME] ,[FOOD_STKNUM] ,[FOOD_DAYNUM] ,[FOOD_YN] ,[FOOD_USEDAY] ,[FOOD_CHGYN] ,[FOOD_UPDATE] ' + \
@@ -347,7 +347,7 @@ def handle_message(event):
                             '暫停使用..有急用可找ECTOR'
     elif ('防疫群組' in strEventMSG):
         strTitle = 'TOYO防疫群組7天內'
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [AF_DAY] ,[PV_DATE] ,[PV_TIME] ,[PV_NAME] ,[PV_NUM] ,[TY_MEM] ,[PV_ISEAT] ' + \
@@ -375,7 +375,7 @@ def handle_message(event):
                             '暫停使用..有急用可找ECTOR'
     elif ('體溫回報' in strEventMSG):
         strTitle = 'TOYO體溫回報(當天)'
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             resList = ms.RS_SQL_ExecQuery('SELECT DISTINCT ID, NAME, BT, CHK FROM TIM_DB.dbo.VIEW_APP_MEM_BODYTEMP ORDER BY BT DESC, ID')
@@ -399,14 +399,14 @@ def handle_message(event):
             '$' in strEventMSG or \
             'MONEY' in strEventMSG.upper() or \
             '零用金' in strEventMSG):
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = GVstrMoneyText
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('DOOR' in strEventMSG.upper() or \
             '門禁' in strEventMSG):
         strTitle = 'TOYO門禁清單(最新)'
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT TOP(50) HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime ' + \
@@ -432,7 +432,7 @@ def handle_message(event):
             ('NEWFE' in strEventMSG.upper() or \
             '新滅火' in strEventMSG):
         strTitle = 'TOYO 廠區滅火器最近1次清點情況'
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CHK_01] ,[CHK_02] ,[CHK_03] ,[CHK_04] ,[FE_NAME] ' \
@@ -477,7 +477,7 @@ def handle_message(event):
             ('FE' in strEventMSG.upper() or \
             '滅火' in strEventMSG):
         strTitle = 'TOYO 廠區滅火器最近1個月清點情況'
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CHK_01] ,[CHK_02] ,[CHK_03] ,[CHK_04] ,[FE_NAME] ' \
@@ -520,17 +520,17 @@ def handle_message(event):
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('MEMO' in strEventMSG.upper()):
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = GVstrMemo
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('官方帳號教學' in strEventMSG):
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = GVstrLessonLearning
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('推播權杖教學' in strEventMSG):
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = GVstrLineNotifyHowToGetToken
     # ***** ***** ***** ***** *****
 
@@ -541,7 +541,7 @@ def handle_message(event):
 
     ##### 列出全部的關鍵字清單 #####
     elif (strEventMSG[0:4].upper() == 'TOYO') and ('!ALL' in strEventMSG):
-        get_TYPE_message = 'TY_TEXT_Send_MSG'
+        get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = GVstrCMKeyWord
     # ***** ***** ***** ***** *****
 
@@ -556,14 +556,14 @@ def handle_message(event):
         strHHNN = RS_DateTime_2_HHNN()
         #開發者關鍵字清單
         if (strHHNN in strCond) and ('KW' in strCond):        
-            get_TYPE_message = 'TY_TEXT_Send_MSG'
+            get_TYPE_message = 'SYS_KW_INPUT_MSG'
             strReply_MSG = GVstrECKeyWord
         #官方帳號教學
         elif (strHHNN in strCond) and ('LINE' in strCond):        
-            get_TYPE_message = 'TY_TEXT_Send_MSG'
+            get_TYPE_message = 'SYS_KW_INPUT_MSG'
             strReply_MSG = GVstrLessonLearning
         else:
-            get_TYPE_message = 'TY_TEXT_Send_MSG'
+            get_TYPE_message = 'SYS_KW_INPUT_MSG'
             strReply_MSG = 'EC' + strCond + '\n' * 100 + strHHNN[-2:] + 'OK'
 
 #
@@ -588,7 +588,7 @@ def handle_message(event):
 #
 
     else:
-        get_TYPE_message = 'TSVI非關鍵字的留言'
+        get_TYPE_message = 'SYS_NOT_KW_INPUT_MSG'
         strReply_MSG = GVstrHowToUse
 
         
@@ -619,7 +619,7 @@ def handle_message(event):
     # ***** ***** ***** ***** *****
 
     ##### 推播Line Notify內容 #####
-    elif get_TYPE_message == 'SJ_Push_MSG_Text':
+    elif get_TYPE_message == 'SYS_ASSIGN_PUSH_MSG_Text':
         #推播訊息編輯
         push_message = '\n來自[' + strLineDisplayName + ']推播訊息：\n' + strReply_MSG
         #推播ALL or 個人
@@ -652,13 +652,28 @@ def handle_message(event):
             # 個人:            
             token = strPush2Who
             lineNotifyMessage(token, push_message)
-        # ***** ***** ***** ***** *****
+    # ***** ***** ***** ***** *****
 
-    elif get_TYPE_message == 'TSVI非關鍵字的留言':
+    ##### 推播Line Notify內容 #####
+    elif get_TYPE_message == 'SYS_KW_INPUT_MSG':
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
-        push_message = 'TOYO行政管理部有留言如下：\n' + strEventMSG
+        push_message = '\nTOYO行政管理部『KeyWord』訊息：\n' + strEventMSG
+        #推播訊息編輯
+        push_message = '『KeyWord』DebugModeForEctor\n：' + push_message
+        # EctorLiu權杖：
+        token = strEctorToken
+        lineNotifyMessage(token, push_message)
 
+        #使用者取得的訊息
+        reply = TextSendMessage(text=f"{strReply_MSG}")
+        line_bot_api.reply_message(event.reply_token,  reply)
+
+
+    elif get_TYPE_message == 'SYS_NOT_KW_INPUT_MSG':
+        ##### 推播 #####
+        # 修改為你要傳送的訊息內容
+        push_message = '\nTOYO行政管理部『非關鍵字』留言：\n' + strEventMSG
         if strPush_NotKeyWord2All_Switch == 'ON': 
             # EctorLiu權杖：
             token = strEctorToken
@@ -685,31 +700,16 @@ def handle_message(event):
             token = strMomoToken
             lineNotifyMessage(token, push_message)
         else:
+            #推播訊息編輯
+            push_message = '『非關鍵字』DebugModeForEctor\n：' + push_message
             # EctorLiu權杖：
-            push_message = 'DebugModeForEctor\n：' + \
-                            'LineName： ' + strLineDisplayName + '\n' + \
-                            'LineUserID： ' + strLineUserID + '\n' + \
-                            'LineReplyToker： ' + event.reply_token + '\n' + \
-                            push_message
-            # ===== SQL_LOG
-            push_message = strSQLReturn + push_message
-            # ***** ***** ***** ***** *****
             token = strEctorToken
             lineNotifyMessage(token, push_message)
-        # ***** ***** ***** ***** *****
 
+        #使用者取得的訊息
         reply = TextSendMessage(text=f"{strReply_MSG}")
         line_bot_api.reply_message(event.reply_token,  reply)
-
     # ***** ***** ***** ***** *****
-
-    elif get_TYPE_message == 'How_To_Use':
-        reply = TextSendMessage(text=f"{strReply_MSG}")
-        line_bot_api.reply_message(event.reply_token,  reply)
-
-    elif get_TYPE_message == 'New_Activity':
-        reply = TextSendMessage(text=f"{strReply_MSG}")
-        line_bot_api.reply_message(event.reply_token,  reply)
 
     elif get_TYPE_message == 'TY_LOGO':
         reply = ImageSendMessage(original_content_url = 'https://github.com/EctorLiu/Ector01/raw/main/img/A.jpg', \
@@ -717,15 +717,6 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,  reply)
 
     elif get_TYPE_message == 'TY_TEXT_Send_MSG':
-        # EctorLiu權杖：
-        push_message = 'TY_TEXT_Send_MSG\n：' + \
-                        'LineName： ' + strLineDisplayName + '\n' + \
-                        'LineUserID： ' + strLineUserID + '\n' + \
-                        'LineReplyToker： ' + event.reply_token + '\n' + \
-                        strReply_MSG            
-        token = strEctorToken
-        lineNotifyMessage(token, push_message)
-
         reply = TextSendMessage(text=f"{strReply_MSG}")
         line_bot_api.reply_message(event.reply_token,  reply)
 
@@ -757,6 +748,25 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,  reply)
 
 
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
+# ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
 # ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
 
 # 推播相關部分
