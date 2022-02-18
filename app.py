@@ -292,7 +292,7 @@ def handle_message(event):
                             '暫停使用..有急用可找ECTOR'
     elif ('業務電話' in strEventMSG):
         strTitle = 'TOYO業務電話'
-        get_TYPE_message = 'SYS_KW_INPUT_MSG'
+        get_TYPE_message = 'TY_TEXT_Send_MSG'
         if strSQL_FW_Switch == 'ON':
             ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [SA_NAME] ,[SA_DEPT] ,[SA_AREA] ,[SA_PHONE] ,[SA_EMAIL] ,[SA_DATAUP] ' + \
