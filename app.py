@@ -827,11 +827,11 @@ def RS_CHECK_KWAUTH_by_UserId(strUserId, strQueryKW):
                     ' FROM [TIM_DB].[dbo].[tblAPP_TYAD_Auth_List] ' + \
                     ' WHERE ( [AUTH_UserID] = \' %s \' ) '  % (strUserId)
         resList = ms.RS_SQL_ExecQuery(strSQL)
-        strTemp=''
         for ([AUTH_UnitName],[AUTH_MemName],[AUTH_KW_List]) in resList:
+            strAuthKWList = str(AUTH_KW_List)
             strAuthUnitName = str(AUTH_UnitName)
             strAuthMemName = str(AUTH_MemName)
-            strAuthKWList = str(AUTH_KW_List)
+
         if ('ALL' in strAuthKWList.upper()):
             RS_CHECK_AUTH_by_UserId = 'GO' + ',' + strAuthUnitName + ',' + strAuthMemName
         elif (strQueryKW.upper() in strAuthKWList.upper()):
