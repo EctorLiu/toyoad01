@@ -652,6 +652,7 @@ def handle_message(event):
         if strAUTH_CHK[0:2] == 'GO':
             # RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID, strModUserDBName, strModAUTHItemName, strModYN):
             strEventMSG = RS_RIGHT_String_NotLeftStrNum(strEventMSG, 4)
+            strEventMSG = strEventMSG.replace('，', ',')
             strEventMSG = strEventMSG.strip() + ',,'
             lstCond = strEventMSG.split(',')
             # strCHKUserDBName = 'ECTOR,宜庭,智弘,冠伶,昆霖,玉敏,汶靜,MOMO'
