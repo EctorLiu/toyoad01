@@ -650,7 +650,6 @@ def handle_message(event):
         strAUTHKWQuery = 'TYPL'
         strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
         if strAUTH_CHK[0:2] == 'GO':
-            strReply_MSG = strContent
             # RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID, strModUserDBName, strModAUTHItemName, strModYN):
             strEventMSG = RS_RIGHT_String_NotLeftStrNum(strEventMSG, 4)
             strEventMSG = strEventMSG.strip() + ',,'
