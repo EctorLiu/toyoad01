@@ -1076,8 +1076,8 @@ def RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID
                 strAUTHTo = 'TYXDINNER'
         elif strModAUTHItemName == '查詢業務電話':
             if strModYN == 'Y':
-                strAUTHFrom = 'TYXDINNER'
-                strAUTHTo = 'TYXSATEL'
+                strAUTHFrom = 'TYXSATEL'
+                strAUTHTo = 'TYSATEL'
             else:
                 strAUTHFrom = 'TYSATEL'
                 strAUTHTo = 'TYXSATEL'
