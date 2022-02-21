@@ -971,6 +971,7 @@ def RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID
     # TYMEMO   TYFE    TYNEWFE   TYDOOR   TYBT     TYPV      TYDINNER  TYSATEL     TYHRINTERVIEW  TYCAR   TYDORM      TYKW    TYPUSH
     # 備註說明  滅火器  最新滅火器 查詢門禁  查詢體溫  查詢防疫  查詢夜點   查詢業務電話 查詢面試報到    查詢車輛 查詢防疫宿舍 全關鍵字 推播
     strCHKAUTHItemName = '備註說明,滅火器,最新滅火器,查詢門禁,查詢體溫,查詢防疫,查詢夜點,查詢業務電話,查詢面試報到,查詢車輛,查詢防疫宿舍,全關鍵字,推播'
+    strCHKYN = 'Y,N'
     # ***** ***** ***** ***** *****
 
     #取得時間
@@ -1013,7 +1014,6 @@ def RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID
             exit()
 
     # 確認開關
-    strCHKYN = 'Y,N'
     if not (strModYN in (strCHKYN.upper())):
         RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(設定YN錯誤):應為[ ' + strCHKYN + ' ]之一'
         return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
