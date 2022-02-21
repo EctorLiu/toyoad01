@@ -646,8 +646,8 @@ def handle_message(event):
     ##### 修改權限 #####
     elif ('修改權限' in strEventMSG):
         # RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID, strModUserDBName, strModAUTHItemName, strModYN):
-        strEventMSG = strEventMSG.replace('修改權限', '')
-        lstCond = strEventMSG.split(',') + ',,'
+        strEventMSG = strEventMSG.replace('修改權限', '') + ',,'
+        lstCond = strEventMSG.split(',')
         # strCHKUserDBName = 'ECTOR,宜庭,智弘,冠伶,昆霖,玉敏,汶靜,MOMO'
         # strCHKAUTHItemName = '備註說明,滅火器,最新滅火器,查詢門禁,查詢體溫,查詢防疫,查詢夜點,查詢業務電話,查詢面試報到,查詢車輛,查詢防疫宿舍,全關鍵字,推播'
         strModName = lstCond[0].strip().upper()
