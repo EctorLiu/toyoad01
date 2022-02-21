@@ -646,17 +646,25 @@ def handle_message(event):
 
     ##### 修改權限 #####
     elif ('權限' in strEventMSG[0:4]) and ('修改' in strEventMSG[0:4]):
-        # RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID, strModUserDBName, strModAUTHItemName, strModYN):
-        strEventMSG = RS_RIGHT_String_NotLeftStrNum(strEventMSG, 4)
-        strEventMSG = strEventMSG.strip() + ',,'
-        lstCond = strEventMSG.split(',')
-        # strCHKUserDBName = 'ECTOR,宜庭,智弘,冠伶,昆霖,玉敏,汶靜,MOMO'
-        # strCHKAUTHItemName = '備註說明,滅火器,最新滅火器,查詢門禁,查詢體溫,查詢防疫,查詢夜點,查詢業務電話,查詢面試報到,查詢車輛,查詢防疫宿舍,全關鍵字,推播'
-        strModName = lstCond[0].strip().upper()
-        strModAUTH = lstCond[1].strip().upper()
-        strModYN = lstCond[2].strip().upper()
-        strCall = RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineDisplayName, strLineUserID, strModName, strModAUTH, strModYN)
-        strReply_MSG = strCall
+        ##### 此項需有權限才能執行 #####
+        strAUTHKWQuery = 'TYPL'
+        strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+        if strAUTH_CHK[0:2] == 'GO':
+            strReply_MSG = strContent
+            # RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID, strModUserDBName, strModAUTHItemName, strModYN):
+            strEventMSG = RS_RIGHT_String_NotLeftStrNum(strEventMSG, 4)
+            strEventMSG = strEventMSG.strip() + ',,'
+            lstCond = strEventMSG.split(',')
+            # strCHKUserDBName = 'ECTOR,宜庭,智弘,冠伶,昆霖,玉敏,汶靜,MOMO'
+            # strCHKAUTHItemName = '備註說明,滅火器,最新滅火器,查詢門禁,查詢體溫,查詢防疫,查詢夜點,查詢業務電話,查詢面試報到,查詢車輛,查詢防疫宿舍,全關鍵字,推播'
+            strModName = lstCond[0].strip().upper()
+            strModAUTH = lstCond[1].strip().upper()
+            strModYN = lstCond[2].strip().upper()
+            strCall = RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineDisplayName, strLineUserID, strModName, strModAUTH, strModYN)
+            strReply_MSG = strCall
+        else:
+            strReply_MSG = '權限不足!'
+        # ***** ***** ***** ***** *****
     # ***** ***** ***** ***** *****
 
 
@@ -980,19 +988,19 @@ def RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID
 
     #參數處理
     if len(strModUserDBName.strip()) == 0:
-        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入對象空白)正確舉例:\n修改權限ECTOR,推播,Y' + '\n' + \
+        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入對象空白)\n\n正確舉例:\n修改權限 ECTOR , 推播 , Y ' + '\n' + \
                     '參數2可用：[ ' + strCHKYN + ' ]\n' + \
                     '參數3可用：[ ' + strCHKAUTHItemName + ' ]'
         return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
         exit()
     if len(strModAUTHItemName.strip()) == 0:
-        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入權限空白)正確舉例:\n修改權限ECTOR,推播,Y' + '\n' + \
+        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入權限空白)\n\n正確舉例:\n修改權限 ECTOR , 推播 , Y ' + '\n' + \
                     '參數2可用：[ ' + strCHKYN + ' ]\n' + \
                     '參數3可用：[ ' + strCHKAUTHItemName + ' ]'
         return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
         exit()
     if len(strModYN.strip()) == 0:
-        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入YN空白)正確舉例:\n修改權限ECTOR,推播,Y' + '\n' + \
+        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入YN空白)\n\n正確舉例:\n修改權限 ECTOR , 推播 , Y ' + '\n' + \
                     '參數2可用：[ ' + strCHKYN + ' ]\n' + \
                     '參數3可用：[ ' + strCHKAUTHItemName + ' ]'
         return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
@@ -1109,6 +1117,13 @@ def RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID
             else:
                 strAUTHFrom = 'TYPUSH'
                 strAUTHTo = 'TYXPUSH'
+        elif strModAUTHItemName == '修改權限':
+            if strModYN == 'Y':
+                strAUTHFrom = 'TYXPL'
+                strAUTHTo = 'TYPL'
+            else:
+                strAUTHFrom = 'TYPL'
+                strAUTHTo = 'TYXPL'
         else:
             RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(特殊狀況):[ 一次只能設定一個權限[ ' + strModAUTHItemName + ' ], 或請擷取畫面並聯絡設計者 ]'
             return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
