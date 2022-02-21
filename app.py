@@ -1027,7 +1027,7 @@ def RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID
         exit()
 
     # 確認權限項目
-    if not (strModAUTHItemName in (strCHKAUTHItemName.upper())):
+    if not (strModAUTHItemName in (strCHKAUTHItemName.upper()) or strModAUTHItemName in ('修改權限')):
         RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(權限項目錯誤):應為[ ' + strCHKAUTHItemName + ' ]之一'
         return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
         exit()
