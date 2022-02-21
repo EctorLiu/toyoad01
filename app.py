@@ -242,8 +242,8 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
-    elif ('車輛' in strEventMSG or '車道' in strEventMSG) and \
-            ('查詢' in strEventMSG):
+    elif ('車輛' in strEventMSG[0:4] or '車道' in strEventMSG[0:4]) and \
+            ('查詢' in strEventMSG[0:4]):
         if len(strEventMSG) == 4:
             strCond = '\'%\''
         else:
