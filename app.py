@@ -976,6 +976,18 @@ def RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID
     strDateTime = datDT.strftime("%Y-%m-%d %H:%M:%S")
 
     #參數處理
+    if len(strModUserDBName.strip() == 0:
+        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入對象空白)正確舉例:\n修改權限ECTOR,推播,Y'
+        return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
+        exit()
+    if len(strModAUTHItemName.strip() == 0:
+        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入權限空白)正確舉例:\n修改權限ECTOR,推播,Y'
+        return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
+        exit()
+    if len(strModYN.strip() == 0:
+        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入YN空白)正確舉例:\n修改權限ECTOR,推播,Y'
+        return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
+        exit()
     strModUserDBName=strModUserDBName.upper()
     strModAUTHItemName = strModAUTHItemName.upper()
     strModYN = strModYN.upper()
@@ -1109,7 +1121,7 @@ def RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID
                     ' [AUTH_by_LineName] = \'' + strLineName + '\' ' + \
                     ' WHERE [AUTH_MemName] = \'' + strModUserDBName + '\''
         resList = ms.RS_SQL_ExecNonQuery(strSQL)
-        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = strDateTime + '\n：DB修改OK!'
+        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = strDateTime + '：\nDB修改OK!'
         return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
     else:
         RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG:防火牆關閉'
