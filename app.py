@@ -1135,10 +1135,10 @@ def RS_Get_AUTHList_by_UserDBName(strQueryUserDBName):
     #查詢AuthList
     if strSQL_FW_Switch == 'ON':
         #Table Name
-        strDB_Table = '[TIM_DB].[dbo].[tblAPP_TEST_Auth_List]'
+        strDB_Table = '[TIM_DB].[dbo].[tblAPP_TYAD_Auth_List]'
         ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
         strSQL = ' SELECT [AUTH_KW_List] ' + \
-                    ' FROM [TIM_DB].[dbo].[tblAPP_TEST_Auth_List] ' + \
+                    ' FROM [TIM_DB].[dbo].[tblAPP_TYAD_Auth_List] ' + \
                     ' WHERE [AUTH_MemName] = \'' + strQueryUserDBName + '\''
         resList = ms.RS_SQL_ExecQuery(strSQL)
         intCount=0
