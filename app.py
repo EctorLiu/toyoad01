@@ -125,6 +125,7 @@ def handle_message(event):
             elif strEventMSG[0:6].upper() == 'TOYO推播':
                 intInitialKWLen = 6
             strPushKW = RS_RIGHT_String_NotLeftStrNum(strEventMSG, intInitialKWLen)
+            strPushKW = strPushKW.strip()
             #strReply_MSG
             if (strPushKW[0:5].upper() == 'ECTOR'):
                 intKWLength = 5
@@ -183,20 +184,20 @@ def handle_message(event):
     # ***** ***** ***** ***** *****
 
     ##### 關鍵字 #####
-    elif ('如何使用' in strEventMSG or 'HELP' in strEventMSG.upper() or '?' in strEventMSG.strip() or '？' in strEventMSG.strip()):
+    elif ('如何使用' in strEventMSG[0:4] or 'HELP' in strEventMSG.upper() or '?' in strEventMSG.strip() or '？' in strEventMSG.strip()):
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = GVstrHowToUse
 
-    elif ('最近' in strEventMSG or '最新' in strEventMSG) and ('訊息' in strEventMSG or '活動' in strEventMSG):
+    elif ('最近' in strEventMSG[0:4] or '最新' in strEventMSG[0:4]) and ('訊息' in strEventMSG[0:4] or '活動' in strEventMSG[0:4]):
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = strNewestActivity
 
-    elif ('SOP' in strEventMSG) and ('清單' in strEventMSG or '下載' in strEventMSG):
+    elif ('SOP' in strEventMSG[0:5]) and ('清單' in strEventMSG[0:5] or '下載' in strEventMSG[0:5]):
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = GVstrSOPList01
 
-    elif ('宿舍' in strEventMSG) and \
-            ('防疫' in strEventMSG):
+    elif ('宿舍' in strEventMSG[0:4]) and \
+            ('防疫' in strEventMSG[0:4]):
         if len(strEventMSG) == 4:
             strCond = '\'%\''
         else:
@@ -287,7 +288,7 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
-    elif ('面試報到' in strEventMSG):
+    elif ('面試' in strEventMSG[0:4]) and ('報到' in strEventMSG[0:4]):
         strTitle = 'TOYO面試報到10天內'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -324,7 +325,7 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
-    elif ('業務電話' in strEventMSG):
+    elif ('業務' in strEventMSG[0:4]) and ('電話' in strEventMSG[0:4] or '聯絡' in strEventMSG[0:4]):
         strTitle = 'TOYO業務電話'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -360,7 +361,7 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
-    elif ('夜點晚餐' in strEventMSG):
+    elif ('夜點' in strEventMSG[0:4]) and ('晚餐' in strEventMSG[0:4]):
         strTitle = 'TOYO夜點晚餐'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -395,7 +396,7 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
-    elif ('防疫群組' in strEventMSG):
+    elif ('防疫群組' in strEventMSG[0:4]):
         strTitle = 'TOYO防疫群組7天內'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -432,7 +433,7 @@ def handle_message(event):
                             '目前ECTOR關閉防火牆\n' + \
                             '暫停使用..有急用可找ECTOR'
 
-    elif ('體溫回報' in strEventMSG):
+    elif ('體溫' in strEventMSG[0:4]) and ('回報' in strEventMSG[0:4] or '查詢' in strEventMSG[0:4]):
         strTitle = 'TOYO體溫回報(當天)'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -462,8 +463,8 @@ def handle_message(event):
                             '暫停使用..有急用可找ECTOR'
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('DOOR' in strEventMSG.upper() or \
-            '門禁' in strEventMSG):
+            ('DOOR' in strEventMSG[0:10].upper() or \
+            '門禁' in strEventMSG[0:8]):
         strTitle = 'TOYO門禁清單(最新)'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -496,8 +497,8 @@ def handle_message(event):
                             '暫停使用..有急用可找ECTOR'
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('NEWFE' in strEventMSG.upper() or \
-            '新滅火' in strEventMSG):
+            ('NEWFE' in strEventMSG[0:10].upper() or \
+            '新滅火' in strEventMSG[0:10]):
         strTitle = 'TOYO 廠區滅火器最近1次清點情況'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -548,8 +549,8 @@ def handle_message(event):
                             '暫停使用..有急用可找ECTOR'
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('FE' in strEventMSG.upper() or \
-            '滅火' in strEventMSG):
+            ('FE' in strEventMSG[0:10].upper() or \
+            '滅火' in strEventMSG[0:10]):
         strTitle = 'TOYO 廠區滅火器最近1個月清點情況'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
@@ -600,7 +601,7 @@ def handle_message(event):
                             '暫停使用..有急用可找ECTOR'
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('MEMO' in strEventMSG.upper()):
+            ('MEMO' in strEventMSG[0:10].upper()):
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         ##### 此項需有權限才能執行 #####
         strAUTHKWQuery = 'TYMEMO'
@@ -612,23 +613,23 @@ def handle_message(event):
         # ***** ***** ***** ***** *****GVstrLessonLearning
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('推播權杖教學' in strEventMSG):
+            ('推播權杖教學' in strEventMSG[0:12]):
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = GVstrLineNotifyHowToGetToken
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('官方帳號教學' in strEventMSG):
+            ('官方帳號教學' in strEventMSG[0:12]):
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = GVstrLessonLearning
     # ***** ***** ***** ***** *****
 
     ##### (Ver)版本 #####
-    elif strEventMSG.upper().count('VER') > 0:
+    elif strEventMSG[0:10].upper().count('VER') > 0:
         strReply_MSG = '『TOYO行政管理部』版本：\n' + strVer
     # ***** ***** ***** ***** *****
 
     ##### 列出全部的關鍵字清單 #####
-    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and ('!ALL' in strEventMSG):
+    elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and ('!ALL' in strEventMSG[0:10]):
         get_TYPE_message = 'Initial'
         #get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strContent = GVstrCMKeyWord
@@ -644,9 +645,10 @@ def handle_message(event):
 
 
     ##### 修改權限 #####
-    elif ('修改權限' in strEventMSG):
+    elif ('權限' in strEventMSG[0:4]) and ('修改' in strEventMSG[0:4]):
         # RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID, strModUserDBName, strModAUTHItemName, strModYN):
-        strEventMSG = strEventMSG.replace('修改權限', '') + ',,'
+        strEventMSG = RS_RIGHT_String_NotLeftStrNum(strEventMSG, 4)
+        strEventMSG = strEventMSG.strip() + ',,'
         lstCond = strEventMSG.split(',')
         # strCHKUserDBName = 'ECTOR,宜庭,智弘,冠伶,昆霖,玉敏,汶靜,MOMO'
         # strCHKAUTHItemName = '備註說明,滅火器,最新滅火器,查詢門禁,查詢體溫,查詢防疫,查詢夜點,查詢業務電話,查詢面試報到,查詢車輛,查詢防疫宿舍,全關鍵字,推播'
@@ -977,15 +979,21 @@ def RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID
 
     #參數處理
     if len(strModUserDBName.strip()) == 0:
-        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入對象空白)正確舉例:\n修改權限ECTOR,推播,Y'
+        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入對象空白)正確舉例:\n修改權限ECTOR,推播,Y' + '\n' + \
+                    '參數2可用：[ ' + strCHKYN + ' ]\n' + \
+                    '參數3可用：[ ' + strCHKAUTHItemName + ' ]'
         return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
         exit()
     if len(strModAUTHItemName.strip()) == 0:
-        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入權限空白)正確舉例:\n修改權限ECTOR,推播,Y'
+        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入權限空白)正確舉例:\n修改權限ECTOR,推播,Y' + '\n' + \
+                    '參數2可用：[ ' + strCHKYN + ' ]\n' + \
+                    '參數3可用：[ ' + strCHKAUTHItemName + ' ]'
         return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
         exit()
     if len(strModYN.strip()) == 0:
-        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入YN空白)正確舉例:\n修改權限ECTOR,推播,Y'
+        RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入YN空白)正確舉例:\n修改權限ECTOR,推播,Y' + '\n' + \
+                    '參數2可用：[ ' + strCHKYN + ' ]\n' + \
+                    '參數3可用：[ ' + strCHKAUTHItemName + ' ]'
         return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
         exit()
     strModUserDBName=strModUserDBName.upper()
