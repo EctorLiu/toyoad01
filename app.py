@@ -1122,7 +1122,7 @@ def RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID
                     ' WHERE [AUTH_MemName] = \'' + strModUserDBName + '\''
         resList = ms.RS_SQL_ExecNonQuery(strSQL)
         RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = strDateTime + '：\nDB修改OK!' + '\n' + \
-                '改[ ' + strModUserDBName + ' ] 的 [ ' + strModAUTHItemName + ' ] 為 [ ' + strModYN + ' ]\n' + strSQL
+                '改[ ' + strModUserDBName + ' ] 的 [ ' + strModAUTHItemName + ' ] 為 [ ' + strModYN + ' ]'
         return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
     else:
         RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG:防火牆關閉'
