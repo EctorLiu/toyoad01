@@ -989,20 +989,20 @@ def RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID
     #參數處理
     if len(strModUserDBName.strip()) == 0:
         RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入對象空白)\n\n正確舉例:\n修改權限 ECTOR , 推播 , Y ' + '\n' + \
-                    '參數2可用：[ ' + strCHKYN + ' ]\n' + \
-                    '參數3可用：[ ' + strCHKAUTHItemName + ' ]'
+                    '參數2可用：[ ' + strCHKAUTHItemName + ' ]'
+                    '參數3可用：[ ' + strCHKYN + ' ]\n' + \
         return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
         exit()
     if len(strModAUTHItemName.strip()) == 0:
         RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入權限空白)\n\n正確舉例:\n修改權限 ECTOR , 推播 , Y ' + '\n' + \
-                    '參數2可用：[ ' + strCHKYN + ' ]\n' + \
-                    '參數3可用：[ ' + strCHKAUTHItemName + ' ]'
+                    '參數2可用：[ ' + strCHKAUTHItemName + ' ]'
+                    '參數3可用：[ ' + strCHKYN + ' ]\n' + \
         return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
         exit()
     if len(strModYN.strip()) == 0:
         RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN = 'NG(輸入YN空白)\n\n正確舉例:\n修改權限 ECTOR , 推播 , Y ' + '\n' + \
-                    '參數2可用：[ ' + strCHKYN + ' ]\n' + \
-                    '參數3可用：[ ' + strCHKAUTHItemName + ' ]'
+                    '參數2可用：[ ' + strCHKAUTHItemName + ' ]'
+                    '參數3可用：[ ' + strCHKYN + ' ]\n' + \
         return RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN
         exit()
     strModUserDBName=strModUserDBName.upper()
