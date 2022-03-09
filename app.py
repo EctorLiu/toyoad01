@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M304)1600'
+strVer = '(M309)1550'
 
     # 切換SQL功能選擇：ON/OFF
 strSQL_FW_Switch = 'ON'
@@ -60,7 +60,8 @@ from datetime import datetime
     # ***** ***** ***** ***** *****
 
     ##### 自訂函數功能 ######
-from rs_function_01 import * 
+from rf_string_01 import * 
+from rf_string_02 import * 
     # ***** ***** ***** ***** *****
 
 @app.route("/", methods=["GET", "POST"])
