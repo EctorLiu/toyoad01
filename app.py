@@ -62,6 +62,7 @@ from datetime import datetime
     ##### 自訂函數功能 ######
 from rf_string_01 import * 
 from rf_string_02 import * 
+from rf_datetime_01 import * 
     # ***** ***** ***** ***** *****
 
 @app.route("/", methods=["GET", "POST"])
@@ -929,20 +930,6 @@ def lineNotifyMessage(token, msg):
     r = requests.post('https://notify-api.line.me/api/notify', headers = headers, params = payload)
     return r.status_code
     # ***** ***** ***** *****  *****
-
-
-    ##### 日期編碼 ######
-def RS_DateTime_2_HHNN():
-    datDT = time.localtime()
-    strHour = time.strftime("%H", datDT) 
-    strMinute = time.strftime("%M", datDT) 
-    if len(strHour) < 2:
-        strHour = '0' + strHour
-    if len(strMinute) < 2:
-        strMinute = '0' + strMinute
-    RS_DateTime_2_HH_NN = strHour + strMinute
-    return RS_DateTime_2_HH_NN
-    # ***** ***** ***** ***** *****
 
 
     ##### 權限查詢 ######
