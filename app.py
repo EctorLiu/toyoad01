@@ -47,9 +47,11 @@ from datetime import datetime
     # ***** ***** ***** ***** *****
 
     ##### 自訂函數功能 ######
+from rm_initial import * 
 from rf_string_01 import * 
 from rf_string_02 import * 
 from rf_datetime_01 import * 
+import rf_sqldb_01 as pymsdb
     # ***** ***** ***** ***** *****
 
 @app.route("/", methods=["GET", "POST"])
@@ -213,7 +215,7 @@ def handle_message(event):
         strTitle = 'TOYO移工宿舍輪班查詢(前3天到今天)'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+            ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             #DeptName MemName ShiftResult   DormPos
             #裝配課    陳文水  08~17_T休息班 (長宏)公學宿舍_3F_301
             strSQL = 'SELECT [DeptName], [MemName], [ShiftResult], [DormPos], FILETIME ' + \
@@ -261,7 +263,7 @@ def handle_message(event):
         strTitle = 'TOYO車輛申請查詢(車牌/姓名)'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+            ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = ' SELECT [DEPT_NAME], [MEM_NAME], [CAR_LIST] ' + \
                         ' FROM [TIM_DB].[dbo].[APP_BPM_TNFAB01_R1_MEM_CAR_OKLIST] ' + \
                         ' WHERE ([CAR_LIST] LIKE %s OR [CAR_LISTX] LIKE %s OR [MEM_NAME] LIKE %s) '  % (strCond, strCond, strCond) + \
@@ -297,7 +299,7 @@ def handle_message(event):
         strTitle = 'TOYO面試報到10天內'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+            ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT AF_DAY, IN_TYPE, IN_DAY,IN_TIME,DEPT_CODE, IN_NAME ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_MEM_IN_10_DAY] ' + \
                         ' ORDER BY [IN_DAY], [IN_TIME]'
@@ -334,7 +336,7 @@ def handle_message(event):
         strTitle = 'TOYO業務電話'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+            ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [SA_NAME] ,[SA_DEPT] ,[SA_AREA] ,[SA_PHONE] ,[SA_EMAIL] ,[SA_DATAUP] ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_SA_CONTACT_INFO] ' + \
                         ' ORDER BY [SA_AREA] DESC, [SA_DEPT], [SA_NAME] '
@@ -370,7 +372,7 @@ def handle_message(event):
         strTitle = 'TOYO夜點晚餐'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+            ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [FOOD_KIND] ,[FOOD_NAME] ,[FOOD_STKNUM] ,[FOOD_DAYNUM] ,[FOOD_YN] ,[FOOD_USEDAY] ,[FOOD_CHGYN] ,[FOOD_UPDATE] ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_GA_FOOD_LIST] ' + \
                         ' ORDER BY [FOOD_YN] DESC, [FOOD_USEDAY], [FOOD_KIND], [FOOD_NAME] '
@@ -405,7 +407,7 @@ def handle_message(event):
         strTitle = 'TOYO防疫群組7天內'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+            ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [AF_DAY] ,[PV_DATE] ,[PV_TIME] ,[PV_NAME] ,[PV_NUM] ,[TY_MEM] ,[PV_ISEAT] ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_PV_IN_7_DAY] ' + \
                         ' ORDER BY [PV_DATE], [PV_TIME], [PV_NAME], [TY_MEM]'
@@ -442,7 +444,7 @@ def handle_message(event):
         strTitle = 'TOYO體溫回報(當天)'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+            ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             resList = ms.RS_SQL_ExecQuery('SELECT DISTINCT ID, NAME, BT, CHK FROM TIM_DB.dbo.VIEW_APP_MEM_BODYTEMP ORDER BY BT DESC, ID')
             intCount=0
             strTemp=''
@@ -473,7 +475,7 @@ def handle_message(event):
         strTitle = 'TOYO門禁清單(最新)'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+            ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT TOP(50) HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime ' + \
                         ' FROM TIM_DB.dbo.VIEW_DOOR_INFO_INSIDE_List ' + \
                         ' ORDER BY DrDateTime DESC'
@@ -507,7 +509,7 @@ def handle_message(event):
         strTitle = 'TOYO 廠區滅火器最近1次清點情況'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+            ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CHK_01] ,[CHK_02] ,[CHK_03] ,[CHK_04] ,[FE_NAME] ' \
                         ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_NewestNGList01] ' + \
                         ' ORDER BY FE_TIME DESC'
@@ -559,7 +561,7 @@ def handle_message(event):
         strTitle = 'TOYO 廠區滅火器最近1個月清點情況'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if strSQL_FW_Switch == 'ON':
-            ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+            ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CHK_01] ,[CHK_02] ,[CHK_03] ,[CHK_04] ,[FE_NAME] ' \
                         ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_NG_List01] ' + \
                         ' ORDER BY FE_EQNAME'
@@ -924,7 +926,7 @@ def RS_CHECK_KWAUTH_by_UserId(strCondUserId, strCondQueryKW):
     RS_CHECK_KWAUTH_by_UserId = 'INITIAL_STATE'
     #查詢資料
     if strSQL_FW_Switch == 'ON':
-        ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+        ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
         strSQL = ' SELECT [AUTH_UnitName],[AUTH_MemName],[AUTH_KW_List] ' + \
                     ' FROM [TIM_DB].[dbo].[tblAPP_TYAD_Auth_List] ' + \
                     ' WHERE ( [AUTH_UserID] = \'' + str(strCondUserId) + '\')'
@@ -1112,7 +1114,7 @@ def RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID
         #Table Name
         strDB_Table = '[TIM_DB].[dbo].[tblAPP_TYAD_Auth_List]'
         #連線
-        ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+        ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
         strSQL = ' UPDATE [TIM_DB].[dbo].[tblAPP_TYAD_Auth_List] ' + \
                     ' SET [AUTH_KW_List] = \'' + strToAUTHItemList + '\', ' + \
                     ' [AUTH_Update] = Convert(nvarchar, \'' + strDateTime + '\', 120), ' + \
@@ -1135,7 +1137,7 @@ def RS_Get_AUTHList_by_UserDBName(strQueryUserDBName):
     if strSQL_FW_Switch == 'ON':
         #Table Name
         strDB_Table = '[TIM_DB].[dbo].[tblAPP_TYAD_Auth_List]'
-        ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+        ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
         strSQL = ' SELECT [AUTH_KW_List] ' + \
                     ' FROM [TIM_DB].[dbo].[tblAPP_TYAD_Auth_List] ' + \
                     ' WHERE [AUTH_MemName] = \'' + strQueryUserDBName + '\''
@@ -1166,7 +1168,7 @@ def RS_Line_LOG_ADD(strLineName, strLineUserID, strKeyInMSG, strLineRpMSG):
         #Table Name
         strDB_Table = '[TIM_DB].[dbo].[tblAPP_TYAD_LineLog]'
         #連線
-        ms = MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
+        ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
         strSQL = ' INSERT INTO [TIM_DB].[dbo].[tblAPP_TYAD_LineLog] ' + \
                     ' (EX01, EX02, EX03, TXT01, TXT02, EXDT01) ' + \
                     ' VALUES (\'' + (strDateTime) + '\',\'' + (strLineName) + '\',\'' + (strLineUserID) + '\',\'' + (strKeyInMSG) + '\',\'' + (strLineRpMSG) + \
