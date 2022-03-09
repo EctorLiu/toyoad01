@@ -10,13 +10,13 @@
 from datetime import datetime
 import time
 
-FVdatNow = datetime.now()
-FVstrToday = FVdatNow.strftime("%Y-%m-%d") 
-FVstrNow = FVdatNow.strftime("%Y-%m-%d %H:%M:%S") 
+GVdatNow = datetime.now()
+GVstrToday = GVdatNow.strftime("%Y-%m-%d") 
+GVstrNow = GVdatNow.strftime("%Y-%m-%d %H:%M:%S") 
 
 # FVstrLCNow = time.strftime("%Y-%m-%d %H:%M:%S.%f", time.localtime())
-FVstrGMNow = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
-FVdatGMNow = datetime.strptime(FVstrGMNow, "%Y-%m-%d %H:%M:%S") 
+GVstrGMNow = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
+GVdatGMNow = datetime.strptime(GVstrGMNow, "%Y-%m-%d %H:%M:%S") 
     # ***** ***** ***** ***** *****
 
 
