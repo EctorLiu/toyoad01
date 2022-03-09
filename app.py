@@ -61,10 +61,11 @@ from datetime import datetime
     # ***** ***** ***** ***** *****
 
     ##### 自訂函數功能 ######
-from rm_initial import * 
-from rf_string_01 import * 
-from rf_string_02 import * 
-from rf_datetime_01 import * 
+from rm_initial import *
+from ri_text_01 import *
+from rf_string_01 import *
+from rf_string_02 import *
+from rf_datetime_01 import *
 import rf_sqldb_01 as pymsdb
     # ***** ***** ***** ***** *****
 
