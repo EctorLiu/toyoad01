@@ -1,15 +1,17 @@
     ##### INDEX ######
-# def RS_DateTime_2_YYYYMMDD_HHNNSS():
-# def RS_DateTime_2_YYYYMMDD_HHNN():
-# def RS_DateTime_2_YYYYMMDD():
-# def RS_DateTime_2_HHNNSS():
-# def RS_DateTime_2_HHNN():
+# def RS_DateTime_2_YYYYMMDD_HHNNSS(): 輸出格式 YYYYMMDD_HHNNSS
+# def RS_DateTime_2_YYYYMMDD_HHNN(): 輸出格式 YYYYMMDD_HHNN
+# def RS_DateTime_2_YYYYMMDD(): 輸出格式 YYYYMMDD
+# def RS_DateTime_2_HHNNSS(): 輸出格式 HHNNSS
+# def RS_DateTime_2_HHNN(): 輸出格式 HHNN
     # ***** ***** ***** ***** *****
 
-    ##### 時間函數 ######
+    ##### 匯入函式庫 ######
 from datetime import datetime
 import time
+    # ***** ***** ***** ***** *****
 
+    ##### Initial ######
 GVdatNow = datetime.now()
 GVstrToday = GVdatNow.strftime("%Y-%m-%d") 
 GVstrNow = GVdatNow.strftime("%Y-%m-%d %H:%M:%S") 
