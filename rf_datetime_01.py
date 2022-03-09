@@ -6,6 +6,19 @@
 # def RS_DateTime_2_HHNN():
     # ***** ***** ***** ***** *****
 
+    ##### 時間函數 ######
+from datetime import datetime
+import time
+
+FVdatNow = datetime.now()
+FVstrToday = FVdatNow.strftime("%Y-%m-%d") 
+FVstrNow = FVdatNow.strftime("%Y-%m-%d %H:%M:%S") 
+
+# FVstrLCNow = time.strftime("%Y-%m-%d %H:%M:%S.%f", time.localtime())
+FVstrGMNow = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
+FVdatGMNow = datetime.strptime(FVstrGMNow, "%Y-%m-%d %H:%M:%S") 
+    # ***** ***** ***** ***** *****
+
 
     ##### 程式區域 ######
     ##### 程式區域 ######
