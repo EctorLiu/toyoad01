@@ -1,2 +1,2 @@
 web: gunicorn app:app
-clock: python EctorClock.py
+clock: python rs_auto_pyclock.py
