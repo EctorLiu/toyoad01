@@ -12,7 +12,7 @@ import urllib.request
 @sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/25')
 
 def scheduled_job():
-    url = 'https://ector01.herokuapp.com/'
+    url = 'https://toyoad01.herokuapp.com/'
     conn = urllib.request.urlopen(url)
     for key, value in conn.getheaders():
         print(key, value)
