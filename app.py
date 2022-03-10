@@ -2,16 +2,6 @@
 
     ##### 版本 ######
 strVer = '(M309)1812'
-
-    # 切換SQL功能選擇：ON/OFF
-strSQL_FW_Switch = 'ON'
-    # 切換同仁推播功能選擇：ON/OFF
-strPush_NotKeyWord2All_Switch = 'ON'
-    # ***** ***** ***** ***** *****
-
-    ##### 限制 ######
-intMaxLineMSGString = 4900
-intMaxItemString = 200
     # ***** ***** ***** ***** *****
 
     ##### 預設留言 ######
@@ -63,10 +53,12 @@ from datetime import datetime
     ##### 自訂函數功能 ######
 from rm_initial import *
 from ri_text_01 import *
+from ri_parameters_01 import *
 from rf_string_01 import *
 from rf_string_02 import *
 from rf_datetime_01 import *
 import rf_sqldb_01 as pymsdb
+from rf_sqldb_02 import *
     # ***** ***** ***** ***** *****
 
 @app.route("/", methods=["GET", "POST"])
@@ -229,7 +221,7 @@ def handle_message(event):
             strCond = '\'%' + strCond.strip() + '%\''
         strTitle = 'TOYO移工宿舍輪班查詢(前3天到今天)'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
-        if strSQL_FW_Switch == 'ON':
+        if GVstrSQL_FW_Switch == 'ON':
             ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             #DeptName MemName ShiftResult   DormPos
             #裝配課    陳文水  08~17_T休息班 (長宏)公學宿舍_3F_301
@@ -246,8 +238,8 @@ def handle_message(event):
                 strTemp += '[' + str(intCount) + '] ' + str(DeptName) + ',' + str(MemName) + '\n' + \
                             str(DormPos) + '\n' + \
                             str(ShiftResult).replace(',', '\n').strip() + '\n\n'
-            if len(strTemp) >= intMaxLineMSGString:
-                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
+            if len(strTemp) >= GVintMaxLineMSGString:
+                strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
             strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             '..現在時間：' + FVstrNow  + '\n' + \
                             '..檔案更新：' + strFileName  + '\n\n' + \
@@ -277,7 +269,7 @@ def handle_message(event):
             strCond = '\'%' + strCond.strip() + '%\''
         strTitle = 'TOYO車輛申請查詢(車牌/姓名)'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
-        if strSQL_FW_Switch == 'ON':
+        if GVstrSQL_FW_Switch == 'ON':
             ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = ' SELECT [DEPT_NAME], [MEM_NAME], [CAR_LIST] ' + \
                         ' FROM [TIM_DB].[dbo].[APP_BPM_TNFAB01_R1_MEM_CAR_OKLIST] ' + \
@@ -292,8 +284,8 @@ def handle_message(event):
                 strTemp += '[' + str(intCount) + '] ' + '車輛：\n' + \
                             str(CAR_LIST).replace(',', '\n').strip() + '\n' + \
                             '..員工：(' + str(DEPT_NAME) + ')' + str(MEM_NAME) + '\n\n'
-            if len(strTemp) >= intMaxLineMSGString:
-                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
+            if len(strTemp) >= GVintMaxLineMSGString:
+                strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
             strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
@@ -313,7 +305,7 @@ def handle_message(event):
     elif ('面試' in strEventMSG[0:4]) and ('報到' in strEventMSG[0:4]):
         strTitle = 'TOYO面試報到10天內'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
-        if strSQL_FW_Switch == 'ON':
+        if GVstrSQL_FW_Switch == 'ON':
             ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT AF_DAY, IN_TYPE, IN_DAY,IN_TIME,DEPT_CODE, IN_NAME ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_MEM_IN_10_DAY] ' + \
@@ -329,8 +321,8 @@ def handle_message(event):
                 else:
                     strTemp += '[' + str(intCount) + ']還有' + str(AF_DAY) + '天..' + str(IN_TYPE) + ', ' + str(IN_DAY) + '\n' + \
                                 '  ' + str(IN_TIME) + ', ' + str(DEPT_CODE) + ', ' + str(IN_NAME) + '\n\n'
-            if len(strTemp) >= intMaxLineMSGString:
-                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
+            if len(strTemp) >= GVintMaxLineMSGString:
+                strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
             strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
@@ -350,7 +342,7 @@ def handle_message(event):
     elif ('業務' in strEventMSG[0:4]) and ('電話' in strEventMSG[0:4] or '聯絡' in strEventMSG[0:4]):
         strTitle = 'TOYO業務電話'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
-        if strSQL_FW_Switch == 'ON':
+        if GVstrSQL_FW_Switch == 'ON':
             ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [SA_NAME] ,[SA_DEPT] ,[SA_AREA] ,[SA_PHONE] ,[SA_EMAIL] ,[SA_DATAUP] ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_SA_CONTACT_INFO] ' + \
@@ -365,8 +357,8 @@ def handle_message(event):
                                 '  公務機號碼: ' + str(SA_PHONE) + '\n' + \
                                 '  E-Mail: ' + str(SA_EMAIL) + '\n' + \
                                 '  更新日期: ' + str(SA_DATAUP) + '\n\n'
-            if len(strTemp) >= intMaxLineMSGString:
-                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
+            if len(strTemp) >= GVintMaxLineMSGString:
+                strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
             strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
@@ -386,7 +378,7 @@ def handle_message(event):
     elif ('夜點' in strEventMSG[0:4]) and ('晚餐' in strEventMSG[0:4]):
         strTitle = 'TOYO夜點晚餐'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
-        if strSQL_FW_Switch == 'ON':
+        if GVstrSQL_FW_Switch == 'ON':
             ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [FOOD_KIND] ,[FOOD_NAME] ,[FOOD_STKNUM] ,[FOOD_DAYNUM] ,[FOOD_YN] ,[FOOD_USEDAY] ,[FOOD_CHGYN] ,[FOOD_UPDATE] ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_GA_FOOD_LIST] ' + \
@@ -400,8 +392,8 @@ def handle_message(event):
                                 '  可用估：' + str(FOOD_USEDAY) + '天, ' + str(FOOD_CHGYN) + '\n' + \
                                 '  庫存:' + str(FOOD_STKNUM) + ', 限量: ' + str(FOOD_DAYNUM) + '\n' + \
                                 '  更新日期: ' + str(FOOD_UPDATE) + '\n\n'
-            if len(strTemp) >= intMaxLineMSGString:
-                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
+            if len(strTemp) >= GVintMaxLineMSGString:
+                strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
             strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
@@ -421,7 +413,7 @@ def handle_message(event):
     elif ('防疫群組' in strEventMSG[0:4]):
         strTitle = 'TOYO防疫群組7天內'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
-        if strSQL_FW_Switch == 'ON':
+        if GVstrSQL_FW_Switch == 'ON':
             ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [AF_DAY] ,[PV_DATE] ,[PV_TIME] ,[PV_NAME] ,[PV_NUM] ,[TY_MEM] ,[PV_ISEAT] ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_PV_IN_7_DAY] ' + \
@@ -437,8 +429,8 @@ def handle_message(event):
                 else:
                     strTemp += '[' + str(intCount) + ']還有' + str(AF_DAY) + '天, ' + str(PV_DATE) + '\n  ' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
                                     '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n\n'
-            if len(strTemp) >= intMaxLineMSGString:
-                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
+            if len(strTemp) >= GVintMaxLineMSGString:
+                strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
             strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
@@ -458,7 +450,7 @@ def handle_message(event):
     elif ('體溫' in strEventMSG[0:4]) and ('回報' in strEventMSG[0:4] or '查詢' in strEventMSG[0:4]):
         strTitle = 'TOYO體溫回報(當天)'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
-        if strSQL_FW_Switch == 'ON':
+        if GVstrSQL_FW_Switch == 'ON':
             ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             resList = ms.RS_SQL_ExecQuery('SELECT DISTINCT ID, NAME, BT, CHK FROM TIM_DB.dbo.VIEW_APP_MEM_BODYTEMP ORDER BY BT DESC, ID')
             intCount=0
@@ -466,8 +458,8 @@ def handle_message(event):
             for (ID, NAME, BT, CHK) in resList:
                 strTemp = strTemp + str(ID) + ',' + str(NAME) + ',' + str(BT) + ',' + str(CHK) + '\n'
                 intCount += 1
-            if len(strTemp) >= intMaxLineMSGString:
-                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
+            if len(strTemp) >= GVintMaxLineMSGString:
+                strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
             strContent = 'TOYO體溫回報清單：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
@@ -489,7 +481,7 @@ def handle_message(event):
             '門禁' in strEventMSG[0:8]):
         strTitle = 'TOYO門禁清單(最新)'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
-        if strSQL_FW_Switch == 'ON':
+        if GVstrSQL_FW_Switch == 'ON':
             ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT TOP(50) HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime ' + \
                         ' FROM TIM_DB.dbo.VIEW_DOOR_INFO_INSIDE_List ' + \
@@ -500,8 +492,8 @@ def handle_message(event):
             for (HRM_Dept_Name, HRM_USER_NAME, DoorText, DrDateTime) in resList:
                 intCount += 1
                 strTemp += '[' + str(intCount) + ']' + str(DrDateTime) + '\n..' + str(HRM_Dept_Name) + ', ' + str(HRM_USER_NAME) + ', ' + str(DoorText) + '\n'
-            if len(strTemp) >= intMaxLineMSGString:
-                strTemp = strTemp[0:intMaxLineMSGString] + '...(資料過多)'
+            if len(strTemp) >= GVintMaxLineMSGString:
+                strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
             strContent = strTitle + '：資料筆數[ ' + str(intCount) + ' ]\n' + \
                             FVstrNow  + '\n\n' + \
                             strTemp
@@ -523,7 +515,7 @@ def handle_message(event):
             '新滅火' in strEventMSG[0:10]):
         strTitle = 'TOYO 廠區滅火器最近1次清點情況'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
-        if strSQL_FW_Switch == 'ON':
+        if GVstrSQL_FW_Switch == 'ON':
             ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CHK_01] ,[CHK_02] ,[CHK_03] ,[CHK_04] ,[FE_NAME] ' \
                         ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_NewestNGList01] ' + \
@@ -555,8 +547,8 @@ def handle_message(event):
                             strTemp + '\n' + \
                             '以上為（全合格）品項滅火器\n' + \
                             ' ============================== '
-            if len(strContent) >= intMaxLineMSGString:
-                strContent = strContent[0:intMaxLineMSGString] + '...(資料過多)'
+            if len(strContent) >= GVintMaxLineMSGString:
+                strContent = strContent[0:GVintMaxLineMSGString] + '...(資料過多)'
             ##### 此項需有權限才能執行 #####
             strAUTHKWQuery = 'TYNEWFE'
             strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
@@ -575,7 +567,7 @@ def handle_message(event):
             '滅火' in strEventMSG[0:10]):
         strTitle = 'TOYO 廠區滅火器最近1個月清點情況'
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
-        if strSQL_FW_Switch == 'ON':
+        if GVstrSQL_FW_Switch == 'ON':
             ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
             strSQL = 'SELECT [FE_TIME] ,[FE_EQNAME] ,[CHK_01] ,[CHK_02] ,[CHK_03] ,[CHK_04] ,[FE_NAME] ' \
                         ' FROM [toyo_web].[dbo].[VIEW_APP_FE_EQ_CHK_NG_List01] ' + \
@@ -607,8 +599,8 @@ def handle_message(event):
                             strTemp + '\n' + \
                             '以上為（全合格）品項滅火器\n' + \
                             ' ============================== '
-            if len(strContent) >= intMaxLineMSGString:
-                strContent = strContent[0:intMaxLineMSGString] + '...(資料過多)'
+            if len(strContent) >= GVintMaxLineMSGString:
+                strContent = strContent[0:GVintMaxLineMSGString] + '...(資料過多)'
             ##### 此項需有權限才能執行 #####
             strAUTHKWQuery = 'TYFE'
             strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
@@ -818,7 +810,7 @@ def handle_message(event):
         ##### 推播 #####
         # 修改為你要傳送的訊息內容
         push_message = '\n來自[' + strLineDisplayName + ']輸入訊息：\n' + strEventMSG
-        if strPush_NotKeyWord2All_Switch == 'ON': 
+        if GVstrPush_NotKeyWord2All_Switch == 'ON': 
             # EctorLiu權杖：
             token = strEctorToken
             lineNotifyMessage(token, push_message)
@@ -940,7 +932,7 @@ def lineNotifyMessage(token, msg):
 def RS_CHECK_KWAUTH_by_UserId(strCondUserId, strCondQueryKW):
     RS_CHECK_KWAUTH_by_UserId = 'INITIAL_STATE'
     #查詢資料
-    if strSQL_FW_Switch == 'ON':
+    if GVstrSQL_FW_Switch == 'ON':
         ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
         strSQL = ' SELECT [AUTH_UnitName],[AUTH_MemName],[AUTH_KW_List] ' + \
                     ' FROM [TIM_DB].[dbo].[tblAPP_TYAD_Auth_List] ' + \
@@ -1125,7 +1117,7 @@ def RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID
     # ***** ***** ***** ***** *****
 
     # 設定權限開關
-    if strSQL_FW_Switch == 'ON':
+    if GVstrSQL_FW_Switch == 'ON':
         #Table Name
         strDB_Table = '[TIM_DB].[dbo].[tblAPP_TYAD_Auth_List]'
         #連線
@@ -1149,7 +1141,7 @@ def RS_Line_AUTH_MOD_ModUserDBName_ModAUTHItemName_YN(strLineName, strLineUserID
     ##### LineLOG ######
 def RS_Get_AUTHList_by_UserDBName(strQueryUserDBName):
     #查詢AuthList
-    if strSQL_FW_Switch == 'ON':
+    if GVstrSQL_FW_Switch == 'ON':
         #Table Name
         strDB_Table = '[TIM_DB].[dbo].[tblAPP_TYAD_Auth_List]'
         ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
@@ -1179,7 +1171,7 @@ def RS_Line_LOG_ADD(strLineName, strLineUserID, strKeyInMSG, strLineRpMSG):
     strDateTime = datDT.strftime("%Y-%m-%d %H:%M:%S")
 
     #寫入LOG
-    if strSQL_FW_Switch == 'ON':
+    if GVstrSQL_FW_Switch == 'ON':
         #Table Name
         strDB_Table = '[TIM_DB].[dbo].[tblAPP_TYAD_LineLog]'
         #連線
