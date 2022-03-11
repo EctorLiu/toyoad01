@@ -59,6 +59,7 @@ from rf_string_02 import *
 from rf_datetime_01 import *
 import rf_sqldb_01 as pymsdb
 from rf_sqldb_02 import *
+from rf_line_01 import *
     # ***** ***** ***** ***** *****
 
 @app.route("/", methods=["GET", "POST"])
@@ -762,32 +763,32 @@ def handle_message(event):
         if strPush2Who == 'SYS_PUSH_ALL':
             # EctorLiu權杖:
             token = strEctorToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
             # 智弘權杖:
             token = strJohnboToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
             # 冠伶權杖:
             token = strGwenToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
             # 昆霖權杖:
             token = strKunToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
             # 汶靜權杖:
             token = strJingToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
             # 宜庭權杖:
             token = strMichelleToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
             # 玉敏權杖:
             token = strMinToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
             # MOMO權杖:
             token = strMomoToken
-            lineNotifyMessage(token, push_message)            
+            RS_lineNotifyMessage(token, push_message)            
         else:
             # 個人:            
             token = strPush2Who
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
     # ***** ***** ***** ***** *****
 
     ##### 推播Line Notify內容 #####
@@ -799,7 +800,7 @@ def handle_message(event):
         push_message = '『KeyWord』\nDebugModeForEctor：' + push_message
         # EctorLiu權杖：
         token = strEctorToken
-        lineNotifyMessage(token, push_message)
+        RS_lineNotifyMessage(token, push_message)
 
         #使用者取得的訊息
         reply = TextSendMessage(text=f"{strReply_MSG}")
@@ -813,34 +814,34 @@ def handle_message(event):
         if GVstrPush_NotKeyWord2All_Switch == 'ON': 
             # EctorLiu權杖：
             token = strEctorToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
             # 智弘權杖：
             token = strJohnboToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
             # 冠伶權杖：
             token = strGwenToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
             # 昆霖權杖：
             token = strKunToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
             # 汶靜權杖：
             token = strJingToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
             # 宜庭權杖：
             token = strMichelleToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
             # 玉敏權杖：
             token = strMinToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
             # MOMO權杖：
             token = strMomoToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
         else:
             #推播訊息編輯
             push_message = '『非關鍵字』\nDebugModeForEctor：' + push_message
             # EctorLiu權杖：
             token = strEctorToken
-            lineNotifyMessage(token, push_message)
+            RS_lineNotifyMessage(token, push_message)
 
         #使用者取得的訊息
         reply = TextSendMessage(text=f"{strReply_MSG}")
@@ -871,7 +872,7 @@ def handle_message(event):
         push_message = '『特殊狀況』\nDebugModeForEctor：' + push_message
         # EctorLiu權杖：
         token = strEctorToken
-        lineNotifyMessage(token, push_message)
+        RS_lineNotifyMessage(token, push_message)
 
         #使用者取得的訊息
         reply = TextSendMessage(text=f"{strReply_MSG}")
@@ -916,13 +917,3 @@ def handle_message(event):
 # ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
 # ===== ===== ===== ===== ===== 【子程式區域】 ===== ===== ===== ===== =====
 
-    ##### 推播相關部分 ######
-def lineNotifyMessage(token, msg):
-    headers = {
-      'Authorization': 'Bearer ' + token, 
-      'Content-Type' : 'application/x-www-form-urlencoded'
-    }
-    payload = {'message': msg}
-    r = requests.post('https://notify-api.line.me/api/notify', headers = headers, params = payload)
-    return r.status_code
-    # ***** ***** ***** *****  *****
