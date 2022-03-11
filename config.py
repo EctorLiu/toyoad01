@@ -1,13 +1,13 @@
-# ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
+    ##### INDEX ######
+# strchannel_access_token = os.environ.get('CHANNEL_ACCESS_TOKEN'): 存取Heroku Token
+# strchannel_secret = os.environ.get('CHANNEL_SECRET'): 存取Heroku Channel
+    # ***** ***** ***** ***** *****
+
+    ##### 匯入函式庫 ######
 import os
+    # ***** ***** ***** ***** *****
 
-# ===== ===== ===== ===== ===== 【變數區域】 ===== ===== ===== ===== =====
-
-    ##### Line ######
-# line-bot
-strchannel_access_token = os.environ.get("CHANNEL_ACCESS_TOKEN")
-strchannel_secret = os.environ.get("CHANNEL_SECRET")
-
-# channel_access_token = 'CHANNEL_ACCESS_TOKEN' 
-# channel_secret = 'CHANNEL_SECRET'
+    ##### 取得網頁資訊 ######
+strchannel_access_token = os.environ.get('CHANNEL_ACCESS_TOKEN')
+strchannel_secret = os.environ.get('CHANNEL_SECRET')
     # ***** ***** ***** ***** *****
