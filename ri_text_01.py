@@ -159,7 +159,7 @@ GVstrCMKeyWord = 'KW：\n' + \
                 '*(4)(TY or TOYO) + (MEMO)\n' + \
                 '\n' + \
                 '[教學]\n' + \
-                '(1)(TY or TOYO) + (推播權杖教學)\n' + \
+                '(1)(TY or TOYO) + (權杖推播教學)\n' + \
                 '(2)(TY or TOYO) + (官方帳號教學)\n' + \
                 ''
     # ***** ***** ***** ***** *****
@@ -202,7 +202,7 @@ GVstrECKeyWord = 'KW：\n' + \
                 '*(4)(TY or TOYO) + (MEMO)\n' + \
                 '\n' + \
                 '[教學]\n' + \
-                '(1)(TY or TOYO) + (推播權杖教學)\n' + \
+                '(1)(TY or TOYO) + (權杖推播教學)\n' + \
                 '(2)(TY or TOYO) + (官方帳號教學)\n' + \
                 '\n' + \
                 '[測試中]\n' + \
