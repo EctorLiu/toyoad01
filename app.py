@@ -625,7 +625,7 @@ def handle_message(event):
             strReply_MSG = GVstrMemo
         else:
             strReply_MSG = '權限不足!'
-        # ***** ***** ***** ***** *****GVstrLessonLearning
+        # ***** ***** ***** ***** *****
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
             ('推播權杖教學' in strEventMSG[0:12]):
