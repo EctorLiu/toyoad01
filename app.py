@@ -628,7 +628,7 @@ def handle_message(event):
         # ***** ***** ***** ***** *****
 
     elif (strEventMSG[0:2].upper() == 'TY' or strEventMSG[0:4].upper() == 'TOYO') and \
-            ('推播權杖教學' in strEventMSG[0:12]):
+            ('權杖推播教學' in strEventMSG[0:12]):
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         strReply_MSG = GVstrLineNotifyHowToGetToken
 
