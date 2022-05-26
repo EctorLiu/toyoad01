@@ -1,14 +1,19 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M526)1012'
+strVer = '(M526)1020'
     # ***** ***** ***** ***** *****
+
+
+    ##### 關鍵字 ######
+# 防疫群組
+    # ***** ***** ***** ***** *****
+
 
     ##### 預設留言 ######
 strNewestActivity = '『TOYO行政管理部』：最近活動\n' + \
                 '更新：2022/03/09 17:20 ...\n\n' + \
                 '..'
-
     # ***** ***** ***** ***** *****
 
     ##### (TSVI)推播 ######
@@ -426,11 +431,11 @@ def handle_message(event):
                 intCount += 1
                 if str(AF_DAY) == '當天':
                     strTemp += '[' + str(intCount) + ']' + '當天' + ', ' + str(PV_DATE) + '\n  ' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
-                                    '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n' + \
+                                    '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '\n  (用餐:)' + str(PV_ISEAT) + '\n' + \
                                     '  動線：' + str(PV_MVLINE) + '\n'
                 else:
                     strTemp += '[' + str(intCount) + ']還有' + str(AF_DAY) + '天, ' + str(PV_DATE) + '\n  ' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
-                                    '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n' + \
+                                    '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '\n  (用餐:)' + str(PV_ISEAT) + '\n' + \
                                     '  動線：' + str(PV_MVLINE) + '\n'
                 if len(PV_MTROOM) > 0:
                     strTemp += '  借會議室：' + str(PV_MTROOM) + '\n'
