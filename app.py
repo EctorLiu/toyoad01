@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M316)1252'
+strVer = '(M526)1012'
     # ***** ***** ***** ***** *****
 
     ##### 預設留言 ######
@@ -416,20 +416,25 @@ def handle_message(event):
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
         if GVstrSQL_FW_Switch == 'ON':
             ms = pymsdb.MSSQL(host=GVstr254_host, port=GVstr254_port, user=GVstr254_user, pwd=GVstr254_pwd, db=GVstr254_TIM_DB)
-            strSQL = 'SELECT [AF_DAY] ,[PV_DATE] ,[PV_TIME] ,[PV_NAME] ,[PV_NUM] ,[TY_MEM] ,[PV_ISEAT] ' + \
+            strSQL = 'SELECT [AF_DAY] ,[PV_DATE] ,[PV_TIME] ,[PV_NAME] ,[PV_NUM] ,[TY_MEM] ,[PV_ISEAT], [PV_MTROOM], [PV_MVLINE] ' + \
                         ' FROM [TIM_DB].[dbo].[VIEW_APP_PV_IN_7_DAY] ' + \
                         ' ORDER BY [PV_DATE], [PV_TIME], [PV_NAME], [TY_MEM]'
             resList = ms.RS_SQL_ExecQuery(strSQL)
             intCount=0
             strTemp=''
-            for (AF_DAY, PV_DATE, PV_TIME, PV_NAME, PV_NUM, TY_MEM, PV_ISEAT) in resList:
+            for (AF_DAY, PV_DATE, PV_TIME, PV_NAME, PV_NUM, TY_MEM, PV_ISEAT, PV_MTROOM, PV_MVLINE) in resList:
                 intCount += 1
                 if str(AF_DAY) == '當天':
                     strTemp += '[' + str(intCount) + ']' + '當天' + ', ' + str(PV_DATE) + '\n  ' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
-                                    '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n\n'
+                                    '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n' + \
+                                    '移動：' + str(PV_MVLINE) + '\n'
                 else:
                     strTemp += '[' + str(intCount) + ']還有' + str(AF_DAY) + '天, ' + str(PV_DATE) + '\n  ' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
-                                    '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n\n'
+                                    '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n' + \
+                                    '移動：' + str(PV_MVLINE) + '\n'
+                if len(PV_MTROOM) > 0:
+                    strTemp += '借會議室：' + str(PV_MTROOM) + '\n'
+                strTemp += '\n'
             if len(strTemp) >= GVintMaxLineMSGString:
                 strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
             strContent = strTitle + '：\n資料筆數[ ' + str(intCount) + ' ]\n' + \
