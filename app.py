@@ -427,13 +427,13 @@ def handle_message(event):
                 if str(AF_DAY) == '當天':
                     strTemp += '[' + str(intCount) + ']' + '當天' + ', ' + str(PV_DATE) + '\n  ' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
                                     '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n' + \
-                                    '移動：' + str(PV_MVLINE) + '\n'
+                                    '  動線：' + str(PV_MVLINE) + '\n'
                 else:
                     strTemp += '[' + str(intCount) + ']還有' + str(AF_DAY) + '天, ' + str(PV_DATE) + '\n  ' + str(PV_TIME) + ', ' + str(PV_NAME) + ', ' + \
                                     '  ' + str(PV_NUM) + '人\n  陪同：' + str(TY_MEM) + ', ' + '(用餐:)' + str(PV_ISEAT) + '\n' + \
-                                    '移動：' + str(PV_MVLINE) + '\n'
+                                    '  動線：' + str(PV_MVLINE) + '\n'
                 if len(PV_MTROOM) > 0:
-                    strTemp += '借會議室：' + str(PV_MTROOM) + '\n'
+                    strTemp += '  借會議室：' + str(PV_MTROOM) + '\n'
                 strTemp += '\n'
             if len(strTemp) >= GVintMaxLineMSGString:
                 strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
