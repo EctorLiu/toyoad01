@@ -244,6 +244,46 @@ def handle_message(event):
         strReply_MSG = strTemp
     # ***** ***** ***** ***** *****
 
+    ##### GOOGLE表單區域 #####
+    elif ('TY主管防疫回報' in strEventMSG):
+        import openpyxl
+        import gspread
+        from oauth2client.service_account import ServiceAccountCredentials
+        import pandas as pd
+
+        # 連線
+        auth_json_path = 'GCP-TOYOAD.json'
+        gss_scopes = ['https://spreadsheets.google.com/feeds']
+        credentials = ServiceAccountCredentials.from_json_keyfile_name(auth_json_path, gss_scopes)
+        gss_client = gspread.authorize(credentials)
+
+        # 開啟 Google Sheet 資料表
+        MySheet_KEY = '1IgWoZ8uqR2M96AbFm_C2fGCg6Nt9Jp6XjAnrmkgqJIg'
+        MySheet_NAME01 = '表單回應 1'
+        GLEsheet = gss_client.open_by_key(MySheet_KEY).worksheet(MySheet_NAME01)
+        values = GLEsheet.get_all_values()
+        dfGLEsheet = pd.DataFrame(values)
+
+        # 資料處理
+        lngCount = 0
+        lngLastIndex = len(dfGLEsheet.index) - 1
+        while (lngLastIndex > 0 and lngCount <= 50):
+            lngCount = lngCount + 1
+            lngLastIndex = lngLastIndex -1
+            strTemp += '最近' + lngCount + '筆資料..\n' + \
+                    '=>資料時間：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 0]) + '\n' + \
+                    '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 1]) + ' ' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 2]) + '\n' + \
+                    '=>狀態：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 3]) + '\n' + \
+                    '=>評估：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 25]) + '\n' + \
+                    '=>檢驗：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 24]) + '\n\n' + \
+                    '...................................\n' + \
+                    '...................................\n'
+
+        if len(strTemp) >= GVintMaxLineMSGString:
+            strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
+        strReply_MSG = strTemp
+    # ***** ***** ***** ***** *****
+
     ##### 關鍵字 #####
     elif ('如何使用' in strEventMSG[0:4] or 'HELP' in strEventMSG.upper() or '?' in strEventMSG.strip() or '？' in strEventMSG.strip()):
         get_TYPE_message = 'SYS_KW_INPUT_MSG'
