@@ -5,7 +5,8 @@ strVer = '(M526)1020'
     # ***** ***** ***** ***** *****
 
 
-    ##### 關鍵字 ######
+    ##### 關鍵字編輯 ######
+# GOOGLE表單區域
 # 防疫群組
     # ***** ***** ***** ***** *****
 
@@ -201,6 +202,46 @@ def handle_message(event):
     elif (strEventMSG[0:4].upper() == 'TSVI') and \
             ('樣版' in strEventMSG.upper()):
         get_TYPE_message = 'TSVI樣版'   
+    # ***** ***** ***** ***** *****
+
+    ##### GOOGLE表單區域 #####
+    elif ('TY防疫回報' in strEventMSG):
+        import openpyxl
+        import gspread
+        from oauth2client.service_account import ServiceAccountCredentials
+        import pandas as pd
+
+        # 連線
+        auth_json_path = 'GCP-TOYOAD.json'
+        gss_scopes = ['https://spreadsheets.google.com/feeds']
+        credentials = ServiceAccountCredentials.from_json_keyfile_name(auth_json_path, gss_scopes)
+        gss_client = gspread.authorize(credentials)
+
+        # 開啟 Google Sheet 資料表
+        MySheet_KEY = '1IgWoZ8uqR2M96AbFm_C2fGCg6Nt9Jp6XjAnrmkgqJIg'
+        MySheet_NAME01 = '表單回應 1'
+        GLEsheet = gss_client.open_by_key(MySheet_KEY).worksheet(MySheet_NAME01)
+        values = GLEsheet.get_all_values()
+        dfGLEsheet = pd.DataFrame(values)
+
+        # 資料處理
+        lngLastRow = len(dfGLEsheet.index)
+        strTemp = '最近1筆資料時間..\n' + \
+                '=>資料時間：\n' + str(dfGLEsheet.at[lngLastRow - 1 , 0]) + '\n' + \
+                '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - 1 , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - 1 , 2]) + '\n' + \
+                '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - 1 , 3]) + '\n' + \
+                '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - 1 , 24]) + '\n\n' + \
+                '...................................\n' + \
+                '...................................\n' + \
+                '更前1筆資料時間..\n' + \
+                '=>資料時間：\n' + str(dfGLEsheet.at[lngLastRow - 2 , 0]) + '\n' + \
+                '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - 2 , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - 2 , 2]) + '\n' + \
+                '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - 2 , 3]) + '\n' + \
+                '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - 2 , 24]) + '\n'
+
+        if len(strTemp) >= GVintMaxLineMSGString:
+            strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
+        strReply_MSG = strTemp
     # ***** ***** ***** ***** *****
 
     ##### 關鍵字 #####
