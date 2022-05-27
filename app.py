@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M526)1020'
+strVer = '(M527)1620'
     # ***** ***** ***** ***** *****
 
 
@@ -271,14 +271,14 @@ def handle_message(event):
         while (lngLastIndex > 0 and lngCount <= 50):
             lngCount = lngCount + 1
             lngLastIndex = lngLastIndex -1
-            strTemp += '最近' + str(lngCount) + '筆資料..\n' + \
-                    '=>資料時間：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 0]) + '\n' + \
-                    '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 1]) + ' ' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 2]) + '\n' + \
-                    '=>狀態：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 3]) + '\n' + \
-                    '=>評估：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 25]) + '\n' + \
-                    '=>檢驗：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 24]) + '\n\n' + \
-                    '...................................\n' + \
-                    '...................................\n'
+            strTemp += '最近第[ ' + str(lngCount) + ' ]筆資料..\n' + \
+                    ' => 資料時間：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 0]) + '\n' + \
+                    ' => 部門姓名：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 1]) + ' ' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 2]) + '\n' + \
+                    ' => 狀態：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 3]) + '\n' + \
+                    ' => 評估：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 25]) + '\n' + \
+                    ' => 檢驗：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 24]) + '\n\n' + \
+                    '  ...................................\n' + \
+                    '  ...................................\n'
 
         if len(strTemp) >= GVintMaxLineMSGString:
             strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
