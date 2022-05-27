@@ -271,7 +271,7 @@ def handle_message(event):
         while (lngLastIndex > 0 and lngCount <= 50):
             lngCount = lngCount + 1
             lngLastIndex = lngLastIndex -1
-            strTemp += '最近' + lngCount + '筆資料..\n' + \
+            strTemp += '最近' + str(lngCount) + '筆資料..\n' + \
                     '=>資料時間：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 0]) + '\n' + \
                     '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 1]) + ' ' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 2]) + '\n' + \
                     '=>狀態：\n' + str(dfGLEsheet.at[lngLastIndex - lngCount + 1 , 3]) + '\n' + \
