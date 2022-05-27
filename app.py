@@ -6,7 +6,7 @@ strVer = '(M526)1020'
 
 
     ##### 關鍵字編輯 ######
-# GOOGLE表單區域
+# TY主管防疫回報
 # 防疫群組
     # ***** ***** ***** ***** *****
 
@@ -265,6 +265,7 @@ def handle_message(event):
         dfGLEsheet = pd.DataFrame(values)
 
         # 資料處理
+        strTemp = ''
         lngCount = 0
         lngLastIndex = len(dfGLEsheet.index) - 1
         while (lngLastIndex > 0 and lngCount <= 50):
