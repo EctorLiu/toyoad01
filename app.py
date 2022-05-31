@@ -132,18 +132,18 @@ def handle_message(event):
         strReply_MSG = '『TOYO行政管理部』：您好' + event.message.text
 
     ##### 測試取得ID功能 #####
-    elif strEventMSG == 'ID?' or strEventMSG == 'id?':
+    elif strEventMSG.upper() == 'ID?':
         # 訊息類別
         get_TYPE_message = 'SYS_TEST_MSG'
-        User_ID = TextMessage(text=event.source.user_id)
+        strUser_ID = TextMessage(text=event.source.user_id)
         strReply_MSG = 'Reply User ID =>' + event.source.user_id
         # line_bot_api.reply_message(event.reply_token, strReply_MSG)
         # line_bot_api.push_message('Cff5125a1ea645aa836eb7de5511d2b89',TextSendMessage(text=strReply_MSG))
 
-    elif strEventMSG == 'GROUPID?':
+    elif strEventMSG.upper() == 'GROUPID?':
         # 訊息類別
         get_TYPE_message = 'SYS_TEST_MSG'
-        Group_ID = TextMessage(text=event.source.group_id)
+        strGroup_ID = TextMessage(text=event.source.group_id)
         strReply_MSG = 'Reply Group ID =>' + event.source.group_id
         # line_bot_api.reply_message(event.reply_token, strReply_MSG)
         # line_bot_api.push_message('Cff5125a1ea645aa836eb7de5511d2b89',TextSendMessage(text=strReply_MSG))
