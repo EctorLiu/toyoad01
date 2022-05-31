@@ -132,7 +132,7 @@ def handle_message(event):
         strReply_MSG = '『TOYO行政管理部』：您好' + event.message.text
 
     ##### 測試取得ID功能 #####
-    if strRawEventMSG == 'ID?' or strRawEventMSG == 'id?':
+    if strEventMSG == 'ID?' or strEventMSG == 'id?':
         # 訊息類別
         get_TYPE_message = 'SYS_TEST_MSG'
         User_ID = TextMessage(text=event.source.user_id)
@@ -140,7 +140,7 @@ def handle_message(event):
         # line_bot_api.reply_message(event.reply_token, strReply_MSG)
         # line_bot_api.push_message('Cff5125a1ea645aa836eb7de5511d2b89',TextSendMessage(text=strReply_MSG))
 
-    elif strRawEventMSG == 'GroupID?':
+    elif strEventMSG == 'GroupID?':
         # 訊息類別
         get_TYPE_message = 'SYS_TEST_MSG'
         Group_ID = TextMessage(text=event.source.group_id)
