@@ -19,11 +19,23 @@ line_bot_api = LineBotApi(strchannel_access_token)
 handler = WebhookHandler(strchannel_secret)
     # ***** ***** ***** ***** *****
 
+    ##### 自訂函數功能 ######
+from rm_initial import *
+from ri_text_01 import *
+from ri_parameters_01 import *
+from rf_string_01 import *
+from rf_string_02 import *
+from rf_datetime_01 import *
+import rf_sqldb_01 as pymsdb
+from rf_sqldb_02 import *
+from rf_line_01 import *
+    # ***** ***** ***** ***** *****
+
     ##### 自動執行程式 ######
 # @sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/25')
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 32)
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 33)
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 34)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 38)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 39)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 40)
 
 def scheduled_job():
     import openpyxl
