@@ -33,9 +33,9 @@ from rf_line_01 import *
 
     ##### 自動執行程式 ######
 # @sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/25')
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 42)
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 43)
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 44)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 35)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 36)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 37)
 
 def scheduled_job():
     import openpyxl
@@ -57,27 +57,36 @@ def scheduled_job():
     dfGLEsheet = pd.DataFrame(values)
 
     # 資料處理
+    strTemp=''
     lngLastRow = len(dfGLEsheet.index)
-    strTemp = '最近1筆資料時間..\n' + \
-            '=>資料時間：\n' + str(dfGLEsheet.at[lngLastRow - 1 , 0]) + '\n' + \
-            '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - 1 , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - 1 , 2]) + '\n' + \
-            '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - 1 , 3]) + '\n' + \
-            '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - 1 , 24]) + '\n\n' + \
-            '...................................\n' + \
-            '...................................\n' + \
-            '更前1筆資料時間..\n' + \
-            '=>資料時間：\n' + str(dfGLEsheet.at[lngLastRow - 2 , 0]) + '\n' + \
-            '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - 2 , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - 2 , 2]) + '\n' + \
-            '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - 2 , 3]) + '\n' + \
-            '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - 2 , 24]) + '\n'
+    lngCount = 1
+    strDATADateTime = str(dfGLEsheet.at[lngLastRow - lngCount , 0])
+    strDATADateTime = strDATADateTime.replace('上午','am')
+    strDATADateTime = strDATADateTime.replace('下午','pm')
+    datDATADateTime = datetime.strptime(strDATADateTime, "%Y/%m/%d %p %H:%M:%S")
+    # while (FVdatNow - datDataTime).seconds <= 86400:
+    while (FVdatNow - datDATADateTime).seconds <= 10800:
+        strDATADateTime = str(dfGLEsheet.at[lngLastRow - lngCount , 0])
+        strDATADateTime = strDATADateTime.replace('上午','am')
+        strDATADateTime = strDATADateTime.replace('下午','pm')
+        datDATADateTime = datetime.strptime(strDATADateTime, "%Y/%m/%d %p %H:%M:%S")
+        strTemp = '[' + lngCount + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
+                '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - lngCount , 2]) + '\n' + \
+                '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 3]) + '\n' + \
+                '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 24]) + '\n\n' + \
+                '...................................\n'
+        lngCount = lngCount + 1
 
     if len(strTemp) >= GVintMaxLineMSGString:
         strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
+    elif len(strTemp) == 0:
+        strTemp = '這段時間內無資料'
 
     strReply_MSG = strTemp
     # ***** ***** ***** ***** *****
     # 行政官方帳號ID：Ua42052df655d4d9538b864a3c4deaf28
     # 測試群組ID：Ua42052df655d4d9538b864a3c4deaf28
+    # 測試群組ID：Cff5125a1ea645aa836eb7de5511d2b89
     line_bot_api.push_message('Cff5125a1ea645aa836eb7de5511d2b89',TextSendMessage(text=strReply_MSG))
     # url = 'https://toyoad01.herokuapp.com/'
     # conn = urllib.request.urlopen(url)
