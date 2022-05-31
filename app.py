@@ -246,6 +246,7 @@ def handle_message(event):
         dfGLEsheet = pd.DataFrame(values)
 
         # 資料處理
+        strTemp=''
         lngLastRow = len(dfGLEsheet.index)
         lngCount = 1
         datDATADateTime = datetime.strptime(str(dfGLEsheet.at[lngLastRow - lngCount , 0]), "%Y-%m-%d %H:%M:%S")
@@ -256,7 +257,7 @@ def handle_message(event):
                     '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - lngCount , 2]) + '\n' + \
                     '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 3]) + '\n' + \
                     '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 24]) + '\n\n' + \
-                    '...................................\n' + \
+                    '...................................\n'
             lngCount = lngCount + 1
 
         if len(strTemp) >= GVintMaxLineMSGString:
