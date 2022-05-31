@@ -7,6 +7,19 @@ sched = BlockingScheduler()
 import urllib.request
     # ***** ***** ***** ***** *****
 
+    ##### 時間函數 ######
+from datetime import datetime
+import time
+
+FVdatNow = datetime.now()
+FVstrToday = FVdatNow.strftime("%Y-%m-%d") 
+FVstrNow = FVdatNow.strftime("%Y-%m-%d %H:%M:%S") 
+
+# FVstrLCNow = time.strftime("%Y-%m-%d %H:%M:%S.%f", time.localtime())
+FVstrGMNow = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
+FVdatGMNow = datetime.strptime(FVstrGMNow, "%Y-%m-%d %H:%M:%S") 
+    # ***** ***** ***** ***** *****
+
     ##### Line ######
 from config import * 
 # https://github.com/line/line-bot-sdk-python
@@ -32,7 +45,18 @@ from rf_line_01 import *
     # ***** ***** ***** ***** *****
 
     ##### 自動執行程式 ######
-# @sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/25')
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 7, minute= 30)
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 8, minute= 30)
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 9, minute= 30)
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 10, minute= 30)
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 11, minute= 30)
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 12, minute= 30)
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 13, minute= 30)
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 14, minute= 30)
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 15, minute= 30)
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 16, minute= 30)
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 17, minute= 30)
+
 @sched.scheduled_job('cron', day_of_week='mon-fri', minute= 35)
 @sched.scheduled_job('cron', day_of_week='mon-fri', minute= 36)
 @sched.scheduled_job('cron', day_of_week='mon-fri', minute= 37)
@@ -113,5 +137,6 @@ sched.start()
 # @sched.scheduled_job('cron', day_of_week = 'mon-fri', hour = 11, minute = 35, second = 05)
 # @sched.scheduled_job('cron', year = 2021, month = 12, day = 27, hour = 12, minute = 2, second = 30)
 
+# @sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/25')
 # @sched.scheduled_job('cron', year = 2021, month = 12, day = 25, minute = 20)
     # ***** ***** ***** ***** *****
