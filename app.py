@@ -255,7 +255,7 @@ def handle_message(event):
         strDATADateTime = strDATADateTime.replace('下午','pm')
         datDATADateTime = datetime.strptime(strDATADateTime, "%Y/%m/%d %p %H:%M:%S")
         # while (FVdatNow - datDataTime).seconds <= 86400:
-        while (FVdatNow - datDataTime).seconds <= 3600:
+        while (FVdatNow - datDATADateTime).seconds <= 3600:
             strDATADateTime = str(dfGLEsheet.at[lngLastRow - lngCount , 0])
             strDATADateTime = strDATADateTime.replace('上午','am')
             strDATADateTime = strDATADateTime.replace('下午','pm')
