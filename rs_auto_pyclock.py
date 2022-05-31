@@ -27,7 +27,8 @@ handler = WebhookHandler(strchannel_secret)
 
 def scheduled_job():
     strReply_MSG = 'TY防疫回報'
-    line_bot_api.push_message('Cff5125a1ea645aa836eb7de5511d2b89',TextSendMessage(text=strReply_MSG))
+    # 行政官方帳號ID：Ua42052df655d4d9538b864a3c4deaf28
+    line_bot_api.push_message('Ua42052df655d4d9538b864a3c4deaf28',TextSendMessage(text=strReply_MSG))
     # url = 'https://toyoad01.herokuapp.com/'
     # conn = urllib.request.urlopen(url)
     # for key, value in conn.getheaders():
