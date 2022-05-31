@@ -223,6 +223,56 @@ def handle_message(event):
     # ***** ***** ***** ***** *****
 
     ##### GOOGLE表單區域 #####
+    elif ('TTTT' in strEventMSG):
+        #類別
+        get_TYPE_message = 'TY_PV_PUSH_MSG'
+
+        import openpyxl
+        import gspread
+        from oauth2client.service_account import ServiceAccountCredentials
+        import pandas as pd
+
+        # 連線
+        auth_json_path = 'GCP-TOYOAD.json'
+        gss_scopes = ['https://spreadsheets.google.com/feeds']
+        credentials = ServiceAccountCredentials.from_json_keyfile_name(auth_json_path, gss_scopes)
+        gss_client = gspread.authorize(credentials)
+
+        # 開啟 Google Sheet 資料表
+        MySheet_KEY = '1IgWoZ8uqR2M96AbFm_C2fGCg6Nt9Jp6XjAnrmkgqJIg'
+        MySheet_NAME01 = '表單回應 1'
+        GLEsheet = gss_client.open_by_key(MySheet_KEY).worksheet(MySheet_NAME01)
+        values = GLEsheet.get_all_values()
+        dfGLEsheet = pd.DataFrame(values)
+
+        # 資料處理
+        lngLastRow = len(dfGLEsheet.index)
+        lngCount = 1
+        datDATADateTime = datetime.strptime(str(dfGLEsheet.at[lngLastRow - lngCount , 0]), "%Y-%m-%d %H:%M:%S")
+        # while (FVdatGMNow - datDataTime).seconds <= 86400:
+        while (FVdatGMNow - datDataTime).seconds <= 3600:
+            datDATADateTime = datetime.strptime(str(dfGLEsheet.at[lngLastRow - lngCount , 0]), "%Y-%m-%d %H:%M:%S")
+            strTemp = '[' + lngCount + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
+                    '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - lngCount , 2]) + '\n' + \
+                    '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 3]) + '\n' + \
+                    '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 24]) + '\n\n' + \
+                    '...................................\n' + \
+            lngCount = lngCount + 1
+
+        if len(strTemp) >= GVintMaxLineMSGString:
+            strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
+
+        ##### 此項需有權限才能執行 #####
+        strAUTHKWQuery = 'TYPV'
+        strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+        if strAUTH_CHK[0:2] == 'GO':
+            strReply_MSG = strTemp
+        else:
+            strReply_MSG = '權限不足!'
+        # ***** ***** ***** ***** *****
+    # ***** ***** ***** ***** *****
+
+    ##### GOOGLE表單區域 #####
     elif ('TY防疫回報' in strEventMSG):
         #類別
         get_TYPE_message = 'TY_PV_PUSH_MSG'
