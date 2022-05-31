@@ -74,13 +74,7 @@ def scheduled_job():
     if len(strTemp) >= GVintMaxLineMSGString:
         strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
 
-    ##### 此項需有權限才能執行 #####
-    strAUTHKWQuery = 'TYPV'
-    strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
-    if strAUTH_CHK[0:2] == 'GO':
-        strReply_MSG = strTemp
-    else:
-        strReply_MSG = '權限不足!'
+    strReply_MSG = strTemp
     # ***** ***** ***** ***** *****
     # 行政官方帳號ID：Ua42052df655d4d9538b864a3c4deaf28
     # 測試群組ID：Ua42052df655d4d9538b864a3c4deaf28
