@@ -57,9 +57,9 @@ from rf_line_01 import *
 @sched.scheduled_job('cron', day_of_week='mon-fri', hour = 16, minute= 30)
 @sched.scheduled_job('cron', day_of_week='mon-fri', hour = 17, minute= 30)
 
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 35)
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 36)
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 37)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 38)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 39)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 40)
 
 def scheduled_job():
     import openpyxl
