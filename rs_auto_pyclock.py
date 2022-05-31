@@ -81,7 +81,7 @@ def scheduled_job():
     dfGLEsheet = pd.DataFrame(values)
 
     # 資料處理
-    strReply_MSG = '現在時間：' + str(FVdatNow) + '\n'
+    strReply_MSG = '現在時間：' + FVstrNow + '\n'
     strTemp = ''
     lngLastRow = len(dfGLEsheet.index)
     lngCount = 1
@@ -127,9 +127,11 @@ def scheduled_job():
     strReply_MSG += strTemp
     # ***** ***** ***** ***** *****
     # 行政官方帳號ID：Ua42052df655d4d9538b864a3c4deaf28
-    # 測試群組ID：Ua42052df655d4d9538b864a3c4deaf28
     # 測試群組ID：Cff5125a1ea645aa836eb7de5511d2b89
     # VBA群組ID：Cdf7c089f566a65261a84ae4a16d9afb4
+    # 防疫群組ID：C8df0a16b1b940252195b00280db2fa75
+    # 菲尼克斯群組ID：Cdd617a7f3515934d7c75e1d00c4f3605
+    # HR_職安衛ID：C2dc8eb757a1b585721a21f8a3aa73853
     line_bot_api.push_message('Cdf7c089f566a65261a84ae4a16d9afb4',TextSendMessage(text=strReply_MSG))
     line_bot_api.push_message('Cff5125a1ea645aa836eb7de5511d2b89',TextSendMessage(text=strReply_MSG))
     # url = 'https://toyoad01.herokuapp.com/'
