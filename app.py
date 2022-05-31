@@ -250,8 +250,8 @@ def handle_message(event):
         lngLastRow = len(dfGLEsheet.index)
         lngCount = 1
         datDATADateTime = datetime.strptime(str(dfGLEsheet.at[lngLastRow - lngCount , 0]), "%Y-%m-%d %H:%M:%S")
-        # while (FVdatGMNow - datDataTime).seconds <= 86400:
-        while (FVdatGMNow - datDataTime).seconds <= 3600:
+        # while (FVdatNow - datDataTime).seconds <= 86400:
+        while (FVdatNow - datDataTime).seconds <= 3600:
             datDATADateTime = datetime.strptime(str(dfGLEsheet.at[lngLastRow - lngCount , 0]), "%Y-%m-%d %H:%M:%S")
             strTemp = '[' + lngCount + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
                     '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - lngCount , 2]) + '\n' + \
