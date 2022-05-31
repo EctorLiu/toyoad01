@@ -4,7 +4,6 @@
 strVer = '(M527)1620'
     # ***** ***** ***** ***** *****
 
-
     ##### 關鍵字編輯 ######
 # TY主管防疫回報
 # 防疫群組
@@ -131,6 +130,24 @@ def handle_message(event):
     if strEventMSG == '您好':
         # (A)禮貌回覆
         strReply_MSG = '『TOYO行政管理部』：您好' + event.message.text
+
+    ##### 測試取得ID功能 #####
+    if strRawEventMSG == 'ID?' or strRawEventMSG == 'id?':
+        # 訊息類別
+        get_TYPE_message = 'SYS_TEST_MSG'
+        User_ID = TextMessage(text=event.source.user_id)
+        strReply_MSG = 'Reply User ID =>' + event.source.user_id
+        # line_bot_api.reply_message(event.reply_token, strReply_MSG)
+        # line_bot_api.push_message('Cff5125a1ea645aa836eb7de5511d2b89',TextSendMessage(text=strReply_MSG))
+
+    elif strRawEventMSG == 'GroupID?':
+        # 訊息類別
+        get_TYPE_message = 'SYS_TEST_MSG'
+        Group_ID = TextMessage(text=event.source.group_id)
+        strReply_MSG = 'Reply Group ID =>' + event.source.group_id
+        # line_bot_api.reply_message(event.reply_token, strReply_MSG)
+        # line_bot_api.push_message('Cff5125a1ea645aa836eb7de5511d2b89',TextSendMessage(text=strReply_MSG))
+    # ***** ***** ***** ***** *****
 
     ##### (TSVI)推播 #####
     elif (strEventMSG[0:4].upper() == 'TY推播' or strEventMSG[0:6].upper() == 'TOYO推播'):
@@ -935,8 +952,8 @@ def handle_message(event):
             RS_lineNotifyMessage(token, push_message)
 
         #使用者取得的訊息
-        reply = TextSendMessage(text=f"{strReply_MSG}")
-        line_bot_api.reply_message(event.reply_token,  reply)
+        # reply = TextSendMessage(text=f"{strReply_MSG}")
+        # line_bot_api.reply_message(event.reply_token,  reply)
     # ***** ***** ***** ***** *****
 
 
