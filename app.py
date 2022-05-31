@@ -140,7 +140,7 @@ def handle_message(event):
         # line_bot_api.reply_message(event.reply_token, strReply_MSG)
         # line_bot_api.push_message('Cff5125a1ea645aa836eb7de5511d2b89',TextSendMessage(text=strReply_MSG))
 
-    elif strEventMSG == 'GroupID?':
+    elif strEventMSG == 'GROUPID?':
         # 訊息類別
         get_TYPE_message = 'SYS_TEST_MSG'
         Group_ID = TextMessage(text=event.source.group_id)
