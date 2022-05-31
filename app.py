@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M527)1620'
+strVer = '(M531)1440'
     # ***** ***** ***** ***** *****
 
     ##### 關鍵字編輯 ######
@@ -132,7 +132,7 @@ def handle_message(event):
         strReply_MSG = '『TOYO行政管理部』：您好' + event.message.text
 
     ##### 測試取得ID功能 #####
-    if strEventMSG == 'ID?' or strEventMSG == 'id?':
+    elif strEventMSG == 'ID?' or strEventMSG == 'id?':
         # 訊息類別
         get_TYPE_message = 'SYS_TEST_MSG'
         User_ID = TextMessage(text=event.source.user_id)
