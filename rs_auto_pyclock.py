@@ -59,7 +59,7 @@ from rf_line_01 import *
 @sched.scheduled_job('cron', hour = 18, minute= 30)
 @sched.scheduled_job('cron', hour = 19, minute= 30)
 @sched.scheduled_job('cron', hour = 20, minute= 30)
-@sched.scheduled_job('cron', hour = 16, minute= 57)
+@sched.scheduled_job('cron', hour = 17, minute= 2)
 
 def scheduled_job():
     import openpyxl
@@ -81,7 +81,8 @@ def scheduled_job():
     dfGLEsheet = pd.DataFrame(values)
 
     # 資料處理
-    strTemp = '現在時間：' + str(FVdatNow) + '\n'
+    strReply_MSG = '現在時間：' + str(FVdatNow) + '\n'
+    strTemp = ''
     lngLastRow = len(dfGLEsheet.index)
     lngCount = 1
     strDATADateTime = str(dfGLEsheet.at[lngLastRow - lngCount , 0])
@@ -94,7 +95,7 @@ def scheduled_job():
             strDATADateTime = strDATADateTime.replace('上午','am')
             strDATADateTime = strDATADateTime.replace('下午','pm')
             datDATADateTime = datetime.strptime(strDATADateTime, "%Y/%m/%d %p %H:%M:%S")
-            strTemp = '[' + lngCount + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
+            strTemp += '[' + lngCount + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
                     '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - lngCount , 2]) + '\n' + \
                     '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 3]) + '\n' + \
                     '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 24]) + '\n\n' + \
@@ -111,7 +112,7 @@ def scheduled_job():
             strDATADateTime = strDATADateTime.replace('上午','am')
             strDATADateTime = strDATADateTime.replace('下午','pm')
             datDATADateTime = datetime.strptime(strDATADateTime, "%Y/%m/%d %p %H:%M:%S")
-            strTemp = '[' + lngCount + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
+            strTemp += '[' + lngCount + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
                     '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - lngCount , 2]) + '\n' + \
                     '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 3]) + '\n' + \
                     '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 24]) + '\n\n' + \
@@ -123,7 +124,7 @@ def scheduled_job():
         elif len(strTemp) == 0:
             strTemp += '前1小時內，無Google防疫回報'
 
-    strReply_MSG = strTemp
+    strReply_MSG += strTemp
     # ***** ***** ***** ***** *****
     # 行政官方帳號ID：Ua42052df655d4d9538b864a3c4deaf28
     # 測試群組ID：Ua42052df655d4d9538b864a3c4deaf28
