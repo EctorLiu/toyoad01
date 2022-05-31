@@ -225,6 +225,7 @@ def handle_message(event):
     elif ('TY防疫回報' in strEventMSG):
         #類別
         get_TYPE_message = 'TY_PV_PUSH_MSG'
+
         import openpyxl
         import gspread
         from oauth2client.service_account import ServiceAccountCredentials
@@ -260,11 +261,22 @@ def handle_message(event):
 
         if len(strTemp) >= GVintMaxLineMSGString:
             strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
-        strReply_MSG = strTemp
+
+        ##### 此項需有權限才能執行 #####
+        strAUTHKWQuery = 'TYPV'
+        strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+        if strAUTH_CHK[0:2] == 'GO':
+            strReply_MSG = strTemp
+        else:
+            strReply_MSG = '權限不足!'
+        # ***** ***** ***** ***** *****
     # ***** ***** ***** ***** *****
 
     ##### GOOGLE表單區域 #####
     elif ('TY主管防疫回報' in strEventMSG):
+        #類別
+        get_TYPE_message = 'TY_PV_PUSH_MSG'
+
         import openpyxl
         import gspread
         from oauth2client.service_account import ServiceAccountCredentials
@@ -300,7 +312,15 @@ def handle_message(event):
 
         if len(strTemp) >= GVintMaxLineMSGString:
             strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
-        strReply_MSG = strTemp
+
+        ##### 此項需有權限才能執行 #####
+        strAUTHKWQuery = 'TYPV'
+        strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+        if strAUTH_CHK[0:2] == 'GO':
+            strReply_MSG = strTemp
+        else:
+            strReply_MSG = '權限不足!'
+        # ***** ***** ***** ***** *****
     # ***** ***** ***** ***** *****
 
     ##### 關鍵字 #####
@@ -868,8 +888,10 @@ def handle_message(event):
     # #####Send To TY_PV_PUSH_MSG
     if get_TYPE_message == 'TY_PV_PUSH_MSG':
         reply = TextSendMessage(text=f"{strReply_MSG}")
-        line_bot_api.push_message('Cdf7c089f566a65261a84ae4a16d9afb4',TextSendMessage(text=strReply_MSG))
-        # line_bot_api.reply_message(event.reply_token, reply)
+        # 回覆詢問者
+        line_bot_api.reply_message(event.reply_token, reply)
+        # 推至特定群組
+        line_bot_api.push_message('Cdf7c089f566a65261a84ae4a16d9afb4',TextSendMessage(text=reply))
     # ***** ***** ***** ***** *****
 
     ##### 推播Line Notify內容 #####
