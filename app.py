@@ -223,6 +223,8 @@ def handle_message(event):
 
     ##### GOOGLE表單區域 #####
     elif ('TY防疫回報' in strEventMSG):
+        #類別
+        get_TYPE_message = 'TY_PV_PUSH_MSG'
         import openpyxl
         import gspread
         from oauth2client.service_account import ServiceAccountCredentials
@@ -861,6 +863,13 @@ def handle_message(event):
     if get_TYPE_message == 'Initial':
         reply = TextSendMessage(text=f"{strReply_MSG}")
         line_bot_api.reply_message(event.reply_token,  reply)
+    # ***** ***** ***** ***** *****
+
+    # #####Send To TY_PV_PUSH_MSG
+    if get_TYPE_message == 'TY_PV_PUSH_MSG':
+        reply = TextSendMessage(text=f"{strReply_MSG}")
+        line_bot_api.push_message('Cdf7c089f566a65261a84ae4a16d9afb4',TextSendMessage(text=strReply_MSG))
+        # line_bot_api.reply_message(event.reply_token, reply)
     # ***** ***** ***** ***** *****
 
     ##### 推播Line Notify內容 #####
