@@ -21,14 +21,58 @@ handler = WebhookHandler(strchannel_secret)
 
     ##### 自動執行程式 ######
 # @sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/25')
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 30)
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 31)
 @sched.scheduled_job('cron', day_of_week='mon-fri', minute= 32)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 33)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 34)
 
 def scheduled_job():
-    strReply_MSG = 'TY防疫回報'
+    import openpyxl
+    import gspread
+    from oauth2client.service_account import ServiceAccountCredentials
+    import pandas as pd
+
+    # 連線
+    auth_json_path = 'GCP-TOYOAD.json'
+    gss_scopes = ['https://spreadsheets.google.com/feeds']
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(auth_json_path, gss_scopes)
+    gss_client = gspread.authorize(credentials)
+
+    # 開啟 Google Sheet 資料表
+    MySheet_KEY = '1IgWoZ8uqR2M96AbFm_C2fGCg6Nt9Jp6XjAnrmkgqJIg'
+    MySheet_NAME01 = '表單回應 1'
+    GLEsheet = gss_client.open_by_key(MySheet_KEY).worksheet(MySheet_NAME01)
+    values = GLEsheet.get_all_values()
+    dfGLEsheet = pd.DataFrame(values)
+
+    # 資料處理
+    lngLastRow = len(dfGLEsheet.index)
+    strTemp = '最近1筆資料時間..\n' + \
+            '=>資料時間：\n' + str(dfGLEsheet.at[lngLastRow - 1 , 0]) + '\n' + \
+            '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - 1 , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - 1 , 2]) + '\n' + \
+            '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - 1 , 3]) + '\n' + \
+            '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - 1 , 24]) + '\n\n' + \
+            '...................................\n' + \
+            '...................................\n' + \
+            '更前1筆資料時間..\n' + \
+            '=>資料時間：\n' + str(dfGLEsheet.at[lngLastRow - 2 , 0]) + '\n' + \
+            '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - 2 , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - 2 , 2]) + '\n' + \
+            '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - 2 , 3]) + '\n' + \
+            '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - 2 , 24]) + '\n'
+
+    if len(strTemp) >= GVintMaxLineMSGString:
+        strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
+
+    ##### 此項需有權限才能執行 #####
+    strAUTHKWQuery = 'TYPV'
+    strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+    if strAUTH_CHK[0:2] == 'GO':
+        strReply_MSG = strTemp
+    else:
+        strReply_MSG = '權限不足!'
+    # ***** ***** ***** ***** *****
     # 行政官方帳號ID：Ua42052df655d4d9538b864a3c4deaf28
-    line_bot_api.push_message('Ua42052df655d4d9538b864a3c4deaf28',TextSendMessage(text=strReply_MSG))
+    # 測試群組ID：Ua42052df655d4d9538b864a3c4deaf28
+    line_bot_api.push_message('Cff5125a1ea645aa836eb7de5511d2b89',TextSendMessage(text=strReply_MSG))
     # url = 'https://toyoad01.herokuapp.com/'
     # conn = urllib.request.urlopen(url)
     # for key, value in conn.getheaders():
