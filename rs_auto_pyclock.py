@@ -86,7 +86,7 @@ def scheduled_job():
     strDATADateTime = strDATADateTime.replace('下午','pm')
     datDATADateTime = datetime.strptime(strDATADateTime, "%Y/%m/%d %p %H:%M:%S")
     if FVdatNow.hour == 7:
-        while (FVdatNow - datDataTime).seconds <= 50400:
+        while (FVdatNow - strDATADateTime).seconds <= 50400:
             strDATADateTime = str(dfGLEsheet.at[lngLastRow - lngCount , 0])
             strDATADateTime = strDATADateTime.replace('上午','am')
             strDATADateTime = strDATADateTime.replace('下午','pm')
