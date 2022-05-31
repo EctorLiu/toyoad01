@@ -37,7 +37,7 @@ from rf_line_01 import *
     # ***** ***** ***** ***** *****
 
     ##### 自動執行程式 ######
-@sched.scheduled_job('cron', hour = 7, minute= 46)
+@sched.scheduled_job('cron', hour = 7, minute= 50)
 @sched.scheduled_job('cron', hour = 8, minute= 30)
 @sched.scheduled_job('cron', hour = 9, minute= 30)
 @sched.scheduled_job('cron', hour = 10, minute= 30)
