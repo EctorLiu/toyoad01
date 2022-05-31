@@ -7,15 +7,31 @@ sched = BlockingScheduler()
 import urllib.request
     # ***** ***** ***** ***** *****
 
+    ##### Line ######
+from config import * 
+# https://github.com/line/line-bot-sdk-python
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError, LineBotApiError
+from linebot.models import *
+# from linebot.models import MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage, ButtonsTemplate, MessageTemplateAction
+
+line_bot_api = LineBotApi(strchannel_access_token)
+handler = WebhookHandler(strchannel_secret)
+    # ***** ***** ***** ***** *****
 
     ##### 自動執行程式 ######
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/25')
+# @sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/25')
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 22)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 24)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 26)
 
 def scheduled_job():
-    url = 'https://toyoad01.herokuapp.com/'
-    conn = urllib.request.urlopen(url)
-    for key, value in conn.getheaders():
-        print(key, value)
+    strReply_MSG = 'TY防疫回報'
+    line_bot_api.push_message('Cff5125a1ea645aa836eb7de5511d2b89',TextSendMessage(text=strReply_MSG))
+    # url = 'https://toyoad01.herokuapp.com/'
+    # conn = urllib.request.urlopen(url)
+    # for key, value in conn.getheaders():
+    #     print(key, value)
 
 sched.start()
     # ***** ***** ***** ***** *****
