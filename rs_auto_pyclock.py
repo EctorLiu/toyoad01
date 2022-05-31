@@ -88,18 +88,30 @@ def scheduled_job():
     strDATADateTime = strDATADateTime.replace('上午','am')
     strDATADateTime = strDATADateTime.replace('下午','pm')
     datDATADateTime = datetime.strptime(strDATADateTime, "%Y/%m/%d %p %H:%M:%S")
-    # while (FVdatNow - datDataTime).seconds <= 86400:
-    while (FVdatNow - datDATADateTime).seconds <= 10800:
-        strDATADateTime = str(dfGLEsheet.at[lngLastRow - lngCount , 0])
-        strDATADateTime = strDATADateTime.replace('上午','am')
-        strDATADateTime = strDATADateTime.replace('下午','pm')
-        datDATADateTime = datetime.strptime(strDATADateTime, "%Y/%m/%d %p %H:%M:%S")
-        strTemp = '[' + lngCount + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
-                '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - lngCount , 2]) + '\n' + \
-                '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 3]) + '\n' + \
-                '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 24]) + '\n\n' + \
-                '...................................\n'
-        lngCount = lngCount + 1
+    if FVdatNow.hour == 7:
+        while (FVdatNow - datDataTime).seconds <= 50400:
+            strDATADateTime = str(dfGLEsheet.at[lngLastRow - lngCount , 0])
+            strDATADateTime = strDATADateTime.replace('上午','am')
+            strDATADateTime = strDATADateTime.replace('下午','pm')
+            datDATADateTime = datetime.strptime(strDATADateTime, "%Y/%m/%d %p %H:%M:%S")
+            strTemp = '[' + lngCount + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
+                    '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - lngCount , 2]) + '\n' + \
+                    '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 3]) + '\n' + \
+                    '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 24]) + '\n\n' + \
+                    '...................................\n'
+            lngCount = lngCount + 1
+    else:
+        while (FVdatNow - datDATADateTime).seconds <= 10800:
+            strDATADateTime = str(dfGLEsheet.at[lngLastRow - lngCount , 0])
+            strDATADateTime = strDATADateTime.replace('上午','am')
+            strDATADateTime = strDATADateTime.replace('下午','pm')
+            datDATADateTime = datetime.strptime(strDATADateTime, "%Y/%m/%d %p %H:%M:%S")
+            strTemp = '[' + lngCount + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
+                    '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - lngCount , 2]) + '\n' + \
+                    '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 3]) + '\n' + \
+                    '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 24]) + '\n\n' + \
+                    '...................................\n'
+            lngCount = lngCount + 1
 
     if len(strTemp) >= GVintMaxLineMSGString:
         strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
