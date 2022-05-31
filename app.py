@@ -274,7 +274,10 @@ def handle_message(event):
         strAUTHKWQuery = 'TYPV'
         strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
         if strAUTH_CHK[0:2] == 'GO':
-            strReply_MSG = strTemp
+            if len(strTemp) == 0:
+                strReply_MSG = '這段時間內無資料'
+            else:
+                strReply_MSG = strTemp
         else:
             strReply_MSG = '權限不足!'
         # ***** ***** ***** ***** *****
