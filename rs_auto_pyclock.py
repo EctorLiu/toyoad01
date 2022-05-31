@@ -21,9 +21,9 @@ handler = WebhookHandler(strchannel_secret)
 
     ##### 自動執行程式 ######
 # @sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/25')
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 27)
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 28)
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 29)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 30)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 31)
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 32)
 
 def scheduled_job():
     strReply_MSG = 'TY防疫回報'
