@@ -45,21 +45,21 @@ from rf_line_01 import *
     # ***** ***** ***** ***** *****
 
     ##### 自動執行程式 ######
-@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 7, minute= 30)
-@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 8, minute= 30)
-@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 9, minute= 30)
-@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 10, minute= 30)
-@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 11, minute= 30)
-@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 12, minute= 30)
-@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 13, minute= 30)
-@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 14, minute= 30)
-@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 15, minute= 30)
-@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 16, minute= 30)
-@sched.scheduled_job('cron', day_of_week='mon-fri', hour = 17, minute= 30)
-
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 38)
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 39)
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute= 40)
+@sched.scheduled_job('cron', hour = 7, minute= 30)
+@sched.scheduled_job('cron', hour = 8, minute= 30)
+@sched.scheduled_job('cron', hour = 9, minute= 30)
+@sched.scheduled_job('cron', hour = 10, minute= 30)
+@sched.scheduled_job('cron', hour = 11, minute= 30)
+@sched.scheduled_job('cron', hour = 12, minute= 30)
+@sched.scheduled_job('cron', hour = 13, minute= 30)
+@sched.scheduled_job('cron', hour = 14, minute= 30)
+@sched.scheduled_job('cron', hour = 15, minute= 30)
+@sched.scheduled_job('cron', hour = 16, minute= 30)
+@sched.scheduled_job('cron', hour = 17, minute= 30)
+@sched.scheduled_job('cron', hour = 18, minute= 30)
+@sched.scheduled_job('cron', hour = 19, minute= 30)
+@sched.scheduled_job('cron', hour = 20, minute= 30)
+@sched.scheduled_job('cron', hour = 16, minute= 45)
 
 def scheduled_job():
     import openpyxl
@@ -100,8 +100,13 @@ def scheduled_job():
                     '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 24]) + '\n\n' + \
                     '...................................\n'
             lngCount = lngCount + 1
+
+        if len(strTemp) >= GVintMaxLineMSGString:
+            strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
+        elif len(strTemp) == 0:
+            strTemp = '前1天17:30後，無Google防疫回報'
     else:
-        while (FVdatNow - datDATADateTime).seconds <= 10800:
+        while (FVdatNow - datDATADateTime).seconds <= 3600:
             strDATADateTime = str(dfGLEsheet.at[lngLastRow - lngCount , 0])
             strDATADateTime = strDATADateTime.replace('上午','am')
             strDATADateTime = strDATADateTime.replace('下午','pm')
@@ -113,10 +118,10 @@ def scheduled_job():
                     '...................................\n'
             lngCount = lngCount + 1
 
-    if len(strTemp) >= GVintMaxLineMSGString:
-        strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
-    elif len(strTemp) == 0:
-        strTemp = '這段時間內無資料'
+        if len(strTemp) >= GVintMaxLineMSGString:
+            strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
+        elif len(strTemp) == 0:
+            strTemp = '前1小時內無Google防疫回報'
 
     strReply_MSG = strTemp
     # ***** ***** ***** ***** *****
