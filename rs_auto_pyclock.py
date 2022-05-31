@@ -59,7 +59,7 @@ from rf_line_01 import *
 @sched.scheduled_job('cron', hour = 18, minute= 30)
 @sched.scheduled_job('cron', hour = 19, minute= 30)
 @sched.scheduled_job('cron', hour = 20, minute= 30)
-@sched.scheduled_job('cron', hour = 16, minute= 51)
+@sched.scheduled_job('cron', hour = 16, minute= 57)
 
 def scheduled_job():
     import openpyxl
@@ -81,7 +81,7 @@ def scheduled_job():
     dfGLEsheet = pd.DataFrame(values)
 
     # 資料處理
-    strTemp=''
+    strTemp = '現在時間：' + str(FVdatNow) + '\n'
     lngLastRow = len(dfGLEsheet.index)
     lngCount = 1
     strDATADateTime = str(dfGLEsheet.at[lngLastRow - lngCount , 0])
@@ -104,7 +104,7 @@ def scheduled_job():
         if len(strTemp) >= GVintMaxLineMSGString:
             strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
         elif len(strTemp) == 0:
-            strTemp = '前1天17:30後，無Google防疫回報'
+            strTemp += '前1天下班後，無Google防疫回報'
     else:
         while (FVdatNow - datDATADateTime).seconds <= 3600:
             strDATADateTime = str(dfGLEsheet.at[lngLastRow - lngCount , 0])
@@ -121,13 +121,15 @@ def scheduled_job():
         if len(strTemp) >= GVintMaxLineMSGString:
             strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
         elif len(strTemp) == 0:
-            strTemp = '前1小時內無Google防疫回報'
+            strTemp += '前1小時內，無Google防疫回報'
 
     strReply_MSG = strTemp
     # ***** ***** ***** ***** *****
     # 行政官方帳號ID：Ua42052df655d4d9538b864a3c4deaf28
     # 測試群組ID：Ua42052df655d4d9538b864a3c4deaf28
     # 測試群組ID：Cff5125a1ea645aa836eb7de5511d2b89
+    # VBA群組ID：Cdf7c089f566a65261a84ae4a16d9afb4
+    line_bot_api.push_message('Cdf7c089f566a65261a84ae4a16d9afb4',TextSendMessage(text=strReply_MSG))
     line_bot_api.push_message('Cff5125a1ea645aa836eb7de5511d2b89',TextSendMessage(text=strReply_MSG))
     # url = 'https://toyoad01.herokuapp.com/'
     # conn = urllib.request.urlopen(url)
