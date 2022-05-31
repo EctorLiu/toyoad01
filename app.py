@@ -5,6 +5,7 @@ strVer = '(M531)1618'
     # ***** ***** ***** ***** *****
 
     ##### 關鍵字編輯 ######
+# TTTT
 # 推播到指定群組中
 # TY主管防疫回報
 # 防疫群組
@@ -252,13 +253,13 @@ def handle_message(event):
         strDATADateTime = str(dfGLEsheet.at[lngLastRow - lngCount , 0])
         strDATADateTime.replace('上午','am')
         strDATADateTime.replace('下午','pm')
-        datDATADateTime = datetime.strptime(strDATADateTime, "%Y-%m-%d ％p %H:%M:%S")
+        datDATADateTime = datetime.strptime(strDATADateTime, "%Y-%m-%d %p %H:%M:%S")
         # while (FVdatNow - datDataTime).seconds <= 86400:
         while (FVdatNow - datDataTime).seconds <= 3600:
             strDATADateTime = str(dfGLEsheet.at[lngLastRow - lngCount , 0])
             strDATADateTime.replace('上午','am')
             strDATADateTime.replace('下午','pm')
-            datDATADateTime = datetime.strptime(strDATADateTime, "%Y-%m-%d %H:%M:%S")
+            datDATADateTime = datetime.strptime(strDATADateTime, "%Y-%m-%d %p %H:%M:%S")
             strTemp = '[' + lngCount + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
                     '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - lngCount , 2]) + '\n' + \
                     '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 3]) + '\n' + \
