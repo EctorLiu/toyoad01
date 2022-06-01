@@ -91,7 +91,7 @@ def scheduled_job():
             strDATADateTime = strDATADateTime.replace('上午','am')
             strDATADateTime = strDATADateTime.replace('下午','pm')
             datDATADateTime = datetime.strptime(strDATADateTime, "%Y/%m/%d %p %H:%M:%S")
-            strTemp += '[' + lngCount + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
+            strTemp += '[' + str(lngCount) + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
                     '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - lngCount , 2]) + '\n' + \
                     '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 3]) + '\n' + \
                     '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 24]) + '\n\n' + \
@@ -108,7 +108,7 @@ def scheduled_job():
             strDATADateTime = strDATADateTime.replace('上午','am')
             strDATADateTime = strDATADateTime.replace('下午','pm')
             datDATADateTime = datetime.strptime(strDATADateTime, "%Y/%m/%d %p %H:%M:%S")
-            strTemp += '[' + lngCount + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
+            strTemp += '[' + str(lngCount) + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
                     '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - lngCount , 2]) + '\n' + \
                     '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 3]) + '\n' + \
                     '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 24]) + '\n\n' + \
