@@ -18,10 +18,6 @@ strNewestActivity = '『TOYO行政管理部』：最近活動\n' + \
                 '..'
     # ***** ***** ***** ***** *****
 
-    ##### (TSVI)推播 ######
-import requests
-    # ***** ***** ***** ***** *****
-
 
     ##### 時間函數 ######
 from datetime import datetime
@@ -40,12 +36,16 @@ line_bot_api = LineBotApi(strchannel_access_token)
 handler = WebhookHandler(strchannel_secret)
     # ***** ***** ***** ***** *****
 
+    ##### (TSVI)推播 ######
+import requests
+    # ***** ***** ***** ***** *****
+
     ##### Flask ######
 from flask import Flask, abort, request
 app = Flask(__name__)
     # ***** ***** ***** ***** *****
 
-    ##### Google表單函式 ######
+    ##### 讀取Google表單資料 #####
 import openpyxl
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
