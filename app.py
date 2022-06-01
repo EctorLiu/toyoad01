@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M531)1746'
+strVer = '(M601)1932'
     # ***** ***** ***** ***** *****
 
     ##### 關鍵字編輯 ######
@@ -45,8 +45,11 @@ from flask import Flask, abort, request
 app = Flask(__name__)
     # ***** ***** ***** ***** *****
 
-    ##### 日期時間 ######
-from datetime import datetime
+    ##### Google表單函式 ######
+import openpyxl
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import pandas as pd
     # ***** ***** ***** ***** *****
 
     ##### 自訂函數功能 ######
@@ -229,11 +232,6 @@ def handle_message(event):
         #類別
         get_TYPE_message = 'TY_PV_PUSH_MSG'
 
-        import openpyxl
-        import gspread
-        from oauth2client.service_account import ServiceAccountCredentials
-        import pandas as pd
-
         # 連線
         auth_json_path = 'GCP-TOYOAD.json'
         gss_scopes = ['https://spreadsheets.google.com/feeds']
@@ -255,18 +253,17 @@ def handle_message(event):
         strDATADateTime = strDATADateTime.replace('上午','am')
         strDATADateTime = strDATADateTime.replace('下午','pm')
         datDATADateTime = datetime.strptime(strDATADateTime, "%Y/%m/%d %p %H:%M:%S")
-        # while (FVdatNow - datDataTime).seconds <= 86400:
         while (FVdatNow - datDATADateTime).seconds <= 3600:
-            strDATADateTime = str(dfGLEsheet.at[lngLastRow - lngCount , 0])
-            strDATADateTime = strDATADateTime.replace('上午','am')
-            strDATADateTime = strDATADateTime.replace('下午','pm')
-            datDATADateTime = datetime.strptime(strDATADateTime, "%Y/%m/%d %p %H:%M:%S")
-            strTemp = '[' + lngCount + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
+            strTemp = '[' + str(lngCount) + '] 資料時間：\n' + str(datDATADateTime) + '\n' + \
                     '=>部門姓名：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 1]) + ' ' + str(dfGLEsheet.at[lngLastRow - lngCount , 2]) + '\n' + \
                     '=>狀態：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 3]) + '\n' + \
                     '=>檢驗：\n' + str(dfGLEsheet.at[lngLastRow - lngCount , 24]) + '\n\n' + \
                     '...................................\n'
             lngCount = lngCount + 1
+            strDATADateTime = str(dfGLEsheet.at[lngLastRow - lngCount , 0])
+            strDATADateTime = strDATADateTime.replace('上午','am')
+            strDATADateTime = strDATADateTime.replace('下午','pm')
+            datDATADateTime = datetime.strptime(strDATADateTime, "%Y/%m/%d %p %H:%M:%S")
 
         if len(strTemp) >= GVintMaxLineMSGString:
             strTemp = strTemp[0:GVintMaxLineMSGString] + '...(資料過多)'
@@ -288,11 +285,6 @@ def handle_message(event):
     elif ('TY防疫回報' in strEventMSG):
         #類別
         get_TYPE_message = 'TY_PV_PUSH_MSG'
-
-        import openpyxl
-        import gspread
-        from oauth2client.service_account import ServiceAccountCredentials
-        import pandas as pd
 
         # 連線
         auth_json_path = 'GCP-TOYOAD.json'
@@ -339,11 +331,6 @@ def handle_message(event):
     elif ('TY主管防疫回報' in strEventMSG):
         #類別
         get_TYPE_message = 'TY_PV_PUSH_MSG'
-
-        import openpyxl
-        import gspread
-        from oauth2client.service_account import ServiceAccountCredentials
-        import pandas as pd
 
         # 連線
         auth_json_path = 'GCP-TOYOAD.json'
