@@ -939,11 +939,11 @@ def handle_message(event):
     if get_TYPE_message == 'TY_PV_PUSH_MSG':
         reply = TextSendMessage(text=f"{strReply_MSG}")
         # 回覆詢問者
-        line_bot_api.push_message('Cff5125a1ea645aa836eb7de5511d2b89',TextSendMessage(text=strReply_MSG))
         line_bot_api.reply_message(event.reply_token, reply)
         # 推至特定群組(VBA群組：Cdf7c089f566a65261a84ae4a16d9afb4)測試
         # line_bot_api.push_message('Cdf7c089f566a65261a84ae4a16d9afb4',TextSendMessage(text=reply))
         # 推至特定群組(TT：Cff5125a1ea645aa836eb7de5511d2b89)測試
+        # line_bot_api.push_message('Cff5125a1ea645aa836eb7de5511d2b89',TextSendMessage(text=strReply_MSG))
     # ***** ***** ***** ***** *****
 
     ##### 推播Line Notify內容 #####
