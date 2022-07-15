@@ -921,16 +921,16 @@ def handle_message(event):
         if ('EctorLiu' in strLineDisplayName) and ('芳' in strLineDisplayName):    
             if ('KW' in strEventMSG.upper()) or ('關鍵字' in strEventMSG.upper()):
                 get_TYPE_message = 'SYS_KW_INPUT_MSG'
-                strContent = GVstrECKeyWord
+                strReply_MSG = GVstrECKeyWord
             elif ('LINE' in strEventMSG.upper()) or ('OA' in strEventMSG.upper()) or ('官方帳號' in strEventMSG.upper()):     
                 get_TYPE_message = 'SYS_KW_INPUT_MSG'
-                strContent = GVstrLessonLearning
+                strReply_MSG = GVstrLessonLearning
             elif ('TOKEN' in strEventMSG.upper()) or ('NOTIFY' in strEventMSG.upper()) or ('推播' in strEventMSG.upper()) or ('權杖' in strEventMSG.upper()):     
                 get_TYPE_message = 'SYS_KW_INPUT_MSG'
-                strContent = GVstrLineNotifyHowToGetToken
+                strReply_MSG = GVstrLineNotifyHowToGetToken
             elif ('VBA' in strEventMSG.upper()) or ('EXCEL' in strEventMSG.upper()):     
                 get_TYPE_message = 'SYS_KW_INPUT_MSG'
-                strContent = GVstrVBA_Initial_Config
+                strReply_MSG = GVstrVBA_Initial_Config
             else:
                 strReply_MSG = GVstrECKeyWord
         else:
