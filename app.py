@@ -1,7 +1,7 @@
 # ===== ===== ===== ===== ===== 【宣告區域】 ===== ===== ===== ===== =====
 
     ##### 版本 ######
-strVer = '(M601)1932'
+strVer = '(M715)0902'
     # ***** ***** ***** ***** *****
 
     ##### 關鍵字編輯 ######
@@ -227,7 +227,30 @@ def handle_message(event):
         get_TYPE_message = 'TSVI樣版'   
     # ***** ***** ***** ***** *****
 
-    ##### GOOGLE表單區域 #####
+    ##### 集點卡片圖片 #####
+    elif ('1111' in strEventMSG[0:4]):
+        print ('KW：1111')
+        if ('EctorLiu' in strLineDisplayName) and ('芳' in strLineDisplayName):
+            get_TYPE_message == 'TYAD_Collection01'
+        else:
+            get_TYPE_message = 'TY_PV_PUSH_MSG'
+            strReply_MSG = '權限不足!'
+    elif ('2222' in strEventMSG[0:4]):
+        print ('KW：2222')
+        if ('EctorLiu' in strLineDisplayName) and ('芳' in strLineDisplayName):
+            get_TYPE_message == 'TYAD_Collection02'
+        else:
+            get_TYPE_message = 'TY_PV_PUSH_MSG'
+            strReply_MSG = '權限不足!'
+    elif ('3333' in strEventMSG[0:4]):
+        print ('KW：3333')
+        if ('EctorLiu' in strLineDisplayName) and ('芳' in strLineDisplayName):
+            get_TYPE_message == 'TYAD_Collection03'
+        else:
+            get_TYPE_message = 'TY_PV_PUSH_MSG'
+            strReply_MSG = '權限不足!'
+    # ***** ***** ***** ***** *****
+
     elif ('TTTT' in strEventMSG):
         #類別
         get_TYPE_message = 'TY_PV_PUSH_MSG'
@@ -981,6 +1004,22 @@ def handle_message(event):
             token = strPush2Who
             RS_lineNotifyMessage(token, push_message)
     # ***** ***** ***** ***** *****
+        
+    ##### 推播Line Notify內容 #####
+    elif get_TYPE_message == 'TYAD_Collection01':
+        reply = ImageSendMessage(original_content_url = 'https://github.com/EctorLiu/toyoad01/raw/main/img/TYAD_C01.jpg', \
+                     preview_image_url = 'https://raw.githubusercontent.com/EctorLiu/toyoad01/raw/main/img/TYAD_C01.jpg')
+        line_bot_api.reply_message(event.reply_token,  reply)
+
+    elif get_TYPE_message == 'TYAD_Collection02':
+        reply = ImageSendMessage(original_content_url = 'https://github.com/EctorLiu/toyoad01/raw/main/img/TYAD_C02.jpg', \
+                     preview_image_url = 'https://raw.githubusercontent.com/EctorLiu/toyoad01/raw/main/img/TYAD_C02.jpg')
+        line_bot_api.reply_message(event.reply_token,  reply)
+
+    elif get_TYPE_message == 'TYAD_Collection03':
+        reply = ImageSendMessage(original_content_url = 'https://github.com/EctorLiu/toyoad01/raw/main/img/TYAD_C03.jpg', \
+                     preview_image_url = 'https://raw.githubusercontent.com/EctorLiu/toyoad01/raw/main/img/TYAD_C03.jpg')
+        line_bot_api.reply_message(event.reply_token,  reply)
 
     ##### 推播Line Notify內容 #####
     elif get_TYPE_message == 'SYS_KW_INPUT_MSG':
