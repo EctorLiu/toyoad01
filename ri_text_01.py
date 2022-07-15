@@ -241,9 +241,8 @@ GVstrECKeyWord = 'KW：\n' + \
                 '\n' + \
                 '[ECTOR]\n' + \
                 '(1)(KW or 關鍵字)\n' + \
-                '(2)(LINE or LINE)\n' + \
-                '(3)(KW or OA or 官方帳號)\n' + \
-                '(4)(TOKEN or NOTIFY or 推播 or 權杖)\n' + \
-                '(5)(VBA or EXCEL)\n' + \
+                '(2)(LINE or OA or 官方帳號)\n' + \
+                '(3)(TOKEN or NOTIFY or 推播 or 權杖)\n' + \
+                '(4)(VBA or EXCEL)\n' + \
                 ''
     # ***** ***** ***** ***** *****
