@@ -244,5 +244,8 @@ GVstrECKeyWord = 'KW：\n' + \
                 '(2)(LINE or OA or 官方帳號)\n' + \
                 '(3)(TOKEN or NOTIFY or 推播 or 權杖)\n' + \
                 '(4)(VBA or EXCEL)\n' + \
+                '(5)(1111 or AAAA)：集1點\n' + \
+                '(6)(2222 or BBBB)：集2點\n' + \
+                '(7)(3333 or CCCC)：集3點\n' + \
                 ''
     # ***** ***** ***** ***** *****
