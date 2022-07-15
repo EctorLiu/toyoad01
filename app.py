@@ -231,7 +231,7 @@ def handle_message(event):
     elif ('1111' in strEventMSG[0:4]):
         print ('KW：1111')
         if ('EctorLiu' in strLineDisplayName) and ('芳' in strLineDisplayName):
-            get_TYPE_message == 'TYAD_Collection01'
+            get_TYPE_message = 'TYAD_Collection01'
             strReply_MSG = 'OK'
         else:
             get_TYPE_message = 'TY_PV_PUSH_MSG'
@@ -239,7 +239,7 @@ def handle_message(event):
     elif ('2222' in strEventMSG[0:4]):
         print ('KW：2222')
         if ('EctorLiu' in strLineDisplayName) and ('芳' in strLineDisplayName):
-            get_TYPE_message == 'TYAD_Collection02'
+            get_TYPE_message = 'TYAD_Collection02'
             strReply_MSG = 'OK'
         else:
             get_TYPE_message = 'TY_PV_PUSH_MSG'
@@ -247,7 +247,7 @@ def handle_message(event):
     elif ('3333' in strEventMSG[0:4]):
         print ('KW：3333')
         if ('EctorLiu' in strLineDisplayName) and ('芳' in strLineDisplayName):
-            get_TYPE_message == 'TYAD_Collection03'
+            get_TYPE_message = 'TYAD_Collection03'
             strReply_MSG = 'OK'
         else:
             get_TYPE_message = 'TY_PV_PUSH_MSG'
