@@ -232,6 +232,7 @@ def handle_message(event):
         print ('KW：1111')
         if ('EctorLiu' in strLineDisplayName) and ('芳' in strLineDisplayName):
             get_TYPE_message == 'TYAD_Collection01'
+            strReply_MSG = 'OK'
         else:
             get_TYPE_message = 'TY_PV_PUSH_MSG'
             strReply_MSG = '權限不足!'
@@ -239,6 +240,7 @@ def handle_message(event):
         print ('KW：2222')
         if ('EctorLiu' in strLineDisplayName) and ('芳' in strLineDisplayName):
             get_TYPE_message == 'TYAD_Collection02'
+            strReply_MSG = 'OK'
         else:
             get_TYPE_message = 'TY_PV_PUSH_MSG'
             strReply_MSG = '權限不足!'
@@ -246,6 +248,7 @@ def handle_message(event):
         print ('KW：3333')
         if ('EctorLiu' in strLineDisplayName) and ('芳' in strLineDisplayName):
             get_TYPE_message == 'TYAD_Collection03'
+            strReply_MSG = 'OK'
         else:
             get_TYPE_message = 'TY_PV_PUSH_MSG'
             strReply_MSG = '權限不足!'
