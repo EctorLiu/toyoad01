@@ -228,7 +228,7 @@ def handle_message(event):
     # ***** ***** ***** ***** *****
 
     ##### 集點卡片圖片 #####
-    elif ('1111' in strEventMSG[0:4]):
+    elif ('1111' in strEventMSG[0:4]) or ('AAAA' in strEventMSG[0:4].upper()):
         print ('KW：1111')
         if ('EctorLiu' in strLineDisplayName) and ('芳' in strLineDisplayName):
             get_TYPE_message = 'TYAD_Collection01'
@@ -236,7 +236,7 @@ def handle_message(event):
         else:
             get_TYPE_message = 'TY_PV_PUSH_MSG'
             strReply_MSG = '權限不足!'
-    elif ('2222' in strEventMSG[0:4]):
+    elif ('2222' in strEventMSG[0:4]) or ('BBBB' in strEventMSG[0:4].upper()):
         print ('KW：2222')
         if ('EctorLiu' in strLineDisplayName) and ('芳' in strLineDisplayName):
             get_TYPE_message = 'TYAD_Collection02'
@@ -244,7 +244,7 @@ def handle_message(event):
         else:
             get_TYPE_message = 'TY_PV_PUSH_MSG'
             strReply_MSG = '權限不足!'
-    elif ('3333' in strEventMSG[0:4]):
+    elif ('3333' in strEventMSG[0:4]) or ('CCCC' in strEventMSG[0:4].upper()):
         print ('KW：3333')
         if ('EctorLiu' in strLineDisplayName) and ('芳' in strLineDisplayName):
             get_TYPE_message = 'TYAD_Collection03'
