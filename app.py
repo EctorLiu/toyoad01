@@ -891,32 +891,38 @@ def handle_message(event):
 
     ##### 程式開發使用 #####
     elif (strEventMSG[0:5].upper() == 'ECTOR'):
-        if len(strEventMSG) == 5:
-            strCond = ''
-        else:
-            strCond = strEventMSG.replace('ECTOR', '')
-            strCond = strCond.strip()
-        #比對輸入[小時分鐘](1225)
-        strHHNN = RS_DateTime_2_HHNN()
-        #開發者關鍵字清單
-        if (strHHNN in strCond) and ('KW' in strCond):        
-            get_TYPE_message = 'SYS_ADMIN'
+        # if len(strEventMSG) == 5:
+        #     strCond = ''
+        # else:
+        #     strCond = strEventMSG.replace('ECTOR', '')
+        #     strCond = strCond.strip()
+        # #比對輸入[小時分鐘](1225)
+        # strHHNN = RS_DateTime_2_HHNN()
+        # #開發者關鍵字清單
+        # if (strHHNN in strCond) and ('KW' in strCond):        
+        #     get_TYPE_message = 'SYS_ADMIN'
+        #     strContent = GVstrECKeyWord
+        # #官方帳號教學
+        # elif (strHHNN in strCond) and ('LINE' in strCond):        
+        #     get_TYPE_message = 'SYS_ADMIN'
+        #     strContent = GVstrLessonLearning
+        # else:
+        #     get_TYPE_message = 'SYS_ADMIN'
+        #     strContent = 'EC' + strCond + '\n' * 100 + strHHNN[-2:] + 'OK'
+        # ##### 此項需有權限才能執行 #####
+        # strAUTHKWQuery = 'SYSADMIN'
+        # strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
+        # if strAUTH_CHK[0:2] == 'GO':
+        #     strReply_MSG = strContent
+        # else:
+        #     strReply_MSG = '權限不足!'
+        # # ***** ***** ***** ***** *****
+
+        if ('EctorLiu' in strLineDisplayName) and ('芳' in strLineDisplayName):    
+            get_TYPE_message = 'SYS_KW_INPUT_MSG'
             strContent = GVstrECKeyWord
-        #官方帳號教學
-        elif (strHHNN in strCond) and ('LINE' in strCond):        
-            get_TYPE_message = 'SYS_ADMIN'
-            strContent = GVstrLessonLearning
-        else:
-            get_TYPE_message = 'SYS_ADMIN'
-            strContent = 'EC' + strCond + '\n' * 100 + strHHNN[-2:] + 'OK'
-        ##### 此項需有權限才能執行 #####
-        strAUTHKWQuery = 'SYSADMIN'
-        strAUTH_CHK = RS_CHECK_KWAUTH_by_UserId(strLineUserID, strAUTHKWQuery)
-        if strAUTH_CHK[0:2] == 'GO':
-            strReply_MSG = strContent
         else:
             strReply_MSG = '權限不足!'
-        # ***** ***** ***** ***** *****
 
 #
 #
@@ -1009,8 +1015,8 @@ def handle_message(event):
     # ***** ***** ***** ***** *****
         
     ##### 推播Line Notify內容 #####
+    # https://github.com/EctorLiu/toyoad01/raw/main/img/TYAD_C01.jpg
     elif get_TYPE_message == 'TYAD_Collection01':
-        # https://github.com/EctorLiu/toyoad01/raw/main/img/TYAD_C01.jpg
         reply = ImageSendMessage(
             original_content_url='https://raw.githubusercontent.com/EctorLiu/toyoad01/main/img/TYAD_C01.jpg',
             preview_image_url='https://raw.githubusercontent.com/EctorLiu/toyoad01/main/img/TYAD_C01.jpg'
@@ -1018,7 +1024,6 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,  reply)
 
     elif get_TYPE_message == 'TYAD_Collection02':
-        # https://github.com/EctorLiu/toyoad01/raw/main/img/TYAD_C01.jpg
         reply = ImageSendMessage(
             original_content_url='https://raw.githubusercontent.com/EctorLiu/toyoad01/main/img/TYAD_C02.jpg',
             preview_image_url='https://raw.githubusercontent.com/EctorLiu/toyoad01/main/img/TYAD_C02.jpg'
@@ -1026,7 +1031,6 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,  reply)
 
     elif get_TYPE_message == 'TYAD_Collection03':
-        # https://github.com/EctorLiu/toyoad01/raw/main/img/TYAD_C01.jpg
         reply = ImageSendMessage(
             original_content_url='https://raw.githubusercontent.com/EctorLiu/toyoad01/main/img/TYAD_C03.jpg',
             preview_image_url='https://raw.githubusercontent.com/EctorLiu/toyoad01/main/img/TYAD_C03.jpg'
