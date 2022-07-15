@@ -920,7 +920,7 @@ def handle_message(event):
 
         if ('EctorLiu' in strLineDisplayName) and ('芳' in strLineDisplayName):    
             get_TYPE_message = 'SYS_KW_INPUT_MSG'
-            strContent = GVstrECKeyWord
+            strReply_MSG = GVstrECKeyWord
         else:
             strReply_MSG = '權限不足!'
 
