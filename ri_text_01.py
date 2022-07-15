@@ -83,6 +83,36 @@ GVstrLessonLearning = 'A1. 申請官方帳號：\n' + \
     # ***** ***** ***** ***** *****
 
     ##### 教學資料 ######
+GVstrVBA_Initial_Config = '使用Excel VBA前需先設定：\n' + \
+                            '  Step01：進入「選項」\n' + \
+                            '  畫面：https://bit.ly/3rwV08Q\n' + \
+                            '\n' + \
+                            '  Step02：設定「選項/自訂功能區」：打勾「開發人員」\n' + \
+                            '  畫面：https://bit.ly/32eDMo4\n' + \
+                            '\n' + \
+                            '  Step03：按鈕進入「選項/信任中心/信任中心設定」\n' + \
+                            '  畫面：https://bit.ly/3KubY0r\n' + \
+                            '\n' + \
+                            '  Step04：設定「信任中心/ActiveX」：選取「啟用所有控制項」\n' + \
+                            '  畫面：https://bit.ly/35bzcIB\n' + \
+                            '\n' + \
+                            '  Step05-A：設定「信任中心/巨集設定」：選取「啟用所有巨集」\n' + \
+                            '  Step05-B：進入「信任中心/巨集設定」：打勾「信任存取VBA專案物件模型」\n' + \
+                            '  畫面：https://bit.ly/3IBPZ63\n' + \
+                            '\n' + \
+                            '  範例檔案：https://bit.ly/33tPHiH\n' + \
+                            '\n' + \
+                            '這時候就可以使用VBA程式相關功能，上方功能列會增加「開發人員」'
+
+                            # '  畫面：https://github.com/EctorLiu/Ectorliu/raw/main/img/VBA_Initial_Step01.jpg\n' + \
+                            # '  畫面：https://github.com/EctorLiu/Ectorliu/raw/main/img/VBA_Initial_Step02.jpg\n' + \
+                            # '  畫面：https://github.com/EctorLiu/Ectorliu/raw/main/img/VBA_Initial_Step03.jpg\n' + \
+                            # '  畫面：https://github.com/EctorLiu/Ectorliu/raw/main/img/VBA_Initial_Step04.jpg\n' + \
+                            # '  畫面：https://github.com/EctorLiu/Ectorliu/raw/main/img/VBA_Initial_Step05.jpg\n' + \
+                            # '  範例檔案：https://github.com/EctorLiu/Ectorliu/raw/main/files/VBA_EX01(V1).xlsm\n' + \
+    # ***** ***** ***** ***** *****
+
+    ##### 教學資料 ######
 GVstrLineNotifyHowToGetToken = 'Line Notify推播說明：\n' + \
                                 '「Line Notify」推播需要取得「權杖」，取得方式說明：\n' + \
                                 '> 推播範例：\n' + \
@@ -210,6 +240,10 @@ GVstrECKeyWord = 'KW：\n' + \
                 '(1)樣版\n' + \
                 '\n' + \
                 '[ECTOR]\n' + \
-                '(1)E.4. + HN + (KW or LINE)\n' + \
+                '(1)(KW or 關鍵字)\n' + \
+                '(2)(LINE or LINE)\n' + \
+                '(3)(KW or OA or 官方帳號)\n' + \
+                '(4)(TOKEN or NOTIFY or 推播 or 權杖)\n' + \
+                '(5)(VBA or EXCEL)\n' + \
                 ''
     # ***** ***** ***** ***** *****
