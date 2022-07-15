@@ -1012,21 +1012,21 @@ def handle_message(event):
     elif get_TYPE_message == 'TYAD_Collection01':        
         reply = ImageSendMessage(
             original_content_url='https://github.com/EctorLiu/toyoad01/raw/main/img/TYAD_C01.jpg',
-            preview_image_url='https://github.com/EctorLiu/toyoad01/raw/main/img/TYAD_C01.png'
+            preview_image_url='https://raw.githubusercontent.com/EctorLiu/toyoad01/main/img/TYAD_C01.jpg'
         )
         line_bot_api.reply_message(event.reply_token,  reply)
 
     elif get_TYPE_message == 'TYAD_Collection02':      
         reply = ImageSendMessage(
             original_content_url='https://github.com/EctorLiu/toyoad01/raw/main/img/TYAD_C02.jpg',
-            preview_image_url='https://github.com/EctorLiu/toyoad01/raw/main/img/TYAD_C02.png'
+            preview_image_url='https://raw.githubusercontent.com/EctorLiu/toyoad01/main/img/TYAD_C02.jpg'
         )
         line_bot_api.reply_message(event.reply_token,  reply)
 
     elif get_TYPE_message == 'TYAD_Collection03':      
         reply = ImageSendMessage(
             original_content_url='https://github.com/EctorLiu/toyoad01/raw/main/img/TYAD_C03.jpg',
-            preview_image_url='https://github.com/EctorLiu/toyoad01/raw/main/img/TYAD_C03.png'
+            preview_image_url='https://raw.githubusercontent.com/EctorLiu/toyoad01/main/img/TYAD_C03.jpg'
         )
         line_bot_api.reply_message(event.reply_token,  reply)
 
